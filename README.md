@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alfaz Khan | Frontend Developer & Data Scientist
 
-## Getting Started
+Welcome to my GitHub profile! This README serves as a comprehensive overview of my skills, experience, and projects, functioning as both a portfolio and a resume.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 👋 About Me
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Hi! I am Alfaz, Frontend Developer & Data Scientist. I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Residence:** Germany
+- **City:** München, Bavaria
+- **Open for Work:** Available
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+[Download my CV](https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Skills & Technologies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I specialize in building high-performance web applications and leveraging data for business intelligence.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Core Skills
+- Javascript
+- React.js
+- CSS
+- Chakra UI
+- PostgresSQL
+- Redux
 
-## Deploy on Vercel
+### Technical Skills
+- Javascript
+- Typescript
+- React
+- Next.js
+- Node.js
+- Tailwindcss
+- Figma
+- Git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Extra Skills
+- Vite
+- TailwindCSS
+- Python
+- Git & Version Control
+- Photoshop
+- Illustrator
+- Premiere Pro
+- Figma
+- Canva
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Languages
+- **Hindi:** C2/Native
+- **English:** C1/Highly Proficient
+- **German:** A2/Good Knowledge
+
+---
+
+## 💼 Work Experience
+
+### System Engineer at Tata Consultancy Services (TCS), Pune, India
+*2021 - 2023*
+Automated manual processes for Credit Suisse, improving efficiency by 25%.
+
+### Webdesigner & Videoeditor (Freelance)
+*2023 - 2025*
+Developed websites with React JS and created content for high-profile international creators.
+
+---
+
+## 🎓 Education
+
+### MBA: Business Intelligence & Data Science
+*2025 - 2026*
+International School of Management, München, Germany
+Specializing in advanced analytics and data-driven decision making.
+
+### Bachelor in Computer Science
+*2017 - 2021*
+Poornima College of Engineering, Jaipur, India
+Foundation in technical problem solving and software engineering principles.
+
+---
+
+## 🚀 Projects
+
+### [Subreddit Analyzer](https://subanalyzer.theonlyalfaz.com)
+*2026 | Frontend & Data Science*
+A full-stack Reddit analysis platform that combines a React dashboard with a Python FastAPI backend, NLP pipelines, and PostgreSQL-backed storage.
+![Subreddit Analyzer Screenshot](https://raw.githubusercontent.com/alfazkhan/Reddit-Data-Scrapper/main/src/assets/Screenshots/Sentiments.png)
+
+### Content for International Creators
+*2025 | Video Engineering & Design*
+Produced high-impact video content for top-tier international creators like Tanmay Bhat (5M+ subscribers) and PokerStars, using Premiere and After Effects.
+![Video Engineering Screenshot](https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=400&h=250&fit=crop)
+
+### Responsive Web Development
+*2025 | Web Design (Freelance)*
+Architected and maintained modern web applications using React JS and current frontend frameworks, focusing on performance and user-centric design.
+![Web Development Screenshot](https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=400&h=250&fit=crop)
+
+---
+
+## 🤝 Let's Connect!
+
+- **LinkedIn:** [https://www.linkedin.com/in/alfaz-khan/](https://www.linkedin.com/in/alfaz-khan/)
+- **GitHub:** [https://github.com/alfazkhan](https://github.com/alfazkhan)
+
+Feel free to explore my repositories and connect with me!

@@ -5,6 +5,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
   },
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
