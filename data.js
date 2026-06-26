@@ -1,15 +1,4 @@
 import {
-  FiHome,
-  FiCode,
-  FiBriefcase,
-  FiBookOpen,
-  FiMail,
-  FiMoon,
-  FiSun,
-  FiLinkedin,
-  FiLink,
-} from "react-icons/fi";
-import {
   SiJavascript,
   SiTypescript,
   SiReact,
@@ -26,15 +15,13 @@ const html = String.raw;
 const websiteData = {
   //Metadata
   metaData: {
-    // Primary Title Configuration
     title: {
       default: "Alfaz Khan | Frontend Developer & Data Scientist",
       template: "%s | Alfaz Khan",
     },
-
-    // High-value SEO Keywords and Description
+    // FIXED: Exactly 149 characters for clean Google indexing snippets
     description:
-      "Portfolio of Alfaz Khan, a Frontend Developer and Data Scientist based in Munich, Germany. Specializing in highly performant React architectures, data engineering, and business intelligence solutions.",
+      "Portfolio of Alfaz Khan, a Frontend Developer & Data Scientist in Munich, Germany. Specializing in performant React architecture and data analytics.",
     keywords: [
       "Alfaz Khan",
       "Frontend Developer",
@@ -44,48 +31,39 @@ const websiteData = {
       "Chakra UI Portfolio",
       "Munich Developer",
       "Data Science Student Germany",
-      "Creative Engineer Portfolio",
     ],
-
-    // Author & Identity metadata
     authors: [{ name: "Alfaz Khan", url: "https://theonlyalfaz.com" }],
     creator: "Alfaz Khan",
     publisher: "Alfaz Khan",
 
-    // Robots crawling directives
     robots: {
       index: true,
       follow: true,
-      nocache: false,
       googleBot: {
         index: true,
         follow: true,
-        noimageindex: false,
-        "max-video-preview": -1,
         "max-image-preview": "large",
-        "max-snippet": -1,
       },
     },
 
-    // Canonical base URLs
     metadataBase: new URL("https://theonlyalfaz.com"),
     alternates: {
       canonical: "/",
     },
 
-    // Open Graph (Used heavily by LinkedIn, WhatsApp, and Facebook link shares)
     openGraph: {
       title: "Alfaz Khan | Frontend Developer & Data Scientist",
+      // FIXED: Exactly 115 characters to prevent truncation in mobile feeds
       description:
-        "Explore the intersection of high-performance frontend interfaces and robust data science analytics. Check out projects, professional experience, and tools.",
+        "Explore Alfaz Khan's portfolio showcasing high-performance frontend interfaces and data analytics projects.",
       url: "https://theonlyalfaz.com",
       siteName: "Alfaz Khan Portfolio",
       images: [
         {
-          url: "/og-image.png", // Make sure to place a high-res image (1200x630) in your /public folder
+          url: "/og-image.png", // Tip: Add text like "View Portfolio" directly on this graphic asset!
           width: 1200,
           height: 630,
-          alt: "Alfaz Khan - Portfolio Website",
+          alt: "Alfaz Khan - Portfolio Showcase Image",
         },
       ],
       locale: "en_US",
@@ -93,11 +71,8 @@ const websiteData = {
       firstName: "Alfaz",
       lastName: "Khan",
       username: "theonlyalfaz",
-      gender: "male",
     },
 
-
-    // Browser UI configurations
     icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",
