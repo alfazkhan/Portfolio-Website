@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Optional: Add this line once you generate a sitemap
+# Sitemap: https://theonlyalfaz.com/sitemap.xml
