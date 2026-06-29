@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import {
@@ -9,9 +9,10 @@ import {
   Button,
   Image,
   Highlight,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 import websiteData from "../data";
+import { FaGoogleDrive } from "react-icons/fa";
 
 const introData = websiteData.introData;
 
@@ -71,19 +72,20 @@ export default function Intro() {
           </Text>
 
           <Button
+            w="full"
+            py={6}
             bg="primary"
-            color="gray.900"
-            px={8}
-            h="14" // Matches the visual height of your old Tailwind button
-            borderRadius="sm"
+            color="buttonText"
             fontWeight="bold"
-            fontSize="xl"
-            boxShadow="md"
-            _hover={{ filter: "brightness(1.1)" }}
-            _active={{ transform: "scale(0.95)" }}
-            transition="all 0.2s"
-            onClick={()=>window.open(introData.cvLink, '_blank').focus()}
+            fontSize="lg"
+            boxShadow="sm"
+            _hover={{ filter: "brightness(1.1)", transform: "scale(1.02)", }}
+            onClick={() =>
+              window.open(websiteData.introData.cvLink, "_blank").focus()
+            }
+            rounded="sm"
           >
+            <FaGoogleDrive />
             {introData.buttonText}
           </Button>
         </Box>
@@ -109,7 +111,7 @@ export default function Intro() {
               h="full"
               objectFit="cover"
               alt="Alfaz Profile"
-              loading="lazy" 
+              loading="lazy"
             />
           </Box>
         </Flex>

@@ -86,7 +86,7 @@ const websiteData = {
       "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
     headline: "Hi! I am Alfaz, Frontend Developer & Data Scientist",
     para: "I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.",
-    buttonText: "Download my CV",
+    buttonText: "Download CV",
     cvLink:
       "https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing",
   },
@@ -102,9 +102,14 @@ const websiteData = {
         id: "linkedin",
         icon: FaLinkedin,
         link: "https://www.linkedin.com/in/alfaz-khan/",
+        color: "#0A66C2",
       },
-      { id: "github", icon: FaGithub, link: "https://github.com/alfazkhan" },
-      //   { id: "twitter", icon: FaLinkedin },
+      {
+        id: "github",
+        icon: FaGithub,
+        link: "https://github.com/alfazkhan",
+        color: "#14191F",
+      },
     ],
     info: [
       { label: "Residence:", value: "Germany", highlight: false },

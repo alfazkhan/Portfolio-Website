@@ -1,7 +1,7 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
-export const PRIMARY_HEX = "#F6AD55";
-export const PRIMARY_HOVER_HEX = "#FFBE5E";
+const PRIMARY_BASE = "#F58B51"
+const PRIMARY_DARK = "#F26419"
 
 const customConfig = defineConfig({
   globalCss: {
@@ -9,64 +9,80 @@ const customConfig = defineConfig({
       bg: "bg",
       color: "text",
       transitionProperty: "background-color, border-color, color, fill, stroke",
-      transitionDuration: "300ms",
-      transitionTimingFunction: "linear",
+      transitionDuration: "100ms",
+      transitionTimingFunction: "ease-in",
     },
     "*, *::before, *::after": {
       transitionProperty: "background-color, border-color, color, fill, stroke",
-      transitionDuration: "300ms",
-      transitionTimingFunction: "linear",
+      transitionDuration: "100ms",
+      transitionTimingFunction: "ease-in",
     },
     "::selection": {
-      bg: PRIMARY_HEX,
+      // Pulls dynamically from your semantic primary token
+      bg: "primary",
       color: "white",
     },
   },
   theme: {
     semanticTokens: {
       colors: {
-        bg: {
-          value: { base: "white", _dark: "{colors.gray.900}" },
-        },
-        bgAlt: {
-          value: { base: "{colors.gray.50}", _dark: "{colors.gray.800}" },
-        },
-        text: {
-          value: { base: "{colors.gray.800}", _dark: "white" },
-        },
-        textMuted: {
-          value: { base: "{colors.gray.600}", _dark: "{colors.gray.400}" },
-        },
-        border: {
-          value: { base: "{colors.gray.200}", _dark: "{colors.gray.700}" },
-        },
+        bg: { value: { base: "white", _dark: "{colors.gray.900}" } },
+        bgAlt: { value: { base: "{colors.gray.50}", _dark: "{colors.gray.800}" } },
+        text: { value: { base: "{colors.gray.900}", _dark: "white" } },
+        buttonText: { value: "white" },
+        textMuted: { value: { base: "{colors.gray.600}", _dark: "{colors.gray.400}" } },
+        border: { value: { base: "{colors.gray.200}", _dark: "{colors.gray.700}" } },
+        mutedBox:{ value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" } },
+
+        // Dynamic Primary Token
         primary: {
-          DEFAULT: { value: PRIMARY_HEX },
-          solid: { value: PRIMARY_HEX },
+          DEFAULT: { 
+            value: { 
+              base: PRIMARY_BASE, // Light theme color
+              _dark: PRIMARY_DARK  // Dark theme color
+            } 
+          },
+          solid: { 
+            value: { 
+              base: PRIMARY_BASE, 
+              _dark: PRIMARY_DARK 
+            } 
+          },
           contrast: { value: "white" },
-          fg: { value: PRIMARY_HEX },
+          fg: { 
+            value: { 
+              base: PRIMARY_BASE, 
+              _dark: PRIMARY_DARK 
+            } 
+          },
           muted: { value: "{colors.orange.100}" },
           subtle: { value: "{colors.orange.50}" },
-          focusRing: { value: PRIMARY_HEX },
-        },
-        secondary: {
-          DEFAULT: { value: "{colors.orange.200}" },
-          solid: { value: "{colors.orange.200}" },
-          contrast: { value: "{colors.gray.900}" },
-          fg: { value: "{colors.orange.200}" },
-          muted: { value: "{colors.orange.100}" },
-          subtle: { value: "{colors.orange.50}" },
-          focusRing: { value: "{colors.orange.200}" },
+          focusRing: { 
+            value: { 
+              base: PRIMARY_BASE, 
+              _dark: PRIMARY_DARK 
+            } 
+          },
         },
       },
     },
     recipes: {
       button: {
-        compoundVariants: [
-          { variant: "solid", colorPalette: "primary", css: { _hover: { bg: PRIMARY_HOVER_HEX }, _expanded: { bg: PRIMARY_HOVER_HEX } } },
-        ],
+        variants: {
+          variant: {
+            solid: {
+              bg: "colorPalette.solid",
+              color: "colorPalette.contrast",
+              _hover: {
+                // Dynamically brightens/adjusts via theme modifier syntax
+                bg: "colorPalette.muted", 
+              },
+            },
+          },
+        },
         defaultVariants: {
           colorPalette: "primary",
+          variant: "solid",
         },
       },
     },

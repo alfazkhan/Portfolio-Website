@@ -4,6 +4,7 @@ import React from "react";
 import { Box, Flex, Heading, Text, Image, Button } from "@chakra-ui/react";
 import { Prose } from "./ui/prose";
 import websiteData from "../data";
+import ProjectInfoModal from "./ProjectInfoModal";
 
 // Best Practice: Static data extracted outside the component
 const projects = websiteData.projects;
@@ -32,96 +33,91 @@ export default function WorkSection() {
         Works and Projects
       </Heading>
 
-      <Flex direction="column" gap={16}>
-        {projects.map(function (project) {
+      <Flex direction="column">
+        {projects.map((project) => {
           return (
-            <Flex
+            <Box
               key={project.id}
-              direction={{ base: "column", md: "row" }}
-              gap={8}
-              pb={12}
-              borderBottom="1px solid"
-              borderColor="border"
-              _last={{ borderBottom: "none", pb: 0 }} // Cleanly targets the last item
+              mb={10}
+              borderWidth={1}
+              p={5}
+              borderRadius="sm"
             >
-              {/* Image Container */}
-              <Box
-                w={{ base: "full", md: "246px" }}
-                h="180px"
-                flexShrink={0}
-                overflow="hidden"
-                borderRadius="lg"
-                boxShadow="sm"
+              <Flex
+                direction={{ base: "column", md: "row" }}
+                gap={8}
+                mb={2}
+                _last={{ borderBottom: "none", pb: 0 }}
               >
-                <Image
-                  src={project.img}
-                  w="full"
-                  h="full"
-                  objectFit="fill"
-                  alt={project.title}
-                  loading="lazy"
-                />
-              </Box>
-
-              {/* Text Container */}
-              <Box flex={1}>
-                <Heading
-                  as="h3"
-                  fontSize="3xl"
-                  fontWeight="bold"
-                  color="text"
-                  mb={4}
+                <Box
+                  w={{ base: "full", md: "246px" }}
+                  h="180px"
+                  flexShrink={0}
+                  overflow="hidden"
+                  borderRadius="lg"
+                  boxShadow="sm"
                 >
-                  {project.title}
-                </Heading>
+                  <Image
+                    src={project.img}
+                    w="full"
+                    h="full"
+                    objectFit="fill"
+                    alt={project.title}
+                    loading="lazy"
+                  />
+                </Box>
 
-                <Flex align="center" gap={4} mb={4} fontSize="sm">
-                  <Box
-                    bg="primary"
-                    color="gray.900"
-                    px={3}
-                    py={1}
-                    borderRadius="full"
+                <Box flex={1}>
+                  <Heading
+                    as="h3"
+                    fontSize="3xl"
                     fontWeight="bold"
+                    color="text"
+                    mb={4}
                   >
-                    {project.year}
+                    {project.title}
+                  </Heading>
+
+                  <Flex align="center" gap={4} mb={4} fontSize="sm">
+                    <Text
+                      bg="primary"
+                      color="white"
+                      px={3}
+                      py={1}
+                      borderRadius="full"
+                      fontWeight="bold"
+                    >
+                      {project.year}
+                    </Text>
+                    <Text color="textMuted" fontSize="lg">
+                      {project.category}
+                    </Text>
+                  </Flex>
+
+                  <Box color="text" lineHeight="relaxed" fontSize="lg">
+                    {/* <Prose>{project.desc}</Prose> */}
+                    <Text
+                      color="text"
+                      lineHeight="relaxed"
+                      fontSize="sm"
+                      opacity={0.8}
+                      dangerouslySetInnerHTML={{ __html: project.desc }}
+                      css={{
+                        "& em": {
+                          color: "primary",
+                          fontWeight: "bold",
+                          fontStyle: "oblique",
+                        }, // Option: Pop emphasis elements with theme colors
+                      }}
+                      _dark={{
+                        color: "white",
+                      }}
+                    />
                   </Box>
-                  <Text color="textMuted" fontSize="lg">
-                    {project.category}
-                  </Text>
-                </Flex>
-
-                <Text
-                  color="text"
-                  lineHeight="relaxed"
-                  fontSize="lg"
-                  opacity={0.9}
-                >
-                  <Prose>{project.desc}</Prose>
-                </Text>
-                {project.link && (
-                  <Button
-                    bg="primary"
-                    size="2xs"
-                    color="gray.900"
-                    px={3}
-                    h="14" // Matches the visual height of your old Tailwind button
-                    borderRadius="sm"
-                    fontWeight="bold"
-                    fontSize="sm"
-                    boxShadow="md"
-                    _hover={{ filter: "brightness(1.1)" }}
-                    _active={{ transform: "scale(0.95)" }}
-                    transition="all 0.2s"
-                    onClick={() =>
-                      window.open(project.link, "_blank").focus()
-                    }
-                  >
-                    Live Project
-                  </Button>
-                )}
-              </Box>
-            </Flex>
+                </Box>
+              </Flex>
+              <ProjectInfoModal />
+            </Box>
           );
         })}
       </Flex>

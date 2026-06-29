@@ -13,16 +13,15 @@ import {
   Badge,
   Wrap,
   WrapItem,
+  Progress,
 } from "@chakra-ui/react";
-import { useColorModeValue } from "./ui/color-mode";
 import websiteData from "../data";
-import { FaStar } from "react-icons/fa";
+import { FaGoogleDrive, FaStar } from "react-icons/fa";
+import { InfoTip } from "@/components/ui/toggle-tip";
 
 const sidebarData = websiteData.sidebarData;
 
 export default function LeftSidebar() {
-  const textColor = useColorModeValue("gray.600", "gray.200");
-
   return (
     <Flex
       as="aside"
@@ -107,8 +106,8 @@ export default function LeftSidebar() {
                 w={8}
                 h={8}
                 borderRadius="full"
-                bg="primary"
-                color="gray.900"
+                bg={social.color}
+                color="buttonText"
                 align="center"
                 justify="center"
                 _hover={{ opacity: 0.8 }}
@@ -129,12 +128,44 @@ export default function LeftSidebar() {
                 label={item.label}
                 value={item.value}
                 highlight={item.highlight}
-                textColor={textColor}
               />
             ))}
+            <Progress.Root value={18}>
+              <Progress.Label mb="2" fontWeight="bold">
+                Days worked in {new Date().getFullYear()}
+                <InfoTip
+                  placement="top" // Moves the popover directly above the info icon
+                  portalled={true} // Renders outside the sidebar stacking context to prevent clipping
+                  contentProps={{
+                    maxW: "240px",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    p: 3,
+                    bg: "bgAlt", // Uses your solid sidebar background token
+                    border: "1px solid",
+                    borderColor: "border", // Clear outline matching your theme
+                    boxShadow: "xl",
+                    borderRadius: "md",
+                    fontWeight: "bold",
+                  }}
+                >
+                  <Text>
+                    Days I&rsquo;ve worked in {new Date().getFullYear()} out of
+                    140 Days I am allowed to work according to my visa status.
+                  </Text>
+                </InfoTip>
+              </Progress.Label>
+              <Progress.Track>
+                <Progress.Range bg="primary" />
+              </Progress.Track>
+              <HStack justify="space-between" mt={1}>
+                <Progress.ValueText>18 Days</Progress.ValueText>
+                <Progress.ValueText>140 Days</Progress.ValueText>
+              </HStack>
+            </Progress.Root>
           </VStack>
 
-          <Separator borderColor="border" mb={6} />
+          <Separator borderColor="border" mb={6} zIndex={1} />
 
           <Box mb={4}>
             <Text fontSize="lg" fontWeight="bold" color="text" mb={4}>
@@ -196,34 +227,17 @@ export default function LeftSidebar() {
           w="full"
           py={6}
           bg="primary"
-          color="gray.900"
+          color="buttonText"
           fontWeight="bold"
-          fontSize="sm"
-          letterSpacing="wider"
-          textTransform="uppercase"
+          fontSize="lg"
           boxShadow="sm"
-          _hover={{ filter: "brightness(1.1)" }}
+          _hover={{ filter: "brightness(1.1)", transform: "scale(1.02)" }}
           onClick={() =>
             window.open(websiteData.introData.cvLink, "_blank").focus()
           }
           rounded="sm"
-          rightIcon={
-            <svg
-              width="16px"
-              height="16px"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-              />
-            </svg>
-          }
         >
+          <FaGoogleDrive />
           Download CV
         </Button>
       </Box>
@@ -231,12 +245,12 @@ export default function LeftSidebar() {
   );
 }
 
-function InfoRow({ label, value, highlight, textColor }) {
+function InfoRow({ label, value, highlight }) {
   return (
     <Flex justify="space-between" align="center">
       <Box
         // bg="secondary"
-        color={textColor}
+        color="text"
         fontSize="11px"
         fontWeight="extrabold"
         px={2}
@@ -258,22 +272,25 @@ function InfoRow({ label, value, highlight, textColor }) {
   );
 }
 
-function LanguageProficiency({ label, proficiency, level }) {
+function LanguageProficiency({ label, proficiency, level, totalLength = 6 }) {
   const languageLevel = Array.from({ length: level });
-
+  const grayBoxArray = Array.from({ length: totalLength - level });
   return (
     <Box mb={4}>
       <Flex justify="space-between" mb={1.5}>
-        <Text fontSize="sm" color="textMuted" fontWeight="bolder">
+        <Text fontSize="sm" color="text" fontWeight="bolder">
           {label}
         </Text>
-        <Text fontSize="sm" color="gray.600">
+        <Text fontSize="sm" color="textMuted">
           {proficiency}
         </Text>
       </Flex>
       <HStack gap={1} w="full">
         {languageLevel.map((_, idx) => (
           <Box key={idx} w="35px" h="10px" bg="primary" overflow="hidden" />
+        ))}
+        {grayBoxArray.map((_, idx) => (
+          <Box key={idx} w="35px" h="10px" bg="mutedBox" overflow="hidden" />
         ))}
       </HStack>
     </Box>
@@ -285,14 +302,14 @@ function ExtraSkill({ text }) {
     <HStack
       align="flex-start"
       gap={3}
-      color="textMuted"
+      color="text"
       fontSize="sm"
-      fontWeight="medium"
+      // fontWeight="medium"
     >
       <Box color="primary" mt="2px" flexShrink={0}>
         <FaStar />
       </Box>
-      <Text fontWeight="extrabold">{text}</Text>
+      <Text fontWeight="bold">{text}</Text>
     </HStack>
   );
 }
