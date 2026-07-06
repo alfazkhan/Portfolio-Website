@@ -1,8 +1,17 @@
 "use-client";
 
-import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react";
+import {
+  Button,
+  CloseButton,
+  Dialog,
+  Portal,
+  Text,
+  Image,
+  Box
+} from "@chakra-ui/react";
+import NextImage from "next/image";
 
-export default function ProjectInfoModal() {
+export default function ProjectInfoModal({ project }) {
   return (
     <Dialog.Root
       size="cover"
@@ -33,14 +42,32 @@ export default function ProjectInfoModal() {
         <Dialog.Positioner>
           <Dialog.Content background="Background">
             <Dialog.Header>
-              <Dialog.Title>Dialog Title</Dialog.Title>
               <Dialog.CloseTrigger asChild>
-                <CloseButton size="sm" />
+                <CloseButton size="2xl" />
               </Dialog.CloseTrigger>
             </Dialog.Header>
-            <Dialog.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Dialog.Body justifyItems="center">
+              <Box
+                borderRadius="xl" 
+                overflow="hidden" 
+                px={10}
+                mt={5} 
+              >
+                <Image
+                  asChild
+                  aspectRatio={1.91 / 1}
+                  alt={project.title}
+                  objectFit="cover"
+                  borderRadius="xl" // Clear, consistent rounded boundaries
+                >
+                  <NextImage
+                    src={project.img}
+                    //   width={480} // Explicit width dimension to downscale the card safely
+                    //   height={251} // Derived from: 480 / 1.91 = ~251
+                    priority={true} // Performance optimization for modal entry
+                  />
+                </Image>
+              </Box>
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>

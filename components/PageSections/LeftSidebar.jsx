@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Box,
   Flex,
@@ -9,19 +9,41 @@ import {
   Separator,
   VStack,
   HStack,
-  Button,
   Badge,
   Wrap,
   WrapItem,
   Progress,
 } from "@chakra-ui/react";
-import websiteData from "../data";
-import { FaGoogleDrive, FaStar } from "react-icons/fa";
+import websiteData from "../../data";
+import { FaStar } from "react-icons/fa";
 import { InfoTip } from "@/components/ui/toggle-tip";
+import CVDownloadButton from "../ui/CVDownloadButton";
+import { motion, stagger } from "framer-motion";
 
 const sidebarData = websiteData.sidebarData;
 
 export default function LeftSidebar() {
+  const [progressValue, setProgressValue] = useState(0);
+  useEffect(() => {
+    const targetValue = sidebarData.daysWorked;
+
+    if (targetValue <= 0) return;
+
+    const tickSpeed = 50;
+
+    const timer = setInterval(() => {
+      setProgressValue((oldValue) => {
+        if (oldValue >= targetValue) {
+          clearInterval(timer);
+          return targetValue;
+        }
+        return oldValue + 1;
+      });
+    }, tickSpeed);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Flex
       as="aside"
@@ -111,7 +133,7 @@ export default function LeftSidebar() {
                 align="center"
                 justify="center"
                 _hover={{ opacity: 0.8 }}
-                transition="opacity 0.2s"
+                // transition="opacity 0.3s"
               >
                 <social.icon />
               </Flex>
@@ -119,7 +141,6 @@ export default function LeftSidebar() {
           </HStack>
         </Flex>
 
-        {/* Info Rows, Languages, Core Focus */}
         <Box p={8} pb={0}>
           <VStack gap={3} mb={4} align="stretch">
             {sidebarData.info.map((item, idx) => (
@@ -130,20 +151,23 @@ export default function LeftSidebar() {
                 highlight={item.highlight}
               />
             ))}
-            <Progress.Root value={18}>
+
+            <Separator borderColor="border" mb={2} />
+
+            <Progress.Root value={progressValue} color="text">
               <Progress.Label mb="2" fontWeight="bold">
                 Days worked in {new Date().getFullYear()}
                 <InfoTip
-                  placement="top" // Moves the popover directly above the info icon
-                  portalled={true} // Renders outside the sidebar stacking context to prevent clipping
+                  placement="top"
+                  portalled={true}
                   contentProps={{
                     maxW: "240px",
                     whiteSpace: "normal",
                     wordBreak: "break-word",
                     p: 3,
-                    bg: "bgAlt", // Uses your solid sidebar background token
+                    bg: "bgAlt",
                     border: "1px solid",
-                    borderColor: "border", // Clear outline matching your theme
+                    borderColor: "border",
                     boxShadow: "xl",
                     borderRadius: "md",
                     fontWeight: "bold",
@@ -158,7 +182,7 @@ export default function LeftSidebar() {
               <Progress.Track>
                 <Progress.Range bg="primary" />
               </Progress.Track>
-              <HStack justify="space-between" mt={1}>
+              <HStack justify="space-between" mt={1} color="text">
                 <Progress.ValueText>18 Days</Progress.ValueText>
                 <Progress.ValueText>140 Days</Progress.ValueText>
               </HStack>
@@ -177,6 +201,7 @@ export default function LeftSidebar() {
                 label={item.label}
                 proficiency={item.proficiency}
                 level={item.level}
+                index={idx}
               />
             ))}
           </Box>
@@ -223,23 +248,7 @@ export default function LeftSidebar() {
         bg="bgAlt"
         flexShrink={0}
       >
-        <Button
-          w="full"
-          py={6}
-          bg="primary"
-          color="buttonText"
-          fontWeight="bold"
-          fontSize="lg"
-          boxShadow="sm"
-          _hover={{ filter: "brightness(1.1)", transform: "scale(1.02)" }}
-          onClick={() =>
-            window.open(websiteData.introData.cvLink, "_blank").focus()
-          }
-          rounded="sm"
-        >
-          <FaGoogleDrive />
-          Download CV
-        </Button>
+        <CVDownloadButton />
       </Box>
     </Flex>
   );
@@ -272,9 +281,43 @@ function InfoRow({ label, value, highlight }) {
   );
 }
 
-function LanguageProficiency({ label, proficiency, level, totalLength = 6 }) {
-  const languageLevel = Array.from({ length: level });
-  const grayBoxArray = Array.from({ length: totalLength - level });
+function LanguageProficiency({
+  label,
+  proficiency,
+  level,
+  totalLength = 6,
+  index,
+}) {
+  const boxes = Array.from({ length: totalLength }, (_, idx) => ({
+    isFilled: idx < level,
+    id: idx,
+  }));
+
+  const rowStartDelay = index * 0.3;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: stagger(0.05, { startDelay: rowStartDelay }),
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "",
+        stiffness: 300,
+        damping: 24,
+      },
+    },
+  };
+
   return (
     <Box mb={4}>
       <Flex justify="space-between" mb={1.5}>
@@ -285,14 +328,38 @@ function LanguageProficiency({ label, proficiency, level, totalLength = 6 }) {
           {proficiency}
         </Text>
       </Flex>
-      <HStack gap={1} w="full">
-        {languageLevel.map((_, idx) => (
-          <Box key={idx} w="35px" h="10px" bg="primary" overflow="hidden" />
+
+      <motion.ul
+        style={{
+          display: "flex",
+          gap: "4px",
+          width: "100%",
+          padding: 0,
+        }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{
+          once: true,
+          amount: 0.3,
+          margin: "-20px",
+        }}
+      >
+        {boxes.map((box) => (
+          <motion.li
+            key={box.id}
+            variants={itemVariants} // Inherits parent states automatically
+            style={{
+              width: "35px",
+              height: "10px",
+              background: box.isFilled
+                ? "var(--chakra-colors-primary)"
+                : "var(--chakra-colors-mutedBox)",
+              borderRadius: "2px",
+            }}
+          />
         ))}
-        {grayBoxArray.map((_, idx) => (
-          <Box key={idx} w="35px" h="10px" bg="mutedBox" overflow="hidden" />
-        ))}
-      </HStack>
+      </motion.ul>
     </Box>
   );
 }

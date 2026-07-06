@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Box, Flex, Heading, Text, Icon, HStack } from "@chakra-ui/react";
-import { useColorModeValue } from "./ui/color-mode";
 import { FiMail, FiPhone, FiCopy, FiGithub, FiTwitter, FiFigma } from "react-icons/fi";
 
 const socialLinks = [
@@ -16,7 +15,6 @@ export default function ContactSection() {
   const email = "khanalfaaz14@gmail.com";
   const phone = "+49 15510 311484";
   
-  const textFaintColor = useColorModeValue("gray.400", "gray.500");
 
   const handleCopy = async (text) => {
     // Primary method: Modern Clipboard API
@@ -87,7 +85,7 @@ export default function ContactSection() {
         <Icon 
           as={FiMail} 
           boxSize={{ base: 5, md: 7 }} 
-          color={textFaintColor} 
+          color="textMuted"
           flexShrink={0} 
         />
         <Heading 
@@ -104,7 +102,7 @@ export default function ContactSection() {
           onClick={() => handleCopy(email)} 
           position="relative" 
           p={2} 
-          color={textFaintColor} 
+          color="textMuted"
           _hover={{ color: "primary" }} 
           transition="all 0.2s" 
         >
@@ -130,7 +128,7 @@ export default function ContactSection() {
         <Icon 
           as={FiPhone} 
           boxSize={{ base: 5, md: 7 }} 
-          color={textFaintColor} 
+          color="textMuted"
           flexShrink={0} 
         />
         <Heading 
@@ -147,7 +145,7 @@ export default function ContactSection() {
           onClick={() => handleCopy(phone)} 
           position="relative" 
           p={2} 
-          color={textFaintColor} 
+          color="textMuted"
           _hover={{ color: "primary" }} 
           transition="all 0.2s" 
         >
@@ -181,7 +179,7 @@ export default function ContactSection() {
               href={item.url} 
               target="_blank" 
               rel="noreferrer" 
-              color={textFaintColor} 
+              color="textMuted"
               _hover={{ color: "text" }} 
               transition="all 0.2s"
             >

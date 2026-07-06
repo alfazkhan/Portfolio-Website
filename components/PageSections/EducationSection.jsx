@@ -10,13 +10,12 @@ import {
   Circle,
   Badge,
 } from "@chakra-ui/react";
-import { useColorModeValue } from "./ui/color-mode";
-import websiteData from "../data";
+import { useColorModeValue } from "../ui/color-mode";
+import websiteData from "../../data";
 
 const educationData = websiteData.educationData;
 
 export default function EducationSection() {
-  const lineBg = useColorModeValue("gray.200", "#2A2B30");
 
   return (
     <Box
@@ -47,7 +46,7 @@ export default function EducationSection() {
           top="0"
           bottom="0"
           w="2px"
-          bg={lineBg}
+          bg="bgAlt"
           zIndex={0}
         />
 

@@ -8,9 +8,9 @@ import {
   Icon,
   Text,
 } from "@chakra-ui/react";
-import { useColorModeValue } from "./ui/color-mode";
 import { keyframes } from "@emotion/react";
-import websiteData from "../data";
+import websiteData from "../../data";
+import { useColorMode } from "../ui/color-mode";
 
 /**
  * Optimized Keyframes for a "Cross-Fade" Reset:
@@ -35,8 +35,7 @@ const softMarquee = keyframes`
 `;
 
 export default function SkillsSection() {
-  const nextColor = useColorModeValue("#000", "#FFF");
-  const skillsData = websiteData.getSkillsData(nextColor);
+  const skillsData = websiteData.getSkillsData("skillsIcon");
   
   // Tripling the data ensures the browser always has "buffer" content
   const tripleData = [...skillsData, ...skillsData, ...skillsData];

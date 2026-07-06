@@ -9,6 +9,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
 
 const html = String.raw;
 
@@ -97,6 +98,7 @@ const websiteData = {
       "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
     name: "Alfaz",
     title: "React Developer and\n Data Scientist",
+    daysWorked: 18,
     socials: [
       {
         id: "linkedin",
@@ -118,7 +120,7 @@ const websiteData = {
     ],
     languages: [
       { label: "Hindi", proficiency: "C2/Native", level: 6 },
-      { label: "English", proficiency: "C1/Highly Proficient", level: 5 },
+      { label: "English", proficiency: "C2/Native", level: 6 },
       { label: "German", proficiency: "A2/Good Knowledge", level: 2 },
     ],
     coreSkills: [
@@ -150,7 +152,7 @@ const websiteData = {
       year: "2026",
       category: "Frontend & Data Science",
       desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage",
-      img: "https://raw.githubusercontent.com/alfazkhan/Reddit-Data-Scrapper/main/src/assets/Screenshots/Sentiments.png",
+      img: SubAnalyzerImg,
       link: "https://subanalyzer.theonlyalfaz.com",
     },
     {
@@ -159,7 +161,7 @@ const websiteData = {
       year: "2025",
       category: "Video Engineering & Design",
       desc: "Produced high-impact video content for top-tier international creators like Tanmay Bhat (5M+ subscribers) and PokerStars, using Premiere and After Effects.",
-      img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=400&h=250&fit=crop",
+      img: SubAnalyzerImg,
     },
     {
       id: 3,
@@ -167,7 +169,7 @@ const websiteData = {
       year: "2025",
       category: "Web Design (Freelance)",
       desc: "Architected and maintained modern web applications using React JS and current frontend frameworks, focusing on performance and user-centric design.",
-      img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=400&h=250&fit=crop",
+      img: SubAnalyzerImg,
     },
   ],
 
@@ -217,7 +219,6 @@ const websiteData = {
     { id: 6, name: "Tailwindcss", icon: SiTailwindcss, color: "#38BDF8" },
     { id: 7, name: "Figma", icon: SiFigma, color: "#F24E1E" },
     { id: 8, name: "Git", icon: SiGit, color: "#F05032" },
-    { id: 9, name: "Git", icon: SiGit, color: "#F05032" },
   ],
 };
 

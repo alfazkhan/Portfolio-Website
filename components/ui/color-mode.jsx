@@ -2,20 +2,19 @@
 
 import { ClientOnly, IconButton, Skeleton, Span } from "@chakra-ui/react";
 import { ThemeProvider, useTheme } from "next-themes";
-
 import * as React from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
 
 export function ColorModeProvider(props) {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <>{props.children}</>;
-  }
   return (
-    <ThemeProvider suppressHydrationWarning attribute="class" {...props} />
+    <ThemeProvider 
+      attribute="class" 
+      defaultTheme="system"
+      enableSystem={true}
+      disableTransitionOnChange
+      scriptProps={{ type: "application/json" }}
+      {...props}
+    />
   );
 }
 

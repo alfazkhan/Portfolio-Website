@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Flex, Icon } from "@chakra-ui/react";
-import { useColorMode } from "./ui/color-mode";
+import { useColorMode, useColorModeValue } from "../ui/color-mode";
 import {
   FiHome,
   FiCode,
@@ -13,6 +13,7 @@ import {
   FiSun,
 } from "react-icons/fi";
 import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Home", id: "home", icon: FiHome },
@@ -26,8 +27,7 @@ export default function NavigationBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const isClickScrolling = useRef(false);
-  const { colorMode, toggleColorMode } = useColorMode();
-  const [mounted, setMounted] = useState(false);
+  const { colorMode, toggleColorMode, setColorMode } = useColorMode();
 
   function toggleMenu() {
     setIsOpen(!isOpen);
@@ -48,16 +48,14 @@ export default function NavigationBar() {
   }
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
       if (isClickScrolling.current) return;
+
       const sectionIds = navLinks.map((l) => l.id);
       let currentActive = "home";
       const scrollOffset = window.innerHeight / 3;
 
+      // 1. Calculate active states based on physical bounding scroll lines
       for (const id of sectionIds) {
         if (id === "home") continue;
         const element = document.getElementById(id);
@@ -65,17 +63,28 @@ export default function NavigationBar() {
           currentActive = id;
         }
       }
-      const isAtBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 50;
-      if (isAtBottom) {
-        currentActive = navLinks[navLinks.length - 1].id;
+
+      // 2. Clear boundary checks when user is explicitly at the top
+      if (window.scrollY < 100) {
+        currentActive = "home";
+      } else {
+        // 3. Industry standard safety guard added: window.scrollY > 0
+        // This stops the bottom calculation from firing on fresh page mounts
+        const isAtBottom =
+          window.scrollY > 0 &&
+          window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 50;
+
+        if (isAtBottom) {
+          currentActive = navLinks[navLinks.length - 1].id;
+        }
       }
+
       setActiveSection(currentActive);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
+    handleScroll(); // Fire once immediately to establish ground truth placement
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -100,16 +109,16 @@ export default function NavigationBar() {
         transition="all 0.3s"
       >
         <Box as="button" onClick={toggleColorMode}>
-          {mounted ? (
-            <Icon
-              as={colorMode === "light" ? FiMoon : FiSun}
-              w={6}
-              h={6}
-              color="text"
-            />
-          ) : (
-            <Box w={6} h={6} />
-          )}
+          <motion.span
+            animate={{
+              color: colorMode === "light" ? "#000000" : "#ffffff",
+              rotate: colorMode === "light" ? 0 : 180,
+            }}
+            style={{ fontSize: 24, display: "inline-block" }}
+          >
+            {colorMode === "light" ? <FiMoon /> : <FiSun />}
+          </motion.span>
+          )
         </Box>
         <Box as="button" onClick={toggleMenu}>
           <Icon as={IoMenuOutline} w={5} h={5} color="text" />
@@ -122,11 +131,12 @@ export default function NavigationBar() {
         position="fixed"
         inset={0}
         w="full"
-        h="full"
+        h="100vh"
         bg="bg"
         zIndex={9999}
         direction="column"
-        transition="all 0.3s ease-in-out"
+        transition="all 0.5s ease-in-out"
+        filter={isOpen ? "blur(0px)" : "blur(15px)"}
         transform={isOpen ? "translateY(0)" : "translateY(-100%)"}
       >
         <Flex justify="flex-end" p={8}>
@@ -174,7 +184,7 @@ export default function NavigationBar() {
         position="fixed"
         right={0}
         top={0}
-        h="full"
+        h="100vh"
         w="80px"
         bg="bgAlt"
         direction="column"
@@ -194,15 +204,17 @@ export default function NavigationBar() {
             justify="center"
             onClick={toggleColorMode}
             _hover={{ opacity: 0.7 }}
-            transition="opacity 0.2s"
             title="Toggle Theme"
           >
-            <Icon
-              as={colorMode === "light" ? FiMoon : FiSun}
-              w={6}
-              h={6}
-              color="text"
-            />
+            <motion.span
+              animate={{
+                color: colorMode === "light" ? "#000000" : "#ffffff",
+                rotate: colorMode === "light" ? 0 : 180,
+              }}
+              style={{ fontSize: 24, display: "inline-block" }}
+            >
+              {colorMode === "light" ? <FiMoon /> : <FiSun />}
+            </motion.span>
           </Flex>
         </Box>
 
@@ -223,63 +235,31 @@ export default function NavigationBar() {
                   onClick={() => handleLinkClick(link.id)}
                   w="10"
                   h="10"
-                  borderRadius="full"
                   align="center"
                   justify="center"
-                  transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
-                  bg={isActive ? "primary" : "transparent"}
-                  color={isActive ? "gray.900" : "textMuted"}
-                  boxShadow={isActive ? "lg" : "none"}
-                  transform={isActive ? "scale(1.15)" : "scale(1)"}
-                  _hover={
-                    !isActive
-                      ? {
-                          bg:
-                            colorMode === "light"
-                              ? "gray.100"
-                              : "whiteAlpha.100",
-                          color: "text",
-                        }
-                      : {}
-                  }
                 >
-                  <Icon as={link.icon} w="15px" h="15px" />
-                </Flex>
-
-                {/* Custom Tooltip */}
-                <Box
-                  position="absolute"
-                  top="-45px"
-                  bg="text"
-                  color="bg"
-                  fontSize="xs"
-                  fontWeight="bold"
-                  px={3}
-                  py={1.5}
-                  borderRadius="md"
-                  opacity={0}
-                  visibility="hidden"
-                  _groupHover={{
-                    opacity: 1,
-                    visibility: "visible",
-                    top: "-50px",
-                  }}
-                  transition="all 0.2s"
-                  pointerEvents="none"
-                  whiteSpace="nowrap"
-                  boxShadow="xl"
-                >
-                  {link.name}
-                  <Box
-                    position="absolute"
-                    top="100%"
-                    left="50%"
-                    transform="translateX(-50%)"
-                    borderWidth="5px"
-                    borderColor="transparent"
-                    borderTopColor="text"
+                  <Icon
+                    as={link.icon}
+                    w="15px"
+                    h="15px"
+                    transform={isActive ? "scale(1.5)" : "scale(1)"}
+                    color="text"
                   />
-                </Box>
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-indicator"
+                      style={{
+                        position: "absolute",
+                        width: "130%",
+                        height: "130%",
+                        background: "var(--chakra-colors-primary)",
+                        zIndex: -100,
+                        borderRadius: "100%",
+                        boxShadow: "100px",
+                      }}
+                    />
+                  )}
+                </Flex>
               </Box>
             );
           })}

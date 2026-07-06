@@ -1,0 +1,34 @@
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+    /* transform: translateY(10px); */
+    filter: blur(50px);
+}
+to {
+    opacity: 1;
+    /* transform: translateY(0); */
+    filter: blur(0px);
+  }
+}
+
+.content-appear {
+  animation: contentAppear 300ms ease-in-out forwards;
+}
+
+
+@keyframes diagonalReveal {
+  0% {
+    /* A tiny triangle hidden at the top left corner */
+    clip-path: polygon(0 0, 0 0, 0 0);
+    filter: blur(20px);
+  }
+  100% {
+    /* Expands to cover the full rectangular area */
+    clip-path: polygon(0 0, 200% 0, 0 200%);
+    filter: blur(0px);
+  }
+}
+
+.reveal-box {
+  animation: diagonalReveal 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
