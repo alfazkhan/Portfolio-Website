@@ -105,9 +105,6 @@ export default function Intro() {
               w={{ base: 80, xlDown: 64 }}
               h={{ base: 80, xlDown: 64 }}
               borderRadius="full"
-              // border="8px solid"
-              // borderColor="primary"
-              // boxShadow="xl"
               overflow="hidden"
               position="relative"
             >
@@ -127,52 +124,3 @@ export default function Intro() {
   );
 }
 
-function TypingAnimation({ text = "Frontend Developer" }) {
-  // Convert string directly into a character array
-  const letters = Array.from(text);
-
-  // 1. Parent controls the stagger sequence orchestration
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        // Modern functional stagger utility
-        delayChildren: stagger(0.05, { startDelay: 0.2 }),
-      },
-    },
-  };
-
-  // 2. Individual characters fade in quickly to mimic natural typing
-  const letterVariants = {
-    hidden: { opacity: 0, display: "none" },
-    visible: {
-      opacity: 1,
-      display: "inline-block",
-      transition: {
-        duration: 0.01, // Near-instant appearance captures a raw key-stroke style
-      },
-    },
-  };
-
-  return (
-    <Text
-      as={motion.p}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      fontSize="xl"
-      fontWeight="bold"
-      color="text"
-      display="inline-block"
-    >
-      {letters.map((char, idx) => (
-        <motion.span key={idx} variants={letterVariants}>
-          {/* Preserve space boundaries natively inside DOM lines */}
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </Text>
-  );
-}

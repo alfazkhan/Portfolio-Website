@@ -1,31 +1,20 @@
-"use client"
+"use client";
 
 import React from "react";
-import {
-  Box,
-  Flex,
-  Heading,
-  Icon,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Icon, Text } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import websiteData from "../../data";
-import { useColorMode } from "../ui/color-mode";
 
-/**
- * Optimized Keyframes for a "Cross-Fade" Reset:
- * 1. We use translate3d to force GPU rendering (prevents sub-pixel jitter).
- * 2. We dip the opacity to 0 at the start and end to mask the jump.
- */
+
 const softMarquee = keyframes`
   0% { 
     transform: translate3d(0, 0, 0); 
     opacity: 0; 
   }
-  5% { 
+  2% { 
     opacity: 1; 
   }
-  95% { 
+  98% { 
     opacity: 1; 
   }
   100% { 
@@ -36,7 +25,7 @@ const softMarquee = keyframes`
 
 export default function SkillsSection() {
   const skillsData = websiteData.getSkillsData("skillsIcon");
-  
+
   // Tripling the data ensures the browser always has "buffer" content
   const tripleData = [...skillsData, ...skillsData, ...skillsData];
 
@@ -64,12 +53,11 @@ export default function SkillsSection() {
         >
           Software & Tools
         </Heading>
-        
+
         <Box
           position="relative"
           w="full"
           overflow="hidden"
-          /* Edges mask for smooth entry/exit */
           _before={{
             content: '""',
             position: "absolute",
@@ -98,11 +86,10 @@ export default function SkillsSection() {
             display="inline-flex"
             animation={`${softMarquee} 25s linear infinite`}
             _hover={{ animationPlayState: "paused" }}
-
-            style={{ 
+            style={{
               willChange: "transform, opacity",
               transformStyle: "preserve-3d",
-              backfaceVisibility: "hidden"
+              backfaceVisibility: "hidden",
             }}
           >
             {tripleData.map((skill, index) => (
@@ -111,16 +98,39 @@ export default function SkillsSection() {
                 direction="column"
                 align="center"
                 justify="center"
-                px={{ base: 8, md: 12 }} 
+                px={{ base: 8, md: 12 }}
                 gap={4}
               >
-                <Icon
-                  as={skill.icon}
-                  boxSize={{ base: "40px", md: "50px" }}
-                  color={skill.color}
-                  transition="transform 0.2s"
-                  _hover={{ transform: "scale(1.1)" }}
-                />
+                {skill.isCustomSvg ? (
+                  <Box
+                    boxSize={{ base: "40px", md: "50px" }}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{
+                      transform: "scale(var(--icon-scale))",
+                      transition: "transform 0.2s ease",
+                    }}
+                  >
+                    <img
+                      src={skill.icon}
+                      alt={`${skill.name} Logo`}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </Box>
+                ) : (
+                  <Icon
+                    as={skill.icon}
+                    boxSize={{ base: "40px", md: "50px" }}
+                    color={skill.color}
+                    transition="transform 0.2s"
+                    _hover={{ transform: "scale(1.1)" }}
+                  />
+                )}
                 <Text
                   color="textMuted"
                   fontSize="xs"

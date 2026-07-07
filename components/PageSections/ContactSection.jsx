@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Box, Flex, Heading, Text, Icon, HStack } from "@chakra-ui/react";
 import { FiMail, FiPhone, FiCopy, FiGithub, FiTwitter, FiFigma } from "react-icons/fi";
+import GrayFlexWrapper from "../GrayFlexWrapper";
 
 const socialLinks = [
   { url: "https://github.com", icon: FiGithub },
@@ -56,18 +57,16 @@ export default function ContactSection() {
   };
 
   return (
-    <Flex 
+    <GrayFlexWrapper 
       as="section" 
       id="contact" 
       py={{ base: 20, md: 24 }} 
-      bg="bg" 
       direction="column" 
       align="center" 
       justify="center" 
       px={6} 
       borderTop="1px solid" 
       borderColor="border" 
-      transition="all 0.5s"
     >
       <Text 
         color="textMuted" 
@@ -188,6 +187,6 @@ export default function ContactSection() {
           ))}
         </HStack>
       </Flex>
-    </Flex>
+    </GrayFlexWrapper>
   );
 }

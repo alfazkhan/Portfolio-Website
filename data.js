@@ -7,11 +7,15 @@ import {
   SiTailwindcss,
   SiFigma,
   SiGit,
+  SiExpress,
+  SiCreatereactapp,
+  SiPython,
+  SiChakraui,
+  SiShadcnui,
 } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import Python from "@/public/Python.svg";
 import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
-
-const html = String.raw;
 
 const websiteData = {
   //Metadata
@@ -83,8 +87,8 @@ const websiteData = {
 
   //Intro Page Data
   introData: {
-    imageSrc:
-      "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
+    imageSrc: "https://picsum.photos/1000/1000",
+    // "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
     headline: "Hi! I am Alfaz, Frontend Developer & Data Scientist",
     para: "I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.",
     buttonText: "Download CV",
@@ -94,8 +98,8 @@ const websiteData = {
 
   //Left Sidebar Data
   sidebarData: {
-    profileImg:
-      "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
+    profileImg: "https://picsum.photos/1000/1000",
+    // "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
     name: "Alfaz",
     title: "React Developer and\n Data Scientist",
     daysWorked: 18,
@@ -219,6 +223,17 @@ const websiteData = {
     { id: 6, name: "Tailwindcss", icon: SiTailwindcss, color: "#38BDF8" },
     { id: 7, name: "Figma", icon: SiFigma, color: "#F24E1E" },
     { id: 8, name: "Git", icon: SiGit, color: "#F05032" },
+    { id: 9, name: "Express Js", icon: SiExpress, color: nextColor },
+    { id: 10, name: "React Native", icon: SiCreatereactapp, color: "#61DAFB" },
+    {
+      id: 11,
+      name: "Python",
+      icon: "./Python.svg",
+      color: "#F7C63A",
+      isCustomSvg: true,
+    },
+    { id: 12, name: "Chakra UI", icon: SiChakraui, color: "#0DC8AB" },
+    { id: 13, name: "Shadcn", icon: SiShadcnui, color: nextColor },
   ],
 };
 

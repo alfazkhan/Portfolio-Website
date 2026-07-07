@@ -1,19 +1,18 @@
-"use client";
-
-import React from "react";
 import { motion } from "framer-motion";
-import { useColorMode } from "./color-mode";
+import { Flex } from "@chakra-ui/react";
+import { useColorMode } from "./ui/color-mode";
 
-export default function AnimateThemeProvider({ children }) {
+const MotionFlex = motion.create(Flex);
+
+export default function GrayFlexWrapper({ children, ...props }) {
   const { colorMode } = useColorMode();
 
   const isLight = colorMode === "light";
-  
-  const targetBg = isLight ? "#ffffff" : "#111217";
+  const targetBg = isLight ? "#FAFAFA" : "#27272A";
   const targetText = isLight ? "#111217" : "#ffffff";
 
   return (
-    <motion.div
+    <MotionFlex
       animate={{
         backgroundColor: targetBg,
         color: targetText,
@@ -23,12 +22,9 @@ export default function AnimateThemeProvider({ children }) {
         type: "tween",
         ease: "easeInOut",
       }}
-      style={{
-        width: "100%",
-        minHeight: "100vh",
-      }}
+      {...props}
     >
       {children}
-    </motion.div>
+    </MotionFlex>
   );
 }

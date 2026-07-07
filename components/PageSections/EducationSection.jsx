@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import {
   Box,
   Flex,
@@ -10,12 +10,23 @@ import {
   Circle,
   Badge,
 } from "@chakra-ui/react";
-import { useColorModeValue } from "../ui/color-mode";
+import { motion, useScroll, useTransform } from "framer-motion";
 import websiteData from "../../data";
+import GrayFlexWrapper from "../GrayFlexWrapper";
 
 const educationData = websiteData.educationData;
 
+const ScrollIndicatorCircle = motion.create(Circle);
+
 export default function EducationSection() {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const yTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <Box
@@ -38,35 +49,44 @@ export default function EducationSection() {
         Education & Experience
       </Heading>
 
-      <Box position="relative">
-        {/* The Vertical Timeline Line */}
+      <Box position="relative" ref={containerRef}>
         <Box
           position="absolute"
           left="7px"
-          top="0"
-          bottom="0"
+          top="6px"
+          bottom="6px"
           w="2px"
-          bg="bgAlt"
+          bg="border"
           zIndex={0}
+        />
+
+        <ScrollIndicatorCircle
+          position="absolute"
+          left="0px"
+          top="6px"
+          size="16px"
+          zIndex={2}
+          bg="primary"
+          border="4px solid"
+          borderColor="bg"
+          boxShadow="md"
+          style={{ y: yTranslate }} 
         />
 
         <VStack gap={12} align="stretch" position="relative">
           {educationData.map((item) => (
             <Flex key={item.id} position="relative" gap={8}>
-              {/* The Timeline Node */}
               <Circle
-                size="16px" 
-                bg="primary"
-                border="4px solid"
-                borderColor="bg"
+                size="16px"
                 zIndex={1}
                 mt="6px"
                 flexShrink={0}
-                boxShadow="sm"
+                bg="mutedBox"
+                border="2px solid"
+                borderColor="bg"
               />
 
               <Box flex={1}>
-                {/* Period / Year */}
                 <Text
                   fontSize="sm"
                   fontWeight="extrabold"
@@ -77,38 +97,36 @@ export default function EducationSection() {
                 >
                   {item.period}
                 </Text>
-                
-                {/* Title and Location */}
+
                 <Heading as="h3" fontSize="xl" color="text" mb={1}>
-                  {item.title} <Badge
-                  variant="solid"
-                  textTransform="full-size-kana" 
-                  colorScheme={item.type === "Education" ? "primary" : "blue"}
-                  px={2}
-                  py={1}
-                  mx={2}
-                >
-                  {item.type}
-                </Badge>
+                  {item.title}{" "}
+                  <Badge
+                    variant="solid"
+                    textTransform="full-size-kana"
+                    colorScheme={item.type === "Education" ? "primary" : "blue"}
+                    px={2}
+                    py={1}
+                    mx={2}
+                  >
+                    {item.type}
+                  </Badge>
                 </Heading>
                 <Text fontSize="sm" fontWeight="bold" color="textMuted" mb={4}>
                   {item.location}
                 </Text>
 
                 {/* Description Card */}
-                <Box
+                <GrayFlexWrapper
                   bg="bgAlt"
                   p={5}
                   borderRadius="xl"
                   border="1px solid"
                   borderColor="border"
-                  _hover={{ transform: "translateX(5px)" }}
-                  transition="all 0.2s ease-in-out"
                 >
                   <Text color="text" lineHeight="relaxed">
                     {item.desc}
                   </Text>
-                </Box>
+                </GrayFlexWrapper>
               </Box>
             </Flex>
           ))}

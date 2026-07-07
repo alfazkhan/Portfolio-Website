@@ -9,25 +9,21 @@ import { motion, stagger } from "framer-motion";
 
 const projects = websiteData.projects;
 
-// 1. Create a native motion wrapper for the Grid to coordinate layout orchestration
 const MotionGrid = motion.create(Grid);
 const MotionFlex = motion.create(Flex);
 
 export default function WorkSection() {
   
-  // 2. Parent orchestration configurations matching modern API guidelines
   const gridVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        // Safe, functional stagger utility handling dynamic grid element rendering
         delayChildren: stagger(0.15, { startDelay: 0.1 }),
       },
     },
   };
 
-  // 3. Child variant maps configuring your structural entry transformations
   const cardVariants = {
     hidden: { 
       opacity: 0, 

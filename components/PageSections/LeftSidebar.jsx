@@ -19,6 +19,7 @@ import { FaStar } from "react-icons/fa";
 import { InfoTip } from "@/components/ui/toggle-tip";
 import CVDownloadButton from "../ui/CVDownloadButton";
 import { motion, stagger } from "framer-motion";
+import GrayFlexWrapper from "../GrayFlexWrapper";
 
 const sidebarData = websiteData.sidebarData;
 
@@ -45,7 +46,7 @@ export default function LeftSidebar() {
   }, []);
 
   return (
-    <Flex
+    <GrayFlexWrapper
       as="aside"
       display={{ base: "none", lg: "flex" }}
       position="fixed"
@@ -59,7 +60,6 @@ export default function LeftSidebar() {
       borderRight="1px solid"
       borderColor="border"
       boxShadow="sm"
-      transition="all 0.3s"
     >
       <Box
         flex="1"
@@ -250,7 +250,7 @@ export default function LeftSidebar() {
       >
         <CVDownloadButton />
       </Box>
-    </Flex>
+    </GrayFlexWrapper>
   );
 }
 
