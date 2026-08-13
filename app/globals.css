@@ -32,3 +32,10 @@ to {
 .reveal-box {
   animation: diagonalReveal 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
+
+*{
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}

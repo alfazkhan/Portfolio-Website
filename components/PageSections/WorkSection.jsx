@@ -91,22 +91,20 @@ export default function WorkSection() {
               bg="bg"
               height="full"
               mb={0}
-              // Added subtle hover effect to compliment the entrance animation
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
             >
               <Flex direction="column" gap={3} mb={4} flex={1}>
                 <Box
                   w="full"
-                  h="160px"
                   overflow="hidden"
                   borderRadius="lg"
                   boxShadow="sm"
                 >
-                  <Image asChild alt={project.title} objectFit="cover">
+                  <Image asChild alt={project.title} objectFit="contain">
                     <NextImage
                       src={project.img}
                       width={400}
-                      height={210}
+                      height={400}
                       alt={project.title}
                     />
                   </Image>

@@ -8,7 +8,7 @@ import { FaGoogleDrive } from "react-icons/fa";
 const MotionFlex = motion.create(Flex);
 const MotionIcon = motion.create(Box);
 
-export default function CVDownloadButton() {
+export default function CVDownloadButton({cvLinks}) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -121,6 +121,7 @@ export default function CVDownloadButton() {
               borderRadius="xs"
               align="center"
               justify="space-between"
+              onClick={()=>window.open(cvLinks.english)}
             >
               <Text fontSize="sm" fontWeight="semibold">
                 English Version
@@ -149,6 +150,7 @@ export default function CVDownloadButton() {
               borderRadius="xs"
               align="center"
               justify="space-between"
+              onClick={()=>window.open(cvLinks.deutsch)}
             >
               <Text fontSize="sm" fontWeight="semibold">
                 German Version

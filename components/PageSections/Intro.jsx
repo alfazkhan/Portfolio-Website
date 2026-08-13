@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Flex, Heading, Text, Image, Highlight } from "@chakra-ui/react";
 import websiteData from "../../data";
 import { motion } from "framer-motion";
@@ -78,7 +78,7 @@ export default function Intro() {
               {introData.para}
             </motion.p>
           </Box>
-          <CVDownloadButton />
+          <CVDownloadButton cvLinks = {introData.cvLinks} />
         </Box>
 
         <Flex

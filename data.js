@@ -14,8 +14,8 @@ import {
   SiShadcnui,
 } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import Python from "@/public/Python.svg";
 import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
+
 
 const websiteData = {
   //Metadata
@@ -24,7 +24,6 @@ const websiteData = {
       default: "Alfaz Khan | Frontend Developer & Data Scientist",
       template: "%s | Alfaz Khan",
     },
-    // FIXED: Exactly 149 characters for clean Google indexing snippets
     description:
       "Portfolio of Alfaz Khan, a Frontend Developer & Data Scientist in Munich, Germany. Specializing in performant React architecture and data analytics.",
     keywords: [
@@ -37,7 +36,7 @@ const websiteData = {
       "Munich Developer",
       "Data Science Student Germany",
     ],
-    authors: [{ name: "Alfaz Khan", url: "https://theonlyalfaz.com" }],
+    authors: [{ name: "Alfaz Khan", url: "https://www.theonlyalfaz.com" }],
     creator: "Alfaz Khan",
     publisher: "Alfaz Khan",
 
@@ -51,21 +50,22 @@ const websiteData = {
       },
     },
 
-    metadataBase: new URL("https://theonlyalfaz.com"),
+    // CRITICAL: Point directly to working WWW origin so relative image paths resolve correctly
+    metadataBase: new URL("https://www.theonlyalfaz.com"),
+
     alternates: {
       canonical: "/",
     },
 
     openGraph: {
       title: "Alfaz Khan | Frontend Developer & Data Scientist",
-      // FIXED: Exactly 115 characters to prevent truncation in mobile feeds
       description:
         "Explore Alfaz Khan's portfolio showcasing high-performance frontend interfaces and data analytics projects.",
-      url: "https://theonlyalfaz.com",
+      url: "https://www.theonlyalfaz.com",
       siteName: "Alfaz Khan Portfolio",
       images: [
         {
-          url: "/og-image.png", // Tip: Add text like "View Portfolio" directly on this graphic asset!
+          url: "/og-image.png",
           width: 1200,
           height: 630,
           alt: "Alfaz Khan - Portfolio Showcase Image",
@@ -87,19 +87,23 @@ const websiteData = {
 
   //Intro Page Data
   introData: {
-    imageSrc: "https://picsum.photos/1000/1000",
-    // "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
+    imageSrc:
+      "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
     headline: "Hi! I am Alfaz, Frontend Developer & Data Scientist",
     para: "I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.",
     buttonText: "Download CV",
-    cvLink:
-      "https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing",
+    cvLinks: {
+      english:
+        "https://drive.google.com/file/d/1s-BDT456nDBJiTS-4LZb-p1_oCfCiM9P/view?usp=sharing",
+      deutsch:
+        "https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing",
+    },
   },
 
   //Left Sidebar Data
   sidebarData: {
-    profileImg: "https://picsum.photos/1000/1000",
-    // "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
+    profileImg:
+      "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
     name: "Alfaz",
     title: "React Developer and\n Data Scientist",
     daysWorked: 18,
@@ -158,22 +162,20 @@ const websiteData = {
       desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage",
       img: SubAnalyzerImg,
       link: "https://subanalyzer.theonlyalfaz.com",
-    },
-    {
-      id: 2,
-      title: "Content for International Creators",
-      year: "2025",
-      category: "Video Engineering & Design",
-      desc: "Produced high-impact video content for top-tier international creators like Tanmay Bhat (5M+ subscribers) and PokerStars, using Premiere and After Effects.",
-      img: SubAnalyzerImg,
-    },
-    {
-      id: 3,
-      title: "Responsive Web Development",
-      year: "2025",
-      category: "Web Design (Freelance)",
-      desc: "Architected and maintained modern web applications using React JS and current frontend frameworks, focusing on performance and user-centric design.",
-      img: SubAnalyzerImg,
+      repoLink:"https://github.com/alfazkhan/Subreddit-Analyzer",
+      skills: [
+        { id: 3, name: "React", icon: SiReact, color: "#61DAFB" },
+        { id: 6, name: "Tailwindcss", icon: SiTailwindcss, color: "#38BDF8" },
+        { id: 8, name: "Git", icon: SiGit, color: "#F05032" },
+        {
+          id: 11,
+          name: "Python",
+          icon: SiPython,
+          color: "#F7C63A",
+        },
+        { id: 12, name: "Chakra UI", icon: SiChakraui, color: "#0DC8AB" },
+      ],
+      markdownPath: "/SubredditAnalyzerReadme.md"
     },
   ],
 

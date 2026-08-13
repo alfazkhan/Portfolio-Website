@@ -1,6 +1,6 @@
 import websiteData from "@/data";
 import { Provider } from "@/components/ui/provider";
-import { ColorModeProvider } from "@/components/ui/color-mode"; // FIX: Restored Import
+import "github-markdown-css/github-markdown.css";
 import AnimateThemeProvider from "@/components/ui/AnimateThemeProvider";
 
 export const metadata = websiteData.metaData;

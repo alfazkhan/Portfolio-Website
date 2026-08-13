@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Flex, Icon } from "@chakra-ui/react";
-import { useColorMode, useColorModeValue } from "../ui/color-mode";
+import { useColorMode } from "../ui/color-mode";
 import {
   FiHome,
   FiCode,
