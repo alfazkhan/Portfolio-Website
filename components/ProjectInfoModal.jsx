@@ -104,6 +104,8 @@ const ProjectSkills = ({ skills }) => {
                 display="flex"
                 alignItems="center"
                 flexDir="column"
+                height={50}
+                width="auto"
               >
                 {skill.class ? (
                   <i class={skill.class} style={{ fontSize: 30 }} />
