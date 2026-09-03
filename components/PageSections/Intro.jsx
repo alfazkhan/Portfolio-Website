@@ -78,7 +78,7 @@ export default function Intro() {
               {introData.para}
             </motion.p>
           </Box>
-          <CVDownloadButton cvLinks = {introData.cvLinks} />
+          <CVDownloadButton />
         </Box>
 
         <Flex

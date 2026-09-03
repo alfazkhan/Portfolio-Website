@@ -154,7 +154,7 @@ export default function LeftSidebar() {
 
             <Separator borderColor="border" mb={2} />
 
-            <Progress.Root value={progressValue} color="text">
+            {/* <Progress.Root value={progressValue} color="text">
               <Progress.Label mb="2" fontWeight="bold">
                 Days worked in {new Date().getFullYear()}
                 <InfoTip
@@ -186,10 +186,10 @@ export default function LeftSidebar() {
                 <Progress.ValueText>18 Days</Progress.ValueText>
                 <Progress.ValueText>140 Days</Progress.ValueText>
               </HStack>
-            </Progress.Root>
+            </Progress.Root> */}
           </VStack>
 
-          <Separator borderColor="border" mb={6} zIndex={1} />
+          {/* <Separator borderColor="border" mb={6} zIndex={1} /> */}
 
           <Box mb={4}>
             <Text fontSize="lg" fontWeight="bold" color="text" mb={4}>

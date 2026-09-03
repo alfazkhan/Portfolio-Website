@@ -8,7 +8,8 @@ import {
   Image,
   Box,
   Group,
-  Badge,
+  Text,
+  Separator,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { useColorMode } from "@/components/ui/color-mode";
@@ -85,21 +86,41 @@ const ProjectImage = ({ title, image }) => (
 );
 
 const ProjectSkills = ({ skills }) => {
+  const { colorMode } = useColorMode();
   return (
-    <Box mt={2}>
-      <Group>
-        {skills.map((skill) => {
+    <Box mt={4}>
+      <Group
+        mx="auto"
+        display="flex"
+        justifyContent="space-around"
+        flexDir="row"
+        flexWrap="wrap"
+      >
+        {skills.map((skill, index, array) => {
           return (
-            <Badge
-              key={skill.id}
-              variant="solid"
-              bgColor={skill.color}
-              size="lg"
-              shadow="1px solid large"
-            >
-              <skill.icon />
-              {skill.name}
-            </Badge>
+            <>
+              <Box
+                key={skill.id}
+                display="flex"
+                alignItems="center"
+                flexDir="column"
+              >
+                {skill.class ? (
+                  <i class={skill.class} style={{ fontSize: 30 }} />
+                ) : (
+                  skill.component
+                )}
+                <Text fontVariant="all-small-caps" fontWeight="semibold">
+                  {skill.name}
+                </Text>
+              </Box>
+              <Separator
+                display={array.length - 1 === index ? "none" : "block"}
+                orientation="vertical"
+                height="6"
+                variant="dotted"
+              />
+            </>
           );
         })}
       </Group>
@@ -162,6 +183,7 @@ const ProjectMarkdownContent = ({ fileMarkdownPath }) => {
       overflowX="hidden"
       overflowY="scroll"
       height="50vh"
+      fontFamily="system-ui"
       css={{
         "&::-webkit-scrollbar": {
           display: "none",

@@ -9,13 +9,18 @@ import {
   SiGit,
   SiExpress,
   SiCreatereactapp,
-  SiPython,
   SiChakraui,
   SiShadcnui,
 } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
-
+import {
+  TanstackIcon,
+  ChakraIcon,
+  PythonIcon,
+  PlaywrightIcon,
+  PostgreSQLIcon,
+} from "./app/assets/Icons/Icons";
 
 const websiteData = {
   //Metadata
@@ -128,7 +133,7 @@ const websiteData = {
     ],
     languages: [
       { label: "Hindi", proficiency: "C2/Native", level: 6 },
-      { label: "English", proficiency: "C2/Native", level: 6 },
+      { label: "English", proficiency: "C1/Fluent", level: 5 },
       { label: "German", proficiency: "A2/Good Knowledge", level: 2 },
     ],
     coreSkills: [
@@ -162,20 +167,42 @@ const websiteData = {
       desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage",
       img: SubAnalyzerImg,
       link: "https://subanalyzer.theonlyalfaz.com",
-      repoLink:"https://github.com/alfazkhan/Subreddit-Analyzer",
+      repoLink: "https://github.com/alfazkhan/Subreddit-Analyzer",
       skills: [
-        { id: 3, name: "React", icon: SiReact, color: "#61DAFB" },
-        { id: 6, name: "Tailwindcss", icon: SiTailwindcss, color: "#38BDF8" },
-        { id: 8, name: "Git", icon: SiGit, color: "#F05032" },
+        { id: 1, name: "React", class: "devicon-react-original colored" },
+        { id: 5, name: "Python", class: false, component: <PythonIcon /> },
+        { id: 2, name: "Chakra UI", class: false, component: <ChakraIcon /> },
+        { id: 3, name: "Redux", class: "devicon-redux-original colored" },
         {
-          id: 11,
-          name: "Python",
-          icon: SiPython,
-          color: "#F7C63A",
+          id: 4,
+          name: "Tanstack",
+          class: false,
+          component: <TanstackIcon />,
         },
-        { id: 12, name: "Chakra UI", icon: SiChakraui, color: "#0DC8AB" },
+        {
+          id: 9,
+          name: "PostgreSQL",
+          class: false,
+          component: <PostgreSQLIcon />,
+        },
+        {
+          id: 6,
+          name: "Playwright",
+          class: false,
+          component: <PlaywrightIcon />,
+        },
+        {
+          id: 7,
+          name: "Pytorch",
+          class: "devicon-pytorch-original colored",
+        },
+        {
+          id: 8,
+          name: "FastAPI",
+          class: "devicon-fastapi-plain colored",
+        },
       ],
-      markdownPath: "/SubredditAnalyzerReadme.md"
+      markdownPath: "/SubredditAnalyzerReadme.md",
     },
   ],
 

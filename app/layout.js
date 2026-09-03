@@ -8,6 +8,12 @@ export const metadata = websiteData.metaData;
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        precedence="default"
+      />
       <body suppressHydrationWarning>
         <Provider>
           <AnimateThemeProvider>{children}</AnimateThemeProvider>

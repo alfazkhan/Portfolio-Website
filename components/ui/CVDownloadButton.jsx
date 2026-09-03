@@ -4,11 +4,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { Flex, Text, Icon, Box, Image } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGoogleDrive } from "react-icons/fa";
+import websiteData from "@/data";
 
 const MotionFlex = motion.create(Flex);
 const MotionIcon = motion.create(Box);
 
-export default function CVDownloadButton({cvLinks}) {
+export default function CVDownloadButton() {
+  const cvLinks = websiteData.introData.cvLinks;
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -121,7 +123,7 @@ export default function CVDownloadButton({cvLinks}) {
               borderRadius="xs"
               align="center"
               justify="space-between"
-              onClick={()=>window.open(cvLinks.english)}
+              onClick={() => window.open(cvLinks.english)}
             >
               <Text fontSize="sm" fontWeight="semibold">
                 English Version
@@ -150,7 +152,7 @@ export default function CVDownloadButton({cvLinks}) {
               borderRadius="xs"
               align="center"
               justify="space-between"
-              onClick={()=>window.open(cvLinks.deutsch)}
+              onClick={() => window.open(cvLinks.deutsch)}
             >
               <Text fontSize="sm" fontWeight="semibold">
                 German Version
