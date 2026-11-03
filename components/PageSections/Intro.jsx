@@ -1,14 +1,29 @@
 "use client";
 
 import React from "react";
-import { Box, Flex, Heading, Text, Image, Highlight } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Highlight,
+  useBreakpointValue, // 👈 1. Import the responsive breakpoint hook
+} from "@chakra-ui/react";
 import websiteData from "../../data";
 import { motion } from "framer-motion";
 import CVDownloadButton from "@/components/ui/CVDownloadButton";
+import AtomicOrbit from "../ui/AtomicOrbit";
 
 const introData = websiteData.introData;
 
 export default function Intro() {
+  // 👈 2. Define phone vs desktop orbital dimensions here:
+  const orbitRadii = useBreakpointValue({
+    base: { radiusX: 145, radiusY: 65 }, // Mobile phones
+    md: { radiusX: 180, radiusY: 80 }, // Tablets
+    lg: { radiusX: 220, radiusY: 95 }, // Desktop
+  }) || { radiusX: 220, radiusY: 95 }; // Fallback for initial SSR mount
+
   return (
     <Box
       as="section"
@@ -44,9 +59,10 @@ export default function Intro() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               style={{ display: "block" }}
+              viewport={{ once: true }}
             >
               <Highlight
-                query={["Frontend Developer", "Data Scientist"]}
+                query={["Frontend Engineer", "React & Typescript"]}
                 styles={{
                   px: "2",
                   py: "0.5",
@@ -71,9 +87,7 @@ export default function Intro() {
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              viewport={{
-                once: true,
-              }}
+              viewport={{ once: true }}
             >
               {introData.para}
             </motion.p>
@@ -83,10 +97,20 @@ export default function Intro() {
 
         <Flex
           w={{ base: "40%", xlDown: "full" }}
-          h={{ base: "40%", xlDown: "full" }}
           justify="center"
+          align="center"
+          position="relative"
           order={{ base: 2, xlDown: 1 }}
+          py={{ base: 14, xlDown: 8 }}
         >
+          {/* 👈 3. Pass responsive dimensions to the BACK LAYER */}
+          <AtomicOrbit
+            radiusX={orbitRadii.radiusX}
+            radiusY={orbitRadii.radiusY}
+            layer="back"
+          />
+
+          {/* Nucleus: Profile Image */}
           <motion.div
             initial={{ borderColor: "#D73101" }}
             animate={{ borderColor: "#F58B51" }}
@@ -97,13 +121,16 @@ export default function Intro() {
               ease: "linear",
             }}
             style={{
-              border: "8px solid",
+              border: "6px solid",
               borderRadius: "100%",
+              position: "relative",
+              zIndex: 10,
+              backgroundColor: "#18181b",
             }}
           >
             <Box
-              w={{ base: 80, xlDown: 64 }}
-              h={{ base: 80, xlDown: 64 }}
+              w={{ base: 72, xlDown: 56 }}
+              h={{ base: 72, xlDown: 56 }}
               borderRadius="full"
               overflow="hidden"
               position="relative"
@@ -118,9 +145,15 @@ export default function Intro() {
               />
             </Box>
           </motion.div>
+
+          {/* 👈 4. Pass responsive dimensions to the FRONT LAYER */}
+          <AtomicOrbit
+            radiusX={orbitRadii.radiusX}
+            radiusY={orbitRadii.radiusY}
+            layer="front"
+          />
         </Flex>
       </Flex>
     </Box>
   );
 }
-

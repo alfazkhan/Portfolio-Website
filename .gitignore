@@ -32,10 +32,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.agent.md*
+.agents
 
 # vercel
 .vercel
 .*cache
+.firebase
 
 # typescript
 *.tsbuildinfo
@@ -43,3 +46,5 @@ next-env.d.ts
 dist/
 */.firebase/
 .firebase/*
+.github/
+skills-lock.json

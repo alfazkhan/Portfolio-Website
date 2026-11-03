@@ -215,7 +215,7 @@ export default function LeftSidebar() {
 
             <VStack align="stretch" gap={0.5}>
               {sidebarData.coreSkills.map((skill, idx) => (
-                <ExtraSkill key={idx} text={skill} />
+                <ExtraSkill key={idx} text={skill.name} />
               ))}
             </VStack>
           </Box>
@@ -230,7 +230,7 @@ export default function LeftSidebar() {
               {sidebarData.extraSkills.map((item, idx) => (
                 <WrapItem key={idx}>
                   <Badge textTransform="full-size-kana" colorPalette="gray">
-                    {item}
+                    {item.name}
                   </Badge>
                 </WrapItem>
               ))}

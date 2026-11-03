@@ -60,7 +60,7 @@ export default function CVDownloadButton() {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
       // Clean mobile click toggle behavior
-      onClick={() => setIsOpen((prev) => !prev)}
+      onClick={() => setIsOpen(true)}
     >
       {/* Main Trigger Track */}
       <Flex

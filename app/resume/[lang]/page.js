@@ -35,11 +35,11 @@ export default function Page({ params }) {
         <meta httpEquiv="refresh" content={`0; url=${targetUrl}`} />
       </head>
       <body className="flex h-screen w-full items-center justify-center font-sans text-sm text-zinc-500">
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.location.replace("${targetUrl}");`,
-          }}
-        />
+        <template>
+          <script>
+            {`window.location.replace("${targetUrl}");`}
+          </script>
+        </template>
         <p>
           Redirecting to resume...{" "}
           <a href={targetUrl} className="underline">

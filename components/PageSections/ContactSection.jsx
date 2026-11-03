@@ -165,7 +165,7 @@ export default function ContactSection() {
         </Box>
       </Flex>
 
-      {/* Social Footer */}
+      {/* Social Footer
       <Flex mt={24} direction="column" align="center">
         <Text color="textMuted" fontSize={{ base: "sm", md: "base" }} mb={6}>
           You may also find me on these platforms!
@@ -186,7 +186,7 @@ export default function ContactSection() {
             </Box>
           ))}
         </HStack>
-      </Flex>
+      </Flex> */}
     </GrayFlexWrapper>
   );
 }

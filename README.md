@@ -1,4 +1,4 @@
-# Alfaz Khan | Frontend Developer & Data Scientist
+# Alfaz Khan | Frontend Engineer with React & Typescript
 
 Welcome to my GitHub profile! This README serves as a comprehensive overview of my skills, experience, and projects, functioning as both a portfolio and a resume.
 
@@ -6,7 +6,7 @@ Welcome to my GitHub profile! This README serves as a comprehensive overview of 
 
 ## 👋 About Me
 
-Hi! I am Alfaz, Frontend Developer & Data Scientist. I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.
+Hi! I am Alfaz, Frontend Engineer with React & Typescript. I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.
 
 - **Residence:** Germany
 - **City:** München, Bavaria

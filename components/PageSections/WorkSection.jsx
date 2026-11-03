@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Box, Flex, Heading, Text, Image, Grid } from "@chakra-ui/react";
 import websiteData from "../../data";
 import ProjectInfoModal from "../ProjectInfoModal";
@@ -13,7 +13,6 @@ const MotionGrid = motion.create(Grid);
 const MotionFlex = motion.create(Flex);
 
 export default function WorkSection() {
-  
   const gridVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -25,10 +24,10 @@ export default function WorkSection() {
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: -20, 
-      filter: "blur(20px)" 
+    hidden: {
+      opacity: 0,
+      y: -20,
+      filter: "blur(20px)",
     },
     visible: {
       opacity: 1,
@@ -65,16 +64,15 @@ export default function WorkSection() {
         Works and Projects
       </Heading>
 
-      {/* 4. Parent element handles scroll boundaries and triggers cascade */}
       <MotionGrid
         variants={gridVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }} // Fires smoothly when cards enter viewport
+        viewport={{ once: true, amount: 0.15 }}
         templateColumns={{
           base: "repeat(1, 1fr)",
           md: "repeat(2, 1fr)",
-          xl: "repeat(3, 1fr)",
+          xl: "repeat(2, 1fr)",
         }}
         gap={{ base: 6, xl: 8 }}
       >
@@ -82,7 +80,7 @@ export default function WorkSection() {
           return (
             <MotionFlex
               key={project.id}
-              variants={cardVariants} // Inherits variant hooks automatically
+              variants={cardVariants}
               direction="column"
               borderWidth={1}
               borderColor="border"
@@ -158,7 +156,11 @@ export default function WorkSection() {
                 </Box>
               </Flex>
 
-              <ProjectInfoModal project={project} />
+              {/* Removed the open prop. Dialog.Trigger handles opening automatically. */}
+              <ProjectInfoModal
+                project={project}
+                downloadLinks={project.downloadLinks}
+              />
             </MotionFlex>
           );
         })}

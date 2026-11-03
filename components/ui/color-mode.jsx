@@ -12,7 +12,6 @@ export function ColorModeProvider(props) {
       defaultTheme="system"
       enableSystem={true}
       disableTransitionOnChange
-      scriptProps={{ type: "application/json" }}
       {...props}
     />
   );

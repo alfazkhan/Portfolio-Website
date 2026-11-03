@@ -118,7 +118,6 @@ export default function NavigationBar() {
           >
             {colorMode === "light" ? <FiMoon /> : <FiSun />}
           </motion.span>
-          )
         </Box>
         <Box as="button" onClick={toggleMenu}>
           <Icon as={IoMenuOutline} w={5} h={5} color="text" />

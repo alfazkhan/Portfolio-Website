@@ -182,7 +182,9 @@ const ProjectMarkdownContent = ({ fileMarkdownPath }) => {
       borderRadius="md"
       bgColor="transparent"
       color={colorMode === "light" ? "gray.900" : "gray.100"}
-      overflowX="hidden"
+      maxWidth="65ch"
+      width="100%"
+      overflowX="auto"
       overflowY="scroll"
       height="50vh"
       fontFamily="system-ui"
