@@ -76,7 +76,7 @@ export default function ContactSection() {
         lineHeight="relaxed" 
         mb={16}
       >
-        What's next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.
+        What&apos;s next? Feel free to reach out to me if you&apos;re looking for a developer, have a query, or simply want to connect.
       </Text>
 
       {/* Email Row */}

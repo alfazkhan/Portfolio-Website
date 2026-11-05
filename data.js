@@ -18,6 +18,7 @@ import {
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
 import tstl from "@/app/assets/ProjectImages/2s2l.png";
+import ProfileImage from "@/app/assets/Profile-Image.jpg";
 import {
   TanstackIcon,
   ChakraIcon,
@@ -100,8 +101,7 @@ const websiteData = {
 
   //Intro Page Data
   introData: {
-    imageSrc:
-      "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
+    imageSrc: ProfileImage,
     headline: "Hi! I am Alfaz, Frontend Engineer | React & Typescript",
     para: "I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.",
     buttonText: "Download CV",
@@ -115,8 +115,7 @@ const websiteData = {
 
   //Left Sidebar Data
   sidebarData: {
-    profileImg:
-      "https://static.wixstatic.com/media/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png/v1/crop/x_0,y_870,w_3072,h_3226/fill/w_300,h_315,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/fb44a3_e9e9df6afcff46ffb8a4b4f6f5310959~mv2.png",
+    profileImg: ProfileImage,
     name: "Alfaz",
     title: "React Developer and\n Frontend Engineer | React & Typescript",
     daysWorked: 18,
@@ -141,7 +140,7 @@ const websiteData = {
     ],
     languages: [
       { label: "English", proficiency: "C1/Fluent", level: 5 },
-      { label: "German", proficiency: "A2/Good Knowledge", level: 2 },
+      { label: "German", proficiency: "B1/Good Knowledge", level: 3 },
       { label: "Hindi", proficiency: "C2/Native", level: 6 },
     ],
     coreSkills: [
@@ -255,25 +254,29 @@ const websiteData = {
         {
           id: 2,
           name: "TypeScript",
-          component: <SiTypescript style={{ fontSize: "24px", color: "#3178C6" }}/>,
+          component: (
+            <SiTypescript style={{ fontSize: "24px", color: "#3178C6" }} />
+          ),
         },
         { id: 3, name: "React", class: "devicon-react-original colored" },
         {
           id: 4,
           name: "Tailwind CSS",
-          component: <SiTailwindcss style={{ fontSize: "24px", color: "#38BDF8" }}/>,
+          component: (
+            <SiTailwindcss style={{ fontSize: "24px", color: "#38BDF8" }} />
+          ),
         },
         {
           id: 6,
           name: "Playwright",
           class: false,
-          component: <PlaywrightIcon style={{ width: "30px" }}/>,
+          component: <PlaywrightIcon style={{ width: "30px" }} />,
         },
         {
           id: 7,
           name: "WXT Framework",
           class: false,
-          component: <DaisyUIIcon style={{ width: "30px" }}/>,
+          component: <DaisyUIIcon style={{ width: "30px" }} />,
         },
       ],
       markdownPath: "/2Subs2LearnReadme.md",

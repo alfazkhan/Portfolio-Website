@@ -7,7 +7,7 @@ import { system } from '../../theme.js'
 export function Provider(props) {
   return (
     <ChakraProvider value={system}>
-      <ColorModeProvider {...props} suppressHydrationWarning />
+      <ColorModeProvider>{props.children}</ColorModeProvider>
     </ChakraProvider>
   )
 }

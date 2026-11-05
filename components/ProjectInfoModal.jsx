@@ -17,12 +17,13 @@ import { useColorMode } from "@/components/ui/color-mode";
 import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
 import remarkGfm from "remark-gfm";
+import { FaChrome, FaFirefox, FaEye, FaGithub } from "react-icons/fa6";
 
 export default function ProjectInfoModal({ project, downloadLinks }) {
   const { colorMode } = useColorMode();
 
   return (
-    <Dialog.Root>
+    <Dialog.Root size="full">
       <Dialog.Trigger asChild>
         <Button
           bg="primary"
@@ -44,27 +45,46 @@ export default function ProjectInfoModal({ project, downloadLinks }) {
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content background="Background" maxWidth="full" maxHeight="full" css={{ height: "100%", overflow: "hidden" }}>
-            <Flex flexDir="column" h="100%" p={4}>
-              <Box w="full" justifyContent="flex-start">
-                <Dialog.CloseTrigger asChild>
-                  <CloseButton size="2xl" colorPalette="red" />
-                </Dialog.CloseTrigger>
-              </Box>
-              <Flex flexDir="column" flexShrink={1} gap={4}>
+          <Dialog.Content
+            background="Background"
+            maxWidth={{ base: "100vw", md: "80vw" }}
+            maxHeight="95dvh"
+            mt={1}
+            // borderWidth={2}
+            // borderColor="primary"
+            css={{ overflowY: "scroll", overflowX: "hidden" }}
+          >
+            <Box w="full" justifyContent="flex-start">
+              <Dialog.CloseTrigger asChild>
+                <CloseButton
+                  variant="solid"
+                  size="xl"
+                  colorPalette="red"
+                  border="2px solid"
+                  borderColor="darkred"
+                  shadow="2px 2px 5px red"
+                />
+              </Dialog.CloseTrigger>
+            </Box>
+            <Dialog.Body>
+              <Flex flexDir="column" flexShrink={1} gap={1}>
                 <ProjectImage title={project.title} image={project.img} />
                 <ProjectSkills skills={project.skills} />
-                <ProjectMarkdownContent fileMarkdownPath={project.markdownPath} />
+                <ProjectMarkdownContent
+                  fileMarkdownPath={project.markdownPath}
+                />
+                {/* <Text>{project.text}</Text> */}
               </Flex>
-              <Box w="full" justifyContent="center">
-                <Dialog.Footer>
-                  <ProjectFooter
-                    repoLink={project.repoLink}
-                    liveLink={project.link}
-                  />
-                </Dialog.Footer>
-              </Box>
-            </Flex>
+            </Dialog.Body>
+            <Box w="full" justifyContent="center">
+              <Dialog.Footer>
+                <ProjectFooter
+                  repoLink={project.repoLink}
+                  liveLink={project.link}
+                  downloadLinks={project.downloadLinks}
+                />
+              </Dialog.Footer>
+            </Box>
           </Dialog.Content>
         </Dialog.Positioner>
       </Portal>
@@ -73,16 +93,20 @@ export default function ProjectInfoModal({ project, downloadLinks }) {
 }
 
 const ProjectImage = ({ title, image }) => (
-  <Box borderRadius="xl" overflow="hidden" px={1} mt={2} height="2xs">
-    <Image
-      asChild
-      aspectRatio={1.91 / 1}
+  <Box
+    borderRadius="xl"
+    overflow="hidden"
+    px={1}
+    mt={2}
+    maxH={{ base: "auto", md: "50vh" }}
+  >
+    <NextImage
+      src={image}
+      priority={true}
       alt={title}
-      objectFit="fill"
       borderRadius="xl"
-    >
-      <NextImage src={image} priority={true} />
-    </Image>
+      loading="eager"
+    />
   </Box>
 );
 
@@ -96,6 +120,7 @@ const ProjectSkills = ({ skills }) => {
         justifyContent="space-around"
         flexDir="row"
         flexWrap="wrap"
+        gap={1}
       >
         {skills.map((skill, index, array) => {
           return (
@@ -104,12 +129,14 @@ const ProjectSkills = ({ skills }) => {
                 key={skill.id}
                 display="flex"
                 alignItems="center"
+                justifyContent="flex-end"
                 flexDir="column"
-                height={50}
+                maxHeight={{ base: "10", md: "50" }}
+                // height={50}
                 width="auto"
               >
                 {skill.class ? (
-                  <i class={skill.class} style={{ fontSize: 30 }} />
+                  <i className={skill.class} style={{ fontSize: 20 }} />
                 ) : (
                   skill.component
                 )}
@@ -131,51 +158,68 @@ const ProjectSkills = ({ skills }) => {
   );
 };
 
-const ProjectFooter = ({ repoLink, liveLink, downloadLinks }) => {
+export const ProjectFooter = ({ repoLink, liveLink, downloadLinks }) => {
   const { colorMode } = useColorMode();
 
   return (
     <>
       {downloadLinks && (
-        <>
-          <Button
-            size="md"
-            colorPalette="blue"
-            mr={2}
-            onClick={() => window.open(downloadLinks.chrome)}
-          >
-            Install for Chrome
-          </Button>
-          <Button
-            size="md"
-            colorPalette="orange"
-            mr={2}
-            onClick={() => window.open(downloadLinks.firefox)}
-          >
-            Install for Firefox
-          </Button>
-        </>
-      )}
-      {repoLink && liveLink && (
-        <>
-          <Separator my={4} />
+        <Flex gap={2} flexWrap="wrap" justifyContent="center">
+          <Separator my={1} />
           <Button
             size="md"
             bgColor={colorMode === "light" ? "black" : "white"}
             color={colorMode === "light" ? "gray.100" : "gray.900"}
             onClick={() => window.open(repoLink)}
+            width="full"
           >
+            <FaGithub />
+            Github Repo
+          </Button>
+          <Button
+            size="md"
+            colorPalette="blue"
+            width="full"
+            onClick={() => window.open(downloadLinks.chrome)}
+          >
+            <FaChrome />
+            Install for Chrome
+          </Button>
+          <Button
+            size="md"
+            colorPalette="orange"
+            width="full"
+            onClick={() => window.open(downloadLinks.firefox)}
+          >
+            <FaFirefox />
+            Install for Firefox
+          </Button>
+        </Flex>
+      )}
+      {repoLink && liveLink && !downloadLinks && (
+        <Flex gap={2} flexWrap="wrap" justifyContent="center">
+          <Separator my={1} />
+          <Button
+            size="md"
+            bgColor={colorMode === "light" ? "black" : "white"}
+            color={colorMode === "light" ? "gray.100" : "gray.900"}
+            onClick={() => window.open(repoLink)}
+            width="full"
+          >
+            <FaGithub />
             Github Repo
           </Button>
           <Button
             size="md"
             colorPalette="green"
             color="gray.100"
+            width="full"
             onClick={() => window.open(liveLink)}
           >
+            <FaEye />
             Live Preview
           </Button>
-        </>
+        </Flex>
       )}
     </>
   );
@@ -209,19 +253,18 @@ const ProjectMarkdownContent = ({ fileMarkdownPath }) => {
       borderRadius="md"
       bgColor="transparent"
       color={colorMode === "light" ? "gray.900" : "gray.100"}
-      maxWidth="65ch"
+      maxWidth="100%"
       width="100%"
       overflowX="auto"
       overflowY="scroll"
-      height="50vh"
       fontFamily="system-ui"
-      css={{
-        "&::-webkit-scrollbar": {
-          display: "none",
-        },
-        scrollbarWidth: "none",
-        msOverflowStyle: "none",
-      }}
+      // css={{
+      //   "&::-webkit-scrollbar": {
+      //     display: "none",
+      //   },
+      //   scrollbarWidth: "none",
+      //   msOverflowStyle: "none",
+      // }}
     >
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
     </Box>

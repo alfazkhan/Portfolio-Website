@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import { Box, Flex, Heading, Text, Image, Grid } from "@chakra-ui/react";
 import websiteData from "../../data";
-import ProjectInfoModal from "../ProjectInfoModal";
+import { ProjectFooter } from "../ProjectInfoModal";
 import NextImage from "next/image";
 import { motion, stagger } from "framer-motion";
 
@@ -98,14 +98,13 @@ export default function WorkSection() {
                   borderRadius="lg"
                   boxShadow="sm"
                 >
-                  <Image asChild alt={project.title} objectFit="contain">
                     <NextImage
                       src={project.img}
-                      width={400}
-                      height={400}
+                      // width={400}
+                      // height={400}
                       alt={project.title}
+                      // objectFit="contain"
                     />
-                  </Image>
                 </Box>
 
                 <Box>
@@ -156,11 +155,15 @@ export default function WorkSection() {
                 </Box>
               </Flex>
 
-              {/* Removed the open prop. Dialog.Trigger handles opening automatically. */}
-              <ProjectInfoModal
+              {/* <ProjectInfoModal
                 project={project}
                 downloadLinks={project.downloadLinks}
-              />
+              /> */}
+              <ProjectFooter
+                    repoLink={project.repoLink}
+                    liveLink={project.link}
+                    downloadLinks={project.downloadLinks}
+                  />
             </MotionFlex>
           );
         })}

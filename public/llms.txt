@@ -1,0 +1,34 @@
+# Alfaz Khan Portfolio Website
+
+> A personal portfolio and resume website showcasing my work as a Frontend Engineer specializing in React & TypeScript, featuring projects like Subreddit Analyzer with data science integration.
+
+Key notes:
+- This is a Next.js 16 application built with React 19 and Chakra UI v3
+- The site includes both frontend (React/Next.js) and backend (Python FastAPI + PostgreSQL) content
+- Supports dark/light themes via next-themes
+- Uses Vitest for unit testing, Playwright for E2E tests
+
+## Docs
+
+- [Main README](README.md): Comprehensive overview of skills, experience, and projects including Subreddit Analyzer, video engineering work, and responsive web development portfolio
+- [Subreddit Analyzer Project](https://subanalyzer.theonlyalfaz.com): Full-stack Reddit analysis platform with React dashboard, Python FastAPI backend, NLP pipelines, and PostgreSQL storage
+
+## Examples
+
+- [Project Screenshots](public/Screenshots/): Visual examples of the Subreddit Analyzer interface and other portfolio content
+- [CV Download](https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing): Full resume available for download
+
+## API
+
+- [Next.js Documentation](https://nextjs.org/docs): Framework documentation used for this Next.js 16 application
+- [React Documentation](https://react.dev): Core framework reference for React 19 features and components
+
+## Optional
+
+- [Chakra UI v3 Documentation](https://chakra-ui.com/docs/getting-started): Component library reference (upgraded from previous versions)
+- [Vitest Testing Guide](https://vitest.dev/config): Unit testing configuration used in this project
+- [Playwright E2E Tests](https://playwright.dev): End-to-end testing setup with Playwright
+
+---
+
+**Note**: This portfolio website combines personal branding with technical showcase capabilities. The Subreddit Analyzer project demonstrates full-stack development skills including data science, while the rest of the site highlights frontend expertise in modern React and TypeScript ecosystems.

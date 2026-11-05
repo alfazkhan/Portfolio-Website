@@ -6,7 +6,7 @@ import {
   Flex,
   Heading,
   Highlight,
-  useBreakpointValue, // 👈 1. Import the responsive breakpoint hook
+  useBreakpointValue, 
 } from "@chakra-ui/react";
 import websiteData from "../../data";
 import { motion } from "framer-motion";
@@ -17,7 +17,6 @@ import Image from "next/image";
 const introData = websiteData.introData;
 
 export default function Intro() {
-  // 👈 2. Define phone vs desktop orbital dimensions here:
   const orbitRadii = useBreakpointValue({
     base: { radiusX: 145, radiusY: 65 }, // Mobile phones
     md: { radiusX: 180, radiusY: 80 }, // Tablets
@@ -30,7 +29,7 @@ export default function Intro() {
       id="home"
       position="relative"
       w="full"
-      py={{ base: 20, xlDown: 6 }}
+      pb={5}
       px={{ base: 10, xlDown: 6 }}
       maxW="6xl"
       mx="auto"
@@ -41,7 +40,7 @@ export default function Intro() {
         direction={{ base: "row", xlDown: "column" }}
         align="center"
         justify="space-between"
-        gap={12}
+        gap={5}
       >
         <Box
           w={{ base: "60%", xlDown: "full" }}
@@ -62,7 +61,7 @@ export default function Intro() {
               viewport={{ once: true }}
             >
               <Highlight
-                query={["Frontend Engineer", "React & Typescript"]}
+                query={["Frontend Engineer", "React","Typescript"]}
                 styles={{
                   px: "2",
                   py: "0.5",
@@ -101,16 +100,13 @@ export default function Intro() {
           align="center"
           position="relative"
           order={{ base: 2, xlDown: 1 }}
-          py={{ base: 14, xlDown: 8 }}
         >
-          {/* 👈 3. Pass responsive dimensions to the BACK LAYER */}
-          <AtomicOrbit
+          {/* <AtomicOrbit
             radiusX={orbitRadii.radiusX}
             radiusY={orbitRadii.radiusY}
             layer="back"
-          />
+          /> */}
 
-          {/* Nucleus: Profile Image */}
           <motion.div
             initial={{ borderColor: "#D73101" }}
             animate={{ borderColor: "#F58B51" }}
@@ -138,20 +134,19 @@ export default function Intro() {
               <Image
                 src={introData.imageSrc}
                 alt="Alfaz Profile"
-                unoptimized
                 width={300}
                 height={315}
                 sizes="(max-width: 768px) 100vw, 50vw"
+                loading="lazy"
               />
             </Box>
           </motion.div>
-
-          {/* 👈 4. Pass responsive dimensions to the FRONT LAYER */}
+{/* 
           <AtomicOrbit
             radiusX={orbitRadii.radiusX}
             radiusY={orbitRadii.radiusY}
             layer="front"
-          />
+          /> */}
         </Flex>
       </Flex>
     </Box>

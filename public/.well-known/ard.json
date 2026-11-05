@@ -1,0 +1,35 @@
+{
+  "ManifestVersion": "1.0",
+  "Name": "Alfaz Khan Portfolio",
+  "Description": "Professional portfolio website showcasing Alfaz Khan's skills, projects, and experiences in frontend engineering, React, TypeScript, and data science.",
+  "Author": {
+    "Name": "Alfaz Khan",
+    "Email": "khanalfaaz14@gmail.com"
+  },
+  "PrimaryURL": "https://theonlyalfaz.com",
+  "entries": [
+    {
+      "identifier": "portfolio-homepage",
+      "displayName": "Alfaz Khan Portfolio Homepage",
+      "url": "https://theonlyalfaz.com/",
+      "mediaType": "text/html",
+      "description": "Main portfolio landing page, featuring professional summary, core skills, interactive 3D tech stack orbits, and works section.",
+      "representativeQueries": [
+        "Alfaz Khan frontend developer",
+        "React TypeScript engineer Munich",
+        "Alfaz Khan portfolio projects"
+      ]
+    },
+    {
+      "identifier": "llms-txt",
+      "displayName": "LLMs Context Document",
+      "url": "https://theonlyalfaz.com/llms.txt",
+      "mediaType": "text/plain",
+      "description": "AI-optimized markdown context and structured resource map for language models and agents.",
+      "representativeQueries": [
+        "AI profile llms.txt Alfaz Khan",
+        "Alfaz Khan developer resume context"
+      ]
+    }
+  ]
+}

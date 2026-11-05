@@ -34,7 +34,7 @@ export default function AtomicOrbit({
   const nextColor = colorMode === "light" ? "#61DAFB" : "#FFFFFF";
 
   // Get core skills from data.js and map them to orbit items
-  const { core } = websiteData.getSkillsData(nextColor);
+  const { core } = websiteData.getSkillsData(nextColor); 
 
   // Select 3 different icons per orbit (9 total different icons) using round-robin
   const selectedOrbitIcons = ORBITS.map((_, idx) => 

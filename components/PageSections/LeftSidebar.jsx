@@ -16,7 +16,7 @@ import { FaStar } from "react-icons/fa";
 import CVDownloadButton from "../ui/CVDownloadButton";
 import { motion, stagger } from "framer-motion";
 import GrayFlexWrapper from "../GrayFlexWrapper";
-import Image from "next/image";
+import NextImage from "next/image";
 
 const sidebarData = websiteData.sidebarData;
 
@@ -60,14 +60,15 @@ export default function LeftSidebar() {
           borderColor="border"
         >
           <Box position="relative" w={32} h={32} mb={4}>
-            <Image
+            <NextImage
               src={sidebarData.profileImg}
               alt="Alfaz Profile"
               unoptimized
-              width={128}
-              height={128}
+              width={300}
+              height={315}
               sizes="(max-width: 768px) 50vw, 25vw"
-              style={{ borderRadius: "full", boxShadow: "md" }}
+              style={{ borderRadius: "100%", boxShadow: "5px" }}
+              loading="eager"
             />
             <Box
               position="absolute"

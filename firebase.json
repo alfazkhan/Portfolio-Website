@@ -10,7 +10,15 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/.well-known/ard.json/**",
+        "destination": "/$1"
+      },
+      {
+        "source": "/.well-known/favicon.ico/**",
+        "destination": "/$1"
+      },
+      {
+        "source": "**/*",
         "destination": "/index.html"
       }
     ]
