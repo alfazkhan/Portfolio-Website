@@ -1,50 +1,26 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
 import {
   Box,
   Flex,
   Text,
-  Image,
   Separator,
   VStack,
   HStack,
   Badge,
   Wrap,
   WrapItem,
-  Progress,
 } from "@chakra-ui/react";
 import websiteData from "../../data";
 import { FaStar } from "react-icons/fa";
-import { InfoTip } from "@/components/ui/toggle-tip";
 import CVDownloadButton from "../ui/CVDownloadButton";
 import { motion, stagger } from "framer-motion";
 import GrayFlexWrapper from "../GrayFlexWrapper";
+import Image from "next/image";
 
 const sidebarData = websiteData.sidebarData;
 
 export default function LeftSidebar() {
-  const [progressValue, setProgressValue] = useState(0);
-  useEffect(() => {
-    const targetValue = sidebarData.daysWorked;
-
-    if (targetValue <= 0) return;
-
-    const tickSpeed = 50;
-
-    const timer = setInterval(() => {
-      setProgressValue((oldValue) => {
-        if (oldValue >= targetValue) {
-          clearInterval(timer);
-          return targetValue;
-        }
-        return oldValue + 1;
-      });
-    }, tickSpeed);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <GrayFlexWrapper
       as="aside"
@@ -87,10 +63,11 @@ export default function LeftSidebar() {
             <Image
               src={sidebarData.profileImg}
               alt="Alfaz Profile"
-              boxSize="full"
-              objectFit="cover"
-              borderRadius="full"
-              boxShadow="md"
+              unoptimized
+              width={128}
+              height={128}
+              sizes="(max-width: 768px) 50vw, 25vw"
+              style={{ borderRadius: "full", boxShadow: "md" }}
             />
             <Box
               position="absolute"
@@ -153,40 +130,6 @@ export default function LeftSidebar() {
             ))}
 
             <Separator borderColor="border" mb={2} />
-
-            {/* <Progress.Root value={progressValue} color="text">
-              <Progress.Label mb="2" fontWeight="bold">
-                Days worked in {new Date().getFullYear()}
-                <InfoTip
-                  placement="top"
-                  portalled={true}
-                  contentProps={{
-                    maxW: "240px",
-                    whiteSpace: "normal",
-                    wordBreak: "break-word",
-                    p: 3,
-                    bg: "bgAlt",
-                    border: "1px solid",
-                    borderColor: "border",
-                    boxShadow: "xl",
-                    borderRadius: "md",
-                    fontWeight: "bold",
-                  }}
-                >
-                  <Text>
-                    Days I&rsquo;ve worked in {new Date().getFullYear()} out of
-                    140 Days I am allowed to work according to my visa status.
-                  </Text>
-                </InfoTip>
-              </Progress.Label>
-              <Progress.Track>
-                <Progress.Range bg="primary" />
-              </Progress.Track>
-              <HStack justify="space-between" mt={1} color="text">
-                <Progress.ValueText>18 Days</Progress.ValueText>
-                <Progress.ValueText>140 Days</Progress.ValueText>
-              </HStack>
-            </Progress.Root> */}
           </VStack>
 
           {/* <Separator borderColor="border" mb={6} zIndex={1} /> */}
@@ -254,11 +197,11 @@ export default function LeftSidebar() {
   );
 }
 
+// FIX: Removed 'export default' from helper component
 function InfoRow({ label, value, highlight }) {
   return (
     <Flex justify="space-between" align="center">
       <Box
-        // bg="secondary"
         color="text"
         fontSize="11px"
         fontWeight="extrabold"
@@ -281,6 +224,7 @@ function InfoRow({ label, value, highlight }) {
   );
 }
 
+// FIX: Removed 'export default' from helper component
 function LanguageProficiency({
   label,
   proficiency,
@@ -348,7 +292,7 @@ function LanguageProficiency({
         {boxes.map((box) => (
           <motion.li
             key={box.id}
-            variants={itemVariants} // Inherits parent states automatically
+            variants={itemVariants} 
             style={{
               width: "35px",
               height: "10px",
@@ -371,7 +315,6 @@ function ExtraSkill({ text }) {
       gap={3}
       color="text"
       fontSize="sm"
-      // fontWeight="medium"
     >
       <Box color="primary" mt="2px" flexShrink={0}>
         <FaStar />

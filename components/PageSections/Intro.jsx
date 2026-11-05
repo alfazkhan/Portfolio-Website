@@ -5,7 +5,6 @@ import {
   Box,
   Flex,
   Heading,
-  Image,
   Highlight,
   useBreakpointValue, // 👈 1. Import the responsive breakpoint hook
 } from "@chakra-ui/react";
@@ -13,6 +12,7 @@ import websiteData from "../../data";
 import { motion } from "framer-motion";
 import CVDownloadButton from "@/components/ui/CVDownloadButton";
 import AtomicOrbit from "../ui/AtomicOrbit";
+import Image from "next/image";
 
 const introData = websiteData.introData;
 
@@ -137,11 +137,11 @@ export default function Intro() {
             >
               <Image
                 src={introData.imageSrc}
-                w="full"
-                h="full"
-                objectFit="cover"
                 alt="Alfaz Profile"
-                loading="lazy"
+                unoptimized
+                width={300}
+                height={315}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </Box>
           </motion.div>

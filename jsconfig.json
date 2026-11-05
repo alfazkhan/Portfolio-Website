@@ -6,6 +6,6 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["./*"]
-    }
+    },
   }
 }

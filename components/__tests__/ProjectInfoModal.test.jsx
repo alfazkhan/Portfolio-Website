@@ -10,8 +10,10 @@ vi.mock('@chakra-ui/react', async (importOriginal) => {
 
   return {
     ...actual,
-    Button: ({ children, onClick }) => (
-      <button onClick={onClick}>{children}</button>
+    Button: ({ children, onClick, colorPalette, mr }) => (
+      <button onClick={onClick} style={{ marginRight: mr ? '8px' : '0' }}>
+        {children && typeof children === 'string' ? children : children || ''}
+      </button>
     ),
     CloseButton: () => <button aria-label="Close">Close</button>,
     Dialog: {
@@ -23,7 +25,11 @@ vi.mock('@chakra-ui/react', async (importOriginal) => {
       Header: Wrapper,
       CloseTrigger: Trigger,
       Body: Wrapper,
-      Footer: Wrapper,
+      Footer: ({ children, ...props }) => (
+        <footer role="button" aria-label="Footer" {...props}>
+          {children}
+        </footer>
+      ),
     },
     Portal: Wrapper,
     Image: ({ children }) => <div>{children}</div>,
@@ -34,8 +40,8 @@ vi.mock('@chakra-ui/react', async (importOriginal) => {
     Flex: ({ children, ...props }) => (
       <div {...props}>{children}</div>
     ),
-    Heading: ({ children, ...props }) => (
-      <h1 {...props}>{children}</h1>
+    Heading: ({ children, name, ...props }) => (
+      <h1 {...props}>{name ? name : children}</h1>
     ),
   };
 });
@@ -62,8 +68,8 @@ const project = {
   skills: [{ id: 1, name: 'React', class: 'react-icon' }],
 };
 
-const renderModal = (projectOverrides = {}) =>
-  render(<ProjectInfoModal project={{ ...project, ...projectOverrides }} />);
+const renderModal = (projectOverrides = {}, additionalProps = {}) =>
+  render(<ProjectInfoModal project={{ ...project, ...projectOverrides }} {...additionalProps} />);
 
 describe('ProjectInfoModal', () => {
   beforeEach(() => {
@@ -103,7 +109,7 @@ describe('ProjectInfoModal', () => {
       chrome: 'https://example.com/chrome',
       firefox: 'https://example.com/firefox',
     };
-    renderModal({ downloadLinks });
+    renderModal({ ...project, downloadLinks });
 
     await user.click(screen.getByRole('button', { name: 'Install for Chrome' }));
     await user.click(screen.getByRole('button', { name: 'Install for Firefox' }));

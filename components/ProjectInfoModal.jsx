@@ -4,6 +4,7 @@ import {
   Button,
   CloseButton,
   Dialog,
+  Flex,
   Portal,
   Image,
   Box,
@@ -17,15 +18,11 @@ import ReactMarkdown from "react-markdown";
 import { useState, useEffect } from "react";
 import remarkGfm from "remark-gfm";
 
-export default function ProjectInfoModal({ project }) {
+export default function ProjectInfoModal({ project, downloadLinks }) {
+  const { colorMode } = useColorMode();
+
   return (
-    <Dialog.Root
-      size="lg"
-      placement="center"
-      motionPreset="slide-in-bottom"
-      closeOnEscape
-      lazyMount
-    >
+    <Dialog.Root>
       <Dialog.Trigger asChild>
         <Button
           bg="primary"
@@ -47,23 +44,27 @@ export default function ProjectInfoModal({ project }) {
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content background="Background">
-            <Dialog.Header>
-              <Dialog.CloseTrigger asChild>
-                <CloseButton size="2xl" colorPalette="red" />
-              </Dialog.CloseTrigger>
-            </Dialog.Header>
-            <Dialog.Body justifyItems="center">
-              <ProjectImage title={project.title} image={project.img} />
-              <ProjectSkills skills={project.skills} />
-              <ProjectMarkdownContent fileMarkdownPath={project.markdownPath} />
-            </Dialog.Body>
-            <Dialog.Footer>
-              <ProjectFooter
-                repoLink={project.repoLink}
-                liveLink={project.link}
-              />
-            </Dialog.Footer>
+          <Dialog.Content background="Background" maxWidth="full" maxHeight="full" css={{ height: "100%", overflow: "hidden" }}>
+            <Flex flexDir="column" h="100%" p={4}>
+              <Box w="full" justifyContent="flex-start">
+                <Dialog.CloseTrigger asChild>
+                  <CloseButton size="2xl" colorPalette="red" />
+                </Dialog.CloseTrigger>
+              </Box>
+              <Flex flexDir="column" flexShrink={1} gap={4}>
+                <ProjectImage title={project.title} image={project.img} />
+                <ProjectSkills skills={project.skills} />
+                <ProjectMarkdownContent fileMarkdownPath={project.markdownPath} />
+              </Flex>
+              <Box w="full" justifyContent="center">
+                <Dialog.Footer>
+                  <ProjectFooter
+                    repoLink={project.repoLink}
+                    liveLink={project.link}
+                  />
+                </Dialog.Footer>
+              </Box>
+            </Flex>
           </Dialog.Content>
         </Dialog.Positioner>
       </Portal>
@@ -130,26 +131,52 @@ const ProjectSkills = ({ skills }) => {
   );
 };
 
-const ProjectFooter = ({ repoLink, liveLink }) => {
+const ProjectFooter = ({ repoLink, liveLink, downloadLinks }) => {
   const { colorMode } = useColorMode();
+
   return (
     <>
-      <Button
-        size="md"
-        bgColor={colorMode === "light" ? "black" : "white"}
-        color={colorMode === "light" ? "gray.100" : "gray.900"}
-        onClick={() => window.open(repoLink)}
-      >
-        Github Repo
-      </Button>
-      <Button
-        size="md"
-        colorPalette="green"
-        color="gray.100"
-        onClick={() => window.open(liveLink)}
-      >
-        Live Preview
-      </Button>
+      {downloadLinks && (
+        <>
+          <Button
+            size="md"
+            colorPalette="blue"
+            mr={2}
+            onClick={() => window.open(downloadLinks.chrome)}
+          >
+            Install for Chrome
+          </Button>
+          <Button
+            size="md"
+            colorPalette="orange"
+            mr={2}
+            onClick={() => window.open(downloadLinks.firefox)}
+          >
+            Install for Firefox
+          </Button>
+        </>
+      )}
+      {repoLink && liveLink && (
+        <>
+          <Separator my={4} />
+          <Button
+            size="md"
+            bgColor={colorMode === "light" ? "black" : "white"}
+            color={colorMode === "light" ? "gray.100" : "gray.900"}
+            onClick={() => window.open(repoLink)}
+          >
+            Github Repo
+          </Button>
+          <Button
+            size="md"
+            colorPalette="green"
+            color="gray.100"
+            onClick={() => window.open(liveLink)}
+          >
+            Live Preview
+          </Button>
+        </>
+      )}
     </>
   );
 };
