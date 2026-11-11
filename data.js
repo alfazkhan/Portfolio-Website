@@ -17,8 +17,8 @@ import {
   SiVitest, // NEW: add if you want to surface testing on the site
 } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
-import tstl from "@/app/assets/ProjectImages/2s2l.png";
+import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.webp";
+import tstl from "@/app/assets/ProjectImages/2s2l.webp";
 import ProfileImage from "@/app/assets/Profile-Image.jpg";
 import {
   TanstackIcon,
