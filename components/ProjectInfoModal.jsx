@@ -161,11 +161,11 @@ const ProjectSkills = ({ skills }) => {
 export const ProjectFooter = ({ repoLink, liveLink, downloadLinks }) => {
   const { colorMode } = useColorMode();
 
+  const allowedPlatforms = ["MacIntel", "Win32", "Linux x86_64"];
   return (
     <>
       {downloadLinks && (
         <Flex gap={2} flexWrap="wrap" justifyContent="center">
-          <Separator my={1} />
           <Button
             size="md"
             bgColor={colorMode === "light" ? "black" : "white"}
@@ -176,29 +176,32 @@ export const ProjectFooter = ({ repoLink, liveLink, downloadLinks }) => {
             <FaGithub />
             Github Repo
           </Button>
-          <Button
-            size="md"
-            colorPalette="blue"
-            width="full"
-            onClick={() => window.open(downloadLinks.chrome)}
-          >
-            <FaChrome />
-            Install for Chrome
-          </Button>
-          <Button
-            size="md"
-            colorPalette="orange"
-            width="full"
-            onClick={() => window.open(downloadLinks.firefox)}
-          >
-            <FaFirefox />
-            Install for Firefox
-          </Button>
+          <Flex gap={2} w="full">
+            <Button
+              display={!allowedPlatforms.includes(navigator.platform) && "none"}
+              size="sm"
+              colorPalette="blue"
+              flex={1}
+              onClick={() => window.open(downloadLinks.chrome)}
+            >
+              <FaChrome />
+              Chrome Store
+            </Button>
+            <Button
+              display={!allowedPlatforms.includes(navigator.platform) && "none"}
+              size="sm" // Changed from sm to md for uniform sizing
+              colorPalette="orange"
+              flex={1}
+              onClick={() => window.open(downloadLinks.firefox)}
+            >
+              <FaFirefox />
+              Firefox Store
+            </Button>
+          </Flex>
         </Flex>
       )}
       {repoLink && liveLink && !downloadLinks && (
-        <Flex gap={2} flexWrap="wrap" justifyContent="center">
-          <Separator my={1} />
+        <Flex gap={2} flexWrap="wrap" justifyContent="center" w="full">
           <Button
             size="md"
             bgColor={colorMode === "light" ? "black" : "white"}

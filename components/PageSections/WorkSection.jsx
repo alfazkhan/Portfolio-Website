@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { Box, Flex, Heading, Text, Image, Grid } from "@chakra-ui/react";
+import React from "react";
+import { Box, Flex, Heading, Text, Grid } from "@chakra-ui/react";
 import websiteData from "../../data";
 import { ProjectFooter } from "../ProjectInfoModal";
 import NextImage from "next/image";
@@ -69,12 +69,11 @@ export default function WorkSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
-        templateColumns={{
-          base: "repeat(1, 1fr)",
-          md: "repeat(2, 1fr)",
-          xl: "repeat(2, 1fr)",
-        }}
+        // FIX: Replaced hardcoded columns with auto-fit. 
+        // This ensures they are ALWAYS equal width (1fr) but will wrap to the next line if space drops below 320px.
+        templateColumns="repeat(auto-fit, minmax(320px, 1fr))"
         gap={{ base: 6, xl: 8 }}
+        // FIX: Removed invalid flexWrap="wrap" from Grid container
       >
         {projects.map((project) => {
           return (
@@ -82,6 +81,7 @@ export default function WorkSection() {
               key={project.id}
               variants={cardVariants}
               direction="column"
+              justify="space-between" 
               borderWidth={1}
               borderColor="border"
               p={5}
@@ -94,17 +94,18 @@ export default function WorkSection() {
               <Flex direction="column" gap={3} mb={4} flex={1}>
                 <Box
                   w="full"
+                  h="180px"
+                  position="relative"
                   overflow="hidden"
                   borderRadius="lg"
                   boxShadow="sm"
                 >
-                    <NextImage
-                      src={project.img}
-                      // width={400}
-                      // height={400}
-                      alt={project.title}
-                      // objectFit="contain"
-                    />
+                  <NextImage
+                    src={project.img}
+                    alt={project.title}
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top center" }}
+                  />
                 </Box>
 
                 <Box>
@@ -155,15 +156,15 @@ export default function WorkSection() {
                 </Box>
               </Flex>
 
-              {/* <ProjectInfoModal
-                project={project}
-                downloadLinks={project.downloadLinks}
-              /> */}
+              {/* <Box>
+                {navigator.platform}
+              </Box> */}
+
               <ProjectFooter
-                    repoLink={project.repoLink}
-                    liveLink={project.link}
-                    downloadLinks={project.downloadLinks}
-                  />
+                repoLink={project.repoLink}
+                liveLink={project.link}
+                downloadLinks={project.downloadLinks}
+              />
             </MotionFlex>
           );
         })}

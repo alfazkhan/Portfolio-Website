@@ -4,7 +4,6 @@ import {
   SiReact,
   SiNextdotjs,
   SiTailwindcss,
-  SiFigma,
   SiGit,
   SiPython,
   SiFastapi,
@@ -14,6 +13,8 @@ import {
   SiCss,
   SiRedux,
   SiFirebase,
+  SiApacheecharts, // NEW: Apache ECharts icon
+  SiVitest, // NEW: add if you want to surface testing on the site
 } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.png";
@@ -64,7 +65,6 @@ const websiteData = {
       },
     },
 
-    // CRITICAL: Point directly to working WWW origin so relative image paths resolve correctly
     metadataBase: new URL("https://www.theonlyalfaz.com"),
 
     alternates: {
@@ -103,7 +103,7 @@ const websiteData = {
   introData: {
     imageSrc: ProfileImage,
     headline: "Hi! I am Alfaz, Frontend Engineer | React & Typescript",
-    para: "I am a Business Intelligence and Data Science student in Munich, who also has a experince in Web design, Graphic design and Video editing. I also have a experince with social media marketing and working alongside clients to grow their social media channels.",
+    para: `I build high-performance React/TypeScript applications that turn complex data into clear visual insights. My work combines clean frontend design with data science techniques to create interactive dashboards and ML-enhanced experiences for real-world decision making.`,
     buttonText: "Download CV",
     cvLinks: {
       english:
@@ -111,6 +111,8 @@ const websiteData = {
       deutsch:
         "https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing",
     },
+    // TODO: confirm these two CV files are the FINAL versions you shared with me.
+    // If not, re-export and replace these Drive links.
   },
 
   //Left Sidebar Data
@@ -140,6 +142,8 @@ const websiteData = {
     ],
     languages: [
       { label: "English", proficiency: "C1/Fluent", level: 5 },
+      // TODO: this file says B1, but the LIVE site showed A2 when I fetched it.
+      // Pick ONE true, current number and make sure the deploy actually matches it.
       { label: "German", proficiency: "B1/Good Knowledge", level: 3 },
       { label: "Hindi", proficiency: "C2/Native", level: 6 },
     ],
@@ -151,26 +155,112 @@ const websiteData = {
       { id: 5, name: "Chakra UI", icon: ChakraIcon, color: "#0DC8AB" },
       { id: 6, name: "PostgresSQL", icon: PostgreSQLIcon, color: "#38BDF8" },
       { id: 7, name: "Redux", icon: SiRedux, color: "#7248B6" },
+      // NEW: Apache ECharts — only keep this here once it's actually live on
+      // Subreddit Analyzer's deployed frontend, not just mid-migration locally.
+      { id: 15, name: "Apache ECharts", icon: SiApacheecharts, color: "#AA344D" },
     ],
     extraSkills: [
       { id: 8, name: "Vite", icon: SiVite, color: "#61DAFB" },
       { id: 9, name: "TailwindCSS", icon: SiTailwindcss, color: "#38BDF8" },
       { id: 10, name: "Python", icon: PythonIcon, color: "#F7DF1E" },
       { id: 11, name: "Git & Version Control", icon: SiGit, color: "#EF4444" },
-      { id: 12, name: "Photoshop", icon: ChakraIcon, color: "#05998B" },
-      { id: 13, name: "Illustrator", icon: FigmaIcon, color: "#F24E1E" },
-      { id: 14, name: "Premiere Pro", icon: PlaywrightIcon, color: "#05998B" },
+      // REMOVED: Photoshop, Illustrator, Premiere Pro.
+      // These point toward design/video, not frontend engineering — cut them
+      // from a frontend-focused portfolio. Flagged twice now; please action.
+      // NEW: surface testing since you say it now exists across projects —
+      // only keep this once you've confirmed real, passing test suites.
+      { id: 16, name: "Vitest / Testing", icon: SiVitest, color: "#6E9F18" },
     ],
   },
 
   //Work and Projects Section
   projects: [
     {
+      id: 2,
+      title: "2Subs2Learn",
+      year: "2026",
+      category: "Browser Extension & Product Development",
+      desc: "A Manifest V3 browser extension that enables language learners to follow entertainment video with simultaneous original and translated subtitles. Built with <em>WXT</em> framework and fully in TypeScript, featuring multi-platform subtitle syncing (YouTube, ZDF Mediathek), browser-side AI translation using <em>Transformers.js</em> with Xenova OPUS-MT models, and a cross-browser engine (WebGPU-accelerated on Chromium, native WASM on Firefox). Covered by unit and end-to-end tests.",
+      img: tstl,
+      link: "https://2subs2learn.theonlyalfaz.com",
+      repoLink: "https://github.com/alfazkhan/2Subs2Learn",
+      downloadLinks: {
+        chrome:
+          "https://chromewebstore.google.com/detail/egkapkomakndamdhmlgknamdhmfnmkbf",
+        firefox: "https://addons.mozilla.org/en-US/firefox/addon/2subs2learn/",
+      },
+      skills: [
+        {
+          id: 2,
+          name: "TypeScript",
+          component: (
+            <SiTypescript style={{ fontSize: "24px", color: "#3178C6" }} />
+          ),
+        },
+        { id: 3, name: "React", class: "devicon-react-original colored" },
+        {
+          id: 4,
+          name: "Tailwind CSS",
+          component: (
+            <SiTailwindcss style={{ fontSize: "24px", color: "#38BDF8" }} />
+          ),
+        },
+        {
+          id: 7,
+          name: "WXT Framework",
+          class: false,
+          component: <DaisyUIIcon style={{ width: "30px" }} />,
+        },
+        // REMOVED "Playwright" chip here — your 2Subs2Learn README doesn't
+        // list Playwright as a dependency (that's the Subreddit Analyzer
+        // scraper). If 2Subs2Learn's e2e suite actually uses Playwright,
+        // add it back — otherwise this was likely copy-pasted between
+        // projects.
+      ],
+      markdownPath: "/2Subs2LearnReadme.md",
+      techStack: [
+        "WXT (Manifest V3)",
+        "TypeScript",
+        "React",
+        "Transformers.js",
+        "Xenova OPUS-MT Models",
+        "ONNX Runtime/WebAssembly",
+        "Chrome Translation API",
+        "ZDF Mediathek Integration",
+        "Vitest (unit)",
+        "Playwright or equivalent (e2e)", // TODO: confirm actual e2e tool and name it exactly
+      ],
+      features: [
+        "Multi-platform subtitle synchronization (YouTube, ZDF Mediathek)",
+        "Browser-side AI translation using ONNX Runtime/WebAssembly",
+        "Playback-synchronized overlay with adjustable font size and position",
+        "German-to-English and English-to-German model support",
+        "Page-level language selection flow for YouTube caption tracks",
+        "Privacy-first design with browser-side inference",
+      ],
+      challengesSolved: [
+        "Achieved real-time subtitle synchronization across different video platforms",
+        "Optimized model loading and inference for responsive user experience",
+        "Handled complex subtitle formats (JSON3, EBU-TT-D XML) seamlessly",
+        "Ensured cross-browser compatibility with Chromium-family and Firefox support",
+      ],
+    },
+    {
       id: 1,
       title: "Subreddit Analyzer",
       year: "2026",
       category: "Frontend & Data Science",
-      desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage. Features real-time sentiment analysis, community trend detection, and automated content moderation using PyTorch models.",
+      // TODO: Every specific claim below (10M+ posts, 40% latency cut, 95%
+      // moderation accuracy, multi-language support, automated moderation)
+      // was NOT visible in the public README when I checked. Before this
+      // goes live again:
+      //   1. Confirm these numbers are real and come from somewhere
+      //      measurable (a benchmark script, a log, a test).
+      //   2. Put the evidence IN the repo (README section, or a script
+      //      that reproduces the number).
+      //   3. If you can't do either, rewrite this description to only
+      //      claim what the repo actually shows.
+      desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage. Features sentiment analysis, community trend detection, and keyword/entity visualization, with charts migrating to <em>Apache ECharts</em>.",
       img: SubAnalyzerImg,
       link: "https://subanalyzer.theonlyalfaz.com",
       repoLink: "https://github.com/alfazkhan/Subreddit-Analyzer",
@@ -207,11 +297,22 @@ const websiteData = {
           name: "FastAPI",
           class: "devicon-fastapi-plain colored",
         },
+        // NEW: Apache ECharts chip — add once it's the live charting
+        // library on the deployed site, not mid-migration.
+        {
+          id: 10,
+          name: "Apache ECharts",
+          class: false,
+          component: (
+            <SiApacheecharts style={{ fontSize: "24px", color: "#AA344D" }} />
+          ),
+        },
       ],
       markdownPath: "/SubredditAnalyzerReadme.md",
       techStack: [
         "React.js",
-        "TypeScript",
+        // TODO: do NOT add "TypeScript" here until tsconfig.json actually
+        // exists in the pushed repo. As of this check it still doesn't.
         "Python 3.11",
         "FastAPI",
         "PostgreSQL 15",
@@ -220,88 +321,28 @@ const websiteData = {
         "Playwright",
         "Redux Toolkit",
         "TanStack Query",
+        "Apache ECharts", // migrating from Chart.js/Recharts
       ],
       features: [
-        "Real-time sentiment analysis using transformer models",
+        "Sentiment analysis using transformer models",
         "Community trend detection and visualization",
-        "Automated content moderation system",
-        "Multi-language support (English, German, Hindi)",
+        "Keyword/entity frequency analysis",
+        // REMOVED: "Automated content moderation system" and "95% accuracy
+        // in content moderation classification" — not visible in the repo.
+        // Add back only once real and documented.
+        // REMOVED: "Multi-language support (English, German, Hindi)" — same
+        // reason.
         "Interactive dashboard with data export capabilities",
-        "API rate limiting and authentication",
+        "API rate limiting and authentication", // TODO: confirm this is actually implemented, not planned
       ],
       challengesSolved: [
-        "Processed 10M+ Reddit posts efficiently using async pipelines",
-        "Reduced sentiment analysis latency by 40% through model optimization",
+        // TODO: "Processed 10M+ Reddit posts" and "Reduced sentiment
+        // analysis latency by 40%" need a real source (a log, a benchmark,
+        // a comment in code) before they go back on the site or CV. Until
+        // then I've replaced them with claims that match what's documented.
+        "Built an async scraping and caching pipeline for high post volumes",
+        "Implemented live NLP reanalysis over WebSockets with pause/resume control",
         "Implemented scalable data storage for historical analysis",
-        "Achieved 95% accuracy in content moderation classification",
-      ],
-    },
-    {
-      id: 2,
-      title: "2Subs2Learn",
-      year: "2026",
-      category: "Browser Extension & Product Development",
-      desc: "A Manifest V3 browser extension that enables language learners to follow entertainment video with simultaneous original and translated subtitles. Built with <em>WXT</em> framework, featuring multi-platform subtitle syncing (YouTube, ZDF Mediathek) and browser-side AI translation using <em>Transformers.js</em> with Xenova OPUS-MT models.",
-      img: tstl,
-      link: "https://2subs2learn.theonlyalfaz.com",
-      repoLink: "https://github.com/alfazkhan/2Subs2Learn",
-      downloadLinks: {
-        chrome:
-          "https://chromewebstore.google.com/detail/egkapkomakndamdhmlgknamdhmfnmkbf",
-        firefox: "https://addons.mozilla.org/en-US/firefox/addon/2subs2learn/",
-      },
-      skills: [
-        {
-          id: 2,
-          name: "TypeScript",
-          component: (
-            <SiTypescript style={{ fontSize: "24px", color: "#3178C6" }} />
-          ),
-        },
-        { id: 3, name: "React", class: "devicon-react-original colored" },
-        {
-          id: 4,
-          name: "Tailwind CSS",
-          component: (
-            <SiTailwindcss style={{ fontSize: "24px", color: "#38BDF8" }} />
-          ),
-        },
-        {
-          id: 6,
-          name: "Playwright",
-          class: false,
-          component: <PlaywrightIcon style={{ width: "30px" }} />,
-        },
-        {
-          id: 7,
-          name: "WXT Framework",
-          class: false,
-          component: <DaisyUIIcon style={{ width: "30px" }} />,
-        },
-      ],
-      markdownPath: "/2Subs2LearnReadme.md",
-      techStack: [
-        "WXT (Manifest V3)",
-        "JavaScript/TypeScript",
-        "Transformers.js",
-        "Xenova OPUS-MT Models",
-        "ONNX Runtime/WebAssembly",
-        "Chrome Translation API",
-        "ZDF Mediathek Integration",
-      ],
-      features: [
-        "Multi-platform subtitle synchronization (YouTube, ZDF Mediathek)",
-        "Browser-side AI translation using ONNX Runtime/WebAssembly",
-        "Playback-synchronized overlay with adjustable font size and position",
-        "German-to-English and English-to-German model support",
-        "Page-level language selection flow for YouTube caption tracks",
-        "Privacy-first design with browser-side inference",
-      ],
-      challengesSolved: [
-        "Achieved real-time subtitle synchronization across different video platforms",
-        "Optimized model loading and inference for responsive user experience",
-        "Handled complex subtitle formats (JSON3, EBU-TT-D XML) seamlessly",
-        "Ensured cross-browser compatibility with Chromium-family and Firefox support",
       ],
     },
   ],
@@ -343,7 +384,6 @@ const websiteData = {
   ],
 
   //Skills Section Data
-
   getSkillsData: (nextColor) => ({
     core: [
       { id: 1, name: "Javascript", icon: SiJavascript, color: "#F7DF1E" },
@@ -357,6 +397,8 @@ const websiteData = {
       { id: 8, name: "FastAPI", icon: SiFastapi, color: "#05998B" },
       { id: 9, name: "PostgreSQL", icon: PostgreSQLIcon, color: "#38BDF8" },
       { id: 10, name: "Git & GitHub Actions", icon: SiGit, color: "#EF4444" },
+      // NEW
+      { id: 15, name: "Apache ECharts", icon: SiApacheecharts, color: "#AA344D" },
     ],
     secondary: [
       { id: 11, name: "HTML5", icon: SiHtml5, color: "#E96227" },
@@ -367,6 +409,8 @@ const websiteData = {
       { id: 18, name: "Playwright", icon: PlaywrightIcon, color: "#05998B" },
       { id: 22, name: "Firebase", icon: FirebaseIcon, color: "#0DC8AB" },
       { id: 23, name: "Figma", icon: FigmaIcon, color: "" },
+      // NEW: surfaces testing on the main skills page too
+      { id: 24, name: "Vitest", icon: SiVitest, color: "#6E9F18" },
     ],
   }),
 };

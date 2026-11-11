@@ -1,0 +1,13 @@
+name = "2subs2learn-subdomain-proxy"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+ORIGIN_URL = "https://www.theonlyalfaz.com"
+
+# Attach this Worker to 2subs2learn.<your-domain> in Cloudflare Dashboard
+# (Workers & Pages -> Settings -> Domains & Routes -> Add -> Custom domain or Route),
+# or uncomment the route below before running `npx wrangler deploy`:
+# routes = [
+#   { pattern = "2subs2learn.theonlyalfaz.com/*", zone_name = "theonlyalfaz.com" }
+# ]
