@@ -48,3 +48,5 @@ dist/
 .firebase/*
 .github/
 skills-lock.json
+firebase-debug.log
+.firebase/*.cache

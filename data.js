@@ -260,7 +260,7 @@ const websiteData = {
       //      that reproduces the number).
       //   3. If you can't do either, rewrite this description to only
       //      claim what the repo actually shows.
-      desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage. Features sentiment analysis, community trend detection, and keyword/entity visualization, with charts migrating to <em>Apache ECharts</em>.",
+      desc: "A full-stack Reddit analysis platform that combines a <em>React dashboard</em> with a <em>Python FastAPI backend</em>, NLP pipelines, and PostgreSQL-backed storage. Features sentiment analysis, community trend detection, and keyword/entity visualization, with charts using <em>Apache ECharts</em>.",
       img: SubAnalyzerImg,
       link: "https://subanalyzer.theonlyalfaz.com",
       repoLink: "https://github.com/alfazkhan/Subreddit-Analyzer",
