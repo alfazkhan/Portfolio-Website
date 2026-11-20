@@ -14,7 +14,7 @@ import {
 import websiteData from "../../data";
 import { FaStar } from "react-icons/fa";
 import CVDownloadButton from "../ui/CVDownloadButton";
-import { motion, stagger } from "framer-motion";
+import { motion, stagger } from "motion/react";
 import GrayFlexWrapper from "../GrayFlexWrapper";
 import NextImage from "next/image";
 
@@ -24,6 +24,7 @@ export default function LeftSidebar() {
   return (
     <GrayFlexWrapper
       as="aside"
+      aria-label="Profile sidebar"
       display={{ base: "none", lg: "flex" }}
       position="fixed"
       left={0}
@@ -71,6 +72,7 @@ export default function LeftSidebar() {
               loading="eager"
             />
             <Box
+              aria-hidden="true"
               position="absolute"
               bottom={2}
               right={2}
@@ -103,6 +105,13 @@ export default function LeftSidebar() {
                 key={social.id}
                 as="a"
                 href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={
+                  social.id === "linkedin"
+                    ? "Alfaz Khan on LinkedIn"
+                    : "Alfaz Khan on GitHub"
+                }
                 w={8}
                 h={8}
                 borderRadius="full"
@@ -113,7 +122,7 @@ export default function LeftSidebar() {
                 _hover={{ opacity: 0.8 }}
                 // transition="opacity 0.3s"
               >
-                <social.icon />
+                <social.icon aria-hidden="true" />
               </Flex>
             ))}
           </HStack>
@@ -275,6 +284,7 @@ function LanguageProficiency({
       </Flex>
 
       <motion.ul
+        aria-hidden="true"
         style={{
           display: "flex",
           gap: "4px",
@@ -317,7 +327,7 @@ function ExtraSkill({ text }) {
       color="text"
       fontSize="sm"
     >
-      <Box color="primary" mt="2px" flexShrink={0}>
+      <Box color="primary" mt="2px" flexShrink={0} aria-hidden="true">
         <FaStar />
       </Box>
       <Text fontWeight="bold">{text}</Text>

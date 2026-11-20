@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Flex } from "@chakra-ui/react";
 import { useColorMode } from "./ui/color-mode";
 

@@ -21,7 +21,7 @@ vi.mock('@chakra-ui/react', async () => {
   };
 });
 
-vi.mock('framer-motion', async () => {
+vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     AnimatePresence: ({ children }) => children,

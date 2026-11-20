@@ -1,0 +1,22 @@
+{
+  "name": "2Subs2Learn",
+  "category": "Browser Extension & Product Development",
+  "description": "Manifest V3 browser extension enabling language learners to watch YouTube and ZDF Mediathek videos with simultaneous original and translated subtitles using browser-side Transformers.js and ONNX Runtime Web inference.",
+  "url": "https://2subs2learn.theonlyalfaz.com",
+  "mirrorUrl": "https://www.theonlyalfaz.com/2subs2learn",
+  "repository": "https://github.com/alfazkhan/2Subs2Learn",
+  "installLinks": {
+    "chrome": "https://chromewebstore.google.com/detail/egkapkomakndamdhmlgknamdhmfnmkbf",
+    "firefox": "https://addons.mozilla.org/en-US/firefox/addon/2subs2learn/"
+  },
+  "supportedPlatforms": ["YouTube", "ZDF Mediathek"],
+  "techStack": [
+    "WXT (Manifest V3)",
+    "TypeScript",
+    "React",
+    "Transformers.js",
+    "Xenova OPUS-MT Models",
+    "ONNX Runtime/WebAssembly",
+    "Chrome Translation API"
+  ]
+}

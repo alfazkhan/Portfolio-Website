@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Flex, Text, Icon, Box, Image } from "@chakra-ui/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { FaGoogleDrive } from "react-icons/fa";
 import websiteData from "@/data";
 
@@ -25,12 +25,20 @@ export default function CVDownloadButton() {
       }
     };
 
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleOutsideClick);
     document.addEventListener("touchstart", handleOutsideClick);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("touchstart", handleOutsideClick);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
@@ -59,11 +67,13 @@ export default function CVDownloadButton() {
       animate={isOpen ? "expanded" : "collapsed"}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      // Clean mobile click toggle behavior
-      onClick={() => setIsOpen(true)}
     >
       {/* Main Trigger Track */}
       <Flex
+        as="button"
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls="cv-language-options"
         w="full"
         h="32px"
         align="center"
@@ -71,15 +81,19 @@ export default function CVDownloadButton() {
         gap={2}
         cursor="pointer"
         color="buttonText"
+        bg="transparent"
+        border="none"
+        onClick={() => setIsOpen((prev) => !prev)}
       >
         <MotionIcon
+          aria-hidden="true"
           animate={isOpen ? { rotate: 360 } : { rotate: 0 }}
           transition={{ duration: 0.6, type: "spring" }}
           display="inline-flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Icon as={FaGoogleDrive} boxSize="5" />
+          <Icon as={FaGoogleDrive} boxSize="5" aria-hidden="true" />
         </MotionIcon>
 
         <Text fontWeight="bold" fontSize="lg" alignItems="center">
@@ -102,10 +116,10 @@ export default function CVDownloadButton() {
       <AnimatePresence>
         {isOpen && (
           <Flex
+            id="cv-language-options"
             direction="column"
             gap={1.5}
             w="full"
-            onClick={(e) => e.stopPropagation()}
           >
             <MotionFlex
               variants={choiceVariants}
@@ -114,6 +128,7 @@ export default function CVDownloadButton() {
               exit="hidden"
               transition={{ duration: 0.2, delay: 0.05 }}
               as="button"
+              type="button"
               w="full"
               py={1.5}
               px={3}
@@ -130,7 +145,10 @@ export default function CVDownloadButton() {
               </Text>
               <Image
                 src="/English.svg"
-                alt="English Flag"
+                alt=""
+                aria-hidden="true"
+                width={20}
+                height={20}
                 boxSize="5"
                 objectFit="contain"
               />
@@ -143,6 +161,7 @@ export default function CVDownloadButton() {
               exit="hidden"
               transition={{ duration: 0.2, delay: 0.1 }}
               as="button"
+              type="button"
               w="full"
               py={1.5}
               px={3}
@@ -159,7 +178,10 @@ export default function CVDownloadButton() {
               </Text>
               <Image
                 src="/German.svg"
-                alt="German Flag"
+                alt=""
+                aria-hidden="true"
+                width={20}
+                height={20}
                 boxSize="5"
                 objectFit="contain"
               />

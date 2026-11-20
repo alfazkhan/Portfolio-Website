@@ -45,6 +45,9 @@ vi.mock('@/components/PageSections/SkillsSection', () => ({
 vi.mock('@/components/PageSections/ContactSection', () => ({
   default: () => <section aria-label="Contact" />,
 }));
+vi.mock('@/components/Footer', () => ({
+  default: () => <footer aria-label="Footer" />,
+}));
 
 afterEach(() => cleanup());
 

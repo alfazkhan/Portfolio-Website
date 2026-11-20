@@ -3,9 +3,9 @@ const isProd = process.env.NODE_ENV === "production";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: isProd ? "export" : "standalone",
-  distDir: "./dist",
+  distDir: isProd ? "./dist" : ".next",
   experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
+    optimizePackageImports: ["@chakra-ui/react", "react-icons", "motion"],
   },
   images: {
     unoptimized: isProd,

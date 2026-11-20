@@ -1,5 +1,3 @@
-import { use } from "react";
-
 const RESUME_URLS = {
   en: "https://drive.google.com/file/d/1s-BDT456nDBJiTS-4LZb-p1_oCfCiM9P/view?usp=sharing",
   de: "https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing",
@@ -24,29 +22,31 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function Page({ params }) {
-  const resolvedParams = use(params);
-  const lang = resolvedParams?.lang?.toLowerCase();
-  const targetUrl = RESUME_URLS[lang] || RESUME_URLS.en;
+export default async function Page({ params }) {
+  const { lang } = await params;
+  const targetUrl = RESUME_URLS[lang?.toLowerCase()] || RESUME_URLS.en;
 
   return (
-    <html>
-      <head>
-        <meta httpEquiv="refresh" content={`0; url=${targetUrl}`} />
-      </head>
-      <body className="flex h-screen w-full items-center justify-center font-sans text-sm text-zinc-500">
-        <template>
-          <script>
-            {`window.location.replace("${targetUrl}");`}
-          </script>
-        </template>
+    <>
+      <meta httpEquiv="refresh" content={`0; url=${targetUrl}`} />
+      <main
+        style={{
+          display: "flex",
+          minHeight: "100vh",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "sans-serif",
+          fontSize: "0.875rem",
+        }}
+      >
         <p>
           Redirecting to resume...{" "}
-          <a href={targetUrl} className="underline">
+          <a href={targetUrl} style={{ textDecoration: "underline" }}>
             Click here if not redirected.
           </a>
         </p>
-      </body>
-    </html>
+      </main>
+    </>
   );
 }

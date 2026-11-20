@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
 import { Box, Flex, Heading, Text, Grid } from "@chakra-ui/react";
 import websiteData from "../../data";
-import { ProjectFooter } from "../ProjectInfoModal";
+import ProjectFooter from "../ProjectFooter";
 import NextImage from "next/image";
-import { motion, stagger } from "framer-motion";
+import { motion, stagger } from "motion/react";
 
 const projects = websiteData.projects;
 
@@ -156,11 +155,8 @@ export default function WorkSection() {
                 </Box>
               </Flex>
 
-              {/* <Box>
-                {navigator.platform}
-              </Box> */}
-
               <ProjectFooter
+                projectTitle={project.title}
                 repoLink={project.repoLink}
                 liveLink={project.link}
                 downloadLinks={project.downloadLinks}

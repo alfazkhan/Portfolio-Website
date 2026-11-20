@@ -1,34 +1,32 @@
 # Alfaz Khan Portfolio Website
 
-> A personal portfolio and resume website showcasing my work as a Frontend Engineer specializing in React & TypeScript, featuring projects like Subreddit Analyzer with data science integration.
+> Personal portfolio and resume site for Alfaz Khan, a Frontend Engineer (React & TypeScript) based in Munich, Germany, showcasing full-stack data analytics work and the 2Subs2Learn browser extension.
 
 Key notes:
-- This is a Next.js 16 application built with React 19 and Chakra UI v3
-- The site includes both frontend (React/Next.js) and backend (Python FastAPI + PostgreSQL) content
-- Supports dark/light themes via next-themes
-- Uses Vitest for unit testing, Playwright for E2E tests
+- Static Next.js 16 + React 19 application styled with Chakra UI v3 (`light` and `dark` color modes).
+- Contact: `khanalfaaz14@gmail.com` | `+49 15510 311484` | München, Bavaria, Germany (Work status: Available).
+- Interactive pages register WebMCP tools via `document.modelContext.registerTool` when supported by the browser.
+- Authoritative machine-readable resource index: `/.well-known/ard.json`.
 
-## Docs
+## Pages & Endpoints
 
-- [Main README](README.md): Comprehensive overview of skills, experience, and projects including Subreddit Analyzer, video engineering work, and responsive web development portfolio
-- [Subreddit Analyzer Project](https://subanalyzer.theonlyalfaz.com): Full-stack Reddit analysis platform with React dashboard, Python FastAPI backend, NLP pipelines, and PostgreSQL storage
+- [Portfolio Homepage](https://www.theonlyalfaz.com/): Introduction, works/projects, education & experience timeline, skills marquee, and contact info.
+- [2Subs2Learn Product Page](https://2subs2learn.theonlyalfaz.com): Dedicated landing page for the Manifest V3 bilingual subtitle browser extension (also served at https://www.theonlyalfaz.com/2subs2learn).
+- [Resume (English)](https://www.theonlyalfaz.com/resume/en): Static redirect to Alfaz Khan's English CV on Google Drive.
+- [Resume (German / Deutsch)](https://www.theonlyalfaz.com/resume/de): Static redirect to Alfaz Khan's German Lebenslauf on Google Drive.
 
-## Examples
+## Machine-Readable Discovery
 
-- [Project Screenshots](public/Screenshots/): Visual examples of the Subreddit Analyzer interface and other portfolio content
-- [CV Download](https://drive.google.com/file/d/1rkSHx0wxqKMQYcWudee8-FIxmyuQ3_o6/view?usp=sharing): Full resume available for download
+- [ARD Manifest](https://www.theonlyalfaz.com/.well-known/ard.json): Agentic Resource Discovery (v0.91) catalog for domain capabilities and cards.
+- [Portfolio Agent Card](https://www.theonlyalfaz.com/.well-known/agent-card.json): Structured JSON summary of profile, routes, contact links, and WebMCP tool names.
+- [2Subs2Learn Agent Card](https://www.theonlyalfaz.com/.well-known/2subs2learn-card.json): Structured JSON summary of 2Subs2Learn store links, platforms, and tech stack.
 
-## API
+## Featured Projects
 
-- [Next.js Documentation](https://nextjs.org/docs): Framework documentation used for this Next.js 16 application
-- [React Documentation](https://react.dev): Core framework reference for React 19 features and components
+- [2Subs2Learn](https://2subs2learn.theonlyalfaz.com): Manifest V3 TypeScript/WXT browser extension for dual-subtitle playback on YouTube and ZDF Mediathek using browser-side Transformers.js & ONNX Runtime Web ([GitHub](https://github.com/alfazkhan/2Subs2Learn), [Chrome Web Store](https://chromewebstore.google.com/detail/egkapkomakndamdhmlgknamdhmfnmkbf), [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/2subs2learn/)).
+- [Subreddit Analyzer](https://subanalyzer.theonlyalfaz.com): Full-stack Reddit analysis platform with a React dashboard, Python FastAPI backend, NLP pipelines, PostgreSQL storage, and Apache ECharts ([GitHub](https://github.com/alfazkhan/Subreddit-Analyzer)).
 
 ## Optional
 
-- [Chakra UI v3 Documentation](https://chakra-ui.com/docs/getting-started): Component library reference (upgraded from previous versions)
-- [Vitest Testing Guide](https://vitest.dev/config): Unit testing configuration used in this project
-- [Playwright E2E Tests](https://playwright.dev): End-to-end testing setup with Playwright
-
----
-
-**Note**: This portfolio website combines personal branding with technical showcase capabilities. The Subreddit Analyzer project demonstrates full-stack development skills including data science, while the rest of the site highlights frontend expertise in modern React and TypeScript ecosystems.
+- [GitHub Profile](https://github.com/alfazkhan): Source repositories and open-source projects.
+- [LinkedIn Profile](https://www.linkedin.com/in/alfaz-khan/): Professional profile and work history.

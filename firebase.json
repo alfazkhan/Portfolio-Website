@@ -8,17 +8,46 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</.well-known/ard.json>; rel=\"ard\""
+          }
+        ]
+      },
+      {
+        "source": "/.well-known/**",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "/llms.txt",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Content-Type",
+            "value": "text/markdown; charset=utf-8"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
-        "source": "/.well-known/ard.json/**",
-        "destination": "/$1"
-      },
-      {
-        "source": "/.well-known/favicon.ico/**",
-        "destination": "/$1"
-      },
-      {
-        "source": "**/*",
+        "source": "**",
         "destination": "/index.html"
       }
     ]

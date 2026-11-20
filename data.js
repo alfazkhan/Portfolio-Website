@@ -19,7 +19,7 @@ import {
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import SubAnalyzerImg from "@/app/assets/ProjectImages/SubredditAnalyzerOG.webp";
 import tstl from "@/app/assets/ProjectImages/2s2l.webp";
-import ProfileImage from "@/app/assets/Profile-Image.jpg";
+import ProfileImage from "@/app/assets/Profile-Image.webp";
 import {
   TanstackIcon,
   ChakraIcon,
@@ -28,9 +28,7 @@ import {
   PostgreSQLIcon,
   FigmaIcon,
   FirebaseIcon,
-  DaisyUIIcon,
 } from "./app/assets/Icons/Icons";
-import { SiVite } from "react-icons/si";
 import { FaCss3 } from "react-icons/fa6";
 
 const websiteData = {
@@ -95,7 +93,6 @@ const websiteData = {
     icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",
-      apple: "/apple-touch-icon.png",
     },
   },
 
@@ -120,7 +117,6 @@ const websiteData = {
     profileImg: ProfileImage,
     name: "Alfaz",
     title: "React Developer and\n Frontend Engineer | React & Typescript",
-    daysWorked: 18,
     socials: [
       {
         id: "linkedin",
@@ -148,28 +144,28 @@ const websiteData = {
       { label: "Hindi", proficiency: "C2/Native", level: 6 },
     ],
     coreSkills: [
-      { id: 1, name: "Javascript", icon: SiJavascript, color: "#F7DF1E" },
-      { id: 2, name: "Typescript", icon: SiTypescript, color: "#3178C6" },
-      { id: 3, name: "React.js", icon: SiReact, color: "#61DAFB" },
-      { id: 4, name: "CSS", icon: FaCss3, color: "#27A4D9" },
-      { id: 5, name: "Chakra UI", icon: ChakraIcon, color: "#0DC8AB" },
-      { id: 6, name: "PostgresSQL", icon: PostgreSQLIcon, color: "#38BDF8" },
-      { id: 7, name: "Redux", icon: SiRedux, color: "#7248B6" },
+      { id: 1, name: "Javascript" },
+      { id: 2, name: "Typescript" },
+      { id: 3, name: "React.js" },
+      { id: 4, name: "CSS" },
+      { id: 5, name: "Chakra UI" },
+      { id: 6, name: "PostgresSQL" },
+      { id: 7, name: "Redux" },
       // NEW: Apache ECharts — only keep this here once it's actually live on
       // Subreddit Analyzer's deployed frontend, not just mid-migration locally.
-      { id: 15, name: "Apache ECharts", icon: SiApacheecharts, color: "#AA344D" },
+      { id: 15, name: "Apache ECharts" },
     ],
     extraSkills: [
-      { id: 8, name: "Vite", icon: SiVite, color: "#61DAFB" },
-      { id: 9, name: "TailwindCSS", icon: SiTailwindcss, color: "#38BDF8" },
-      { id: 10, name: "Python", icon: PythonIcon, color: "#F7DF1E" },
-      { id: 11, name: "Git & Version Control", icon: SiGit, color: "#EF4444" },
+      { id: 8, name: "Vite" },
+      { id: 9, name: "TailwindCSS" },
+      { id: 10, name: "Python" },
+      { id: 11, name: "Git & Version Control" },
       // REMOVED: Photoshop, Illustrator, Premiere Pro.
       // These point toward design/video, not frontend engineering — cut them
       // from a frontend-focused portfolio. Flagged twice now; please action.
       // NEW: surface testing since you say it now exists across projects —
       // only keep this once you've confirmed real, passing test suites.
-      { id: 16, name: "Vitest / Testing", icon: SiVitest, color: "#6E9F18" },
+      { id: 16, name: "Vitest / Testing" },
     ],
   },
 
@@ -190,34 +186,16 @@ const websiteData = {
         firefox: "https://addons.mozilla.org/en-US/firefox/addon/2subs2learn/",
       },
       skills: [
-        {
-          id: 2,
-          name: "TypeScript",
-          component: (
-            <SiTypescript style={{ fontSize: "24px", color: "#3178C6" }} />
-          ),
-        },
-        { id: 3, name: "React", class: "devicon-react-original colored" },
-        {
-          id: 4,
-          name: "Tailwind CSS",
-          component: (
-            <SiTailwindcss style={{ fontSize: "24px", color: "#38BDF8" }} />
-          ),
-        },
-        {
-          id: 7,
-          name: "WXT Framework",
-          class: false,
-          component: <DaisyUIIcon style={{ width: "30px" }} />,
-        },
+        { id: 2, name: "TypeScript" },
+        { id: 3, name: "React" },
+        { id: 4, name: "Tailwind CSS" },
+        { id: 7, name: "WXT Framework" },
         // REMOVED "Playwright" chip here — your 2Subs2Learn README doesn't
         // list Playwright as a dependency (that's the Subreddit Analyzer
         // scraper). If 2Subs2Learn's e2e suite actually uses Playwright,
         // add it back — otherwise this was likely copy-pasted between
         // projects.
       ],
-      markdownPath: "/2Subs2LearnReadme.md",
       techStack: [
         "WXT (Manifest V3)",
         "TypeScript",
@@ -265,50 +243,19 @@ const websiteData = {
       link: "https://subanalyzer.theonlyalfaz.com",
       repoLink: "https://github.com/alfazkhan/Subreddit-Analyzer",
       skills: [
-        { id: 1, name: "React", class: "devicon-react-original colored" },
-        { id: 5, name: "Python", class: false, component: <PythonIcon /> },
-        { id: 2, name: "Chakra UI", class: false, component: <ChakraIcon /> },
-        { id: 3, name: "Redux", class: "devicon-redux-original colored" },
-        {
-          id: 4,
-          name: "Tanstack",
-          class: false,
-          component: <TanstackIcon />,
-        },
-        {
-          id: 9,
-          name: "PostgreSQL",
-          class: false,
-          component: <PostgreSQLIcon />,
-        },
-        {
-          id: 6,
-          name: "Playwright",
-          class: false,
-          component: <PlaywrightIcon />,
-        },
-        {
-          id: 7,
-          name: "Pytorch",
-          class: "devicon-pytorch-original colored",
-        },
-        {
-          id: 8,
-          name: "FastAPI",
-          class: "devicon-fastapi-plain colored",
-        },
+        { id: 1, name: "React" },
+        { id: 5, name: "Python" },
+        { id: 2, name: "Chakra UI" },
+        { id: 3, name: "Redux" },
+        { id: 4, name: "Tanstack" },
+        { id: 9, name: "PostgreSQL" },
+        { id: 6, name: "Playwright" },
+        { id: 7, name: "Pytorch" },
+        { id: 8, name: "FastAPI" },
         // NEW: Apache ECharts chip — add once it's the live charting
         // library on the deployed site, not mid-migration.
-        {
-          id: 10,
-          name: "Apache ECharts",
-          class: false,
-          component: (
-            <SiApacheecharts style={{ fontSize: "24px", color: "#AA344D" }} />
-          ),
-        },
+        { id: 10, name: "Apache ECharts" },
       ],
-      markdownPath: "/SubredditAnalyzerReadme.md",
       techStack: [
         "React.js",
         // TODO: do NOT add "TypeScript" here until tsconfig.json actually
@@ -384,6 +331,12 @@ const websiteData = {
   ],
 
   //Skills Section Data
+  contactData: {
+    email: "khanalfaaz14@gmail.com",
+    phone: "+49 15510 311484",
+    phoneHref: "tel:+4915510311484",
+  },
+
   getSkillsData: (nextColor) => ({
     core: [
       { id: 1, name: "Javascript", icon: SiJavascript, color: "#F7DF1E" },

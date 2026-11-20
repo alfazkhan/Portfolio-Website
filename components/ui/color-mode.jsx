@@ -1,6 +1,6 @@
 "use client";
 
-import { ClientOnly, IconButton, Skeleton, Span } from "@chakra-ui/react";
+import { ClientOnly, IconButton, Skeleton } from "@chakra-ui/react";
 import * as React from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
 
@@ -122,14 +122,13 @@ export function useColorMode() {
   };
 }
 
-export function useColorModeValue(light, dark) {
+function ColorModeIcon() {
   const { colorMode } = useColorMode();
-  return colorMode === "dark" ? dark : light;
-}
-
-export function ColorModeIcon() {
-  const { colorMode } = useColorMode();
-  return colorMode === "dark" ? <LuMoon /> : <LuSun />;
+  return colorMode === "dark" ? (
+    <LuMoon aria-hidden="true" />
+  ) : (
+    <LuSun aria-hidden="true" />
+  );
 }
 
 export const ColorModeButton = React.forwardRef(
@@ -157,31 +156,3 @@ export const ColorModeButton = React.forwardRef(
     );
   },
 );
-
-export const LightMode = React.forwardRef(function LightMode(props, ref) {
-  return (
-    <Span
-      color="fg"
-      display="contents"
-      className="chakra-theme light"
-      colorPalette="gray"
-      colorScheme="light"
-      ref={ref}
-      {...props}
-    />
-  );
-});
-
-export const DarkMode = React.forwardRef(function DarkMode(props, ref) {
-  return (
-    <Span
-      color="fg"
-      display="contents"
-      className="chakra-theme dark"
-      colorPalette="gray"
-      colorScheme="dark"
-      ref={ref}
-      {...props}
-    />
-  );
-});

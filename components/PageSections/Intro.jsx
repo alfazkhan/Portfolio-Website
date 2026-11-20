@@ -1,27 +1,19 @@
 "use client";
 
-import React from "react";
 import {
   Box,
   Flex,
   Heading,
   Highlight,
-  useBreakpointValue, 
 } from "@chakra-ui/react";
 import websiteData from "../../data";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import CVDownloadButton from "@/components/ui/CVDownloadButton";
-import AtomicOrbit from "../ui/AtomicOrbit";
 import Image from "next/image";
 
 const introData = websiteData.introData;
 
 export default function Intro() {
-  const orbitRadii = useBreakpointValue({
-    base: { radiusX: 145, radiusY: 65 }, // Mobile phones
-    md: { radiusX: 180, radiusY: 80 }, // Tablets
-    lg: { radiusX: 220, radiusY: 95 }, // Desktop
-  }) || { radiusX: 220, radiusY: 95 }; // Fallback for initial SSR mount
 
   return (
     <Box
@@ -48,6 +40,7 @@ export default function Intro() {
           textAlign={{ base: "left", xlDown: "center" }}
         >
           <Heading
+            as="h1"
             fontSize={{ base: "5xl", xlDown: "4xl" }}
             fontWeight="bold"
             lineHeight="moderate"
@@ -101,12 +94,6 @@ export default function Intro() {
           position="relative"
           order={{ base: 2, xlDown: 1 }}
         >
-          {/* <AtomicOrbit
-            radiusX={orbitRadii.radiusX}
-            radiusY={orbitRadii.radiusY}
-            layer="back"
-          /> */}
-
           <motion.div
             initial={{ borderColor: "#D73101" }}
             animate={{ borderColor: "#F58B51" }}
@@ -137,16 +124,10 @@ export default function Intro() {
                 width={300}
                 height={315}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                loading="lazy"
+                priority
               />
             </Box>
           </motion.div>
-{/* 
-          <AtomicOrbit
-            radiusX={orbitRadii.radiusX}
-            radiusY={orbitRadii.radiusY}
-            layer="front"
-          /> */}
         </Flex>
       </Flex>
     </Box>

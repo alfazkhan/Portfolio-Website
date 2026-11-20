@@ -1,0 +1,48 @@
+{
+  "name": "Alfaz Khan Portfolio",
+  "description": "Portfolio of Alfaz Khan, Frontend Engineer specializing in React, TypeScript, Next.js, and data analytics in Munich, Germany.",
+  "url": "https://www.theonlyalfaz.com",
+  "contact": {
+    "name": "Alfaz Khan",
+    "email": "khanalfaaz14@gmail.com",
+    "phone": "+49 15510 311484",
+    "location": "München, Bavaria, Germany",
+    "workStatus": "Available",
+    "github": "https://github.com/alfazkhan",
+    "linkedin": "https://www.linkedin.com/in/alfaz-khan/"
+  },
+  "routes": {
+    "home": "https://www.theonlyalfaz.com/",
+    "subs2learn": "https://www.theonlyalfaz.com/2subs2learn",
+    "resumeEnglish": "https://www.theonlyalfaz.com/resume/en",
+    "resumeGerman": "https://www.theonlyalfaz.com/resume/de",
+    "llmsTxt": "https://www.theonlyalfaz.com/llms.txt"
+  },
+  "webmcpTools": [
+    {
+      "name": "navigate_to_section",
+      "page": "/",
+      "description": "Scrolls to a portfolio section (home, works, education, skills, contact)."
+    },
+    {
+      "name": "get_portfolio_profile",
+      "page": "/",
+      "description": "Returns structured portfolio profile, projects, skills, education, experience, and contact details."
+    },
+    {
+      "name": "get_resume_links",
+      "page": "/",
+      "description": "Returns direct English and German CV URLs and /resume/en or /resume/de links."
+    },
+    {
+      "name": "copy_contact_detail",
+      "page": "/",
+      "description": "Copies email or phone to clipboard (if allowed) and returns the contact value."
+    },
+    {
+      "name": "get_extension_details",
+      "page": "/2subs2learn",
+      "description": "Returns 2Subs2Learn feature list, Chrome/Firefox store links, supported platforms, and tech stack."
+    }
+  ]
+}

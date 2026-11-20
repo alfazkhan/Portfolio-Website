@@ -10,7 +10,7 @@ import {
   Circle,
   Badge,
 } from "@chakra-ui/react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import websiteData from "../../data";
 import GrayFlexWrapper from "../GrayFlexWrapper";
 

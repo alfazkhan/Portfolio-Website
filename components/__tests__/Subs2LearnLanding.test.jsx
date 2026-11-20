@@ -187,4 +187,28 @@ describe('Subs2LearnLanding', () => {
     expect(screen.queryByRole('link', { name: /Install for Firefox/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /GitHub Repo/i })).not.toBeInTheDocument();
   });
+
+  it('registers the get_extension_details WebMCP tool when modelContext is available', async () => {
+    let registeredTool = null;
+    const registerTool = vi.fn((tool) => {
+      registeredTool = tool;
+      return Promise.resolve();
+    });
+
+    Object.defineProperty(document, 'modelContext', {
+      value: { registerTool },
+      configurable: true,
+    });
+
+    const { unmount } = render(<Subs2LearnLanding project={sampleProject} />);
+
+    expect(registerTool).toHaveBeenCalledTimes(1);
+    expect(registeredTool.name).toBe('get_extension_details');
+    const result = JSON.parse(await registeredTool.execute({ section: 'install' }));
+    expect(result.install.chrome).toBe(sampleProject.downloadLinks.chrome);
+    expect(result.install.firefox).toBe(sampleProject.downloadLinks.firefox);
+
+    unmount();
+    delete document.modelContext;
+  });
 });

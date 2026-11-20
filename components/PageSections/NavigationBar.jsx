@@ -13,7 +13,7 @@ import {
   FiSun,
 } from "react-icons/fi";
 import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const navLinks = [
   { name: "Home", id: "home", icon: FiHome },
@@ -27,7 +27,7 @@ export default function NavigationBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const isClickScrolling = useRef(false);
-  const { colorMode, toggleColorMode, setColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   function toggleMenu() {
     setIsOpen(!isOpen);
@@ -88,11 +88,26 @@ export default function NavigationBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  const themeToggleLabel =
+    colorMode === "light" ? "Switch to dark mode" : "Switch to light mode";
+
   return (
     <>
       {/* MOBILE NAV */}
       <Flex
         as="nav"
+        aria-label="Mobile navigation"
         display={{ base: "flex", lg: "none" }}
         position="fixed"
         top={0}
@@ -108,8 +123,15 @@ export default function NavigationBar() {
         align="center"
         transition="all 0.3s"
       >
-        <Box as="button" onClick={toggleColorMode}>
+        <Box
+          as="button"
+          type="button"
+          aria-label={themeToggleLabel}
+          aria-pressed={colorMode === "dark"}
+          onClick={toggleColorMode}
+        >
           <motion.span
+            aria-hidden="true"
             animate={{
               color: colorMode === "light" ? "#000000" : "#ffffff",
               rotate: colorMode === "light" ? 0 : 180,
@@ -119,13 +141,27 @@ export default function NavigationBar() {
             {colorMode === "light" ? <FiMoon /> : <FiSun />}
           </motion.span>
         </Box>
-        <Box as="button" onClick={toggleMenu}>
-          <Icon as={IoMenuOutline} w={5} h={5} color="text" />
+        <Box
+          as="button"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation-drawer"
+          onClick={toggleMenu}
+        >
+          <Icon as={IoMenuOutline} w={5} h={5} color="text" aria-hidden="true" />
         </Box>
       </Flex>
 
       {/* MOBILE MENU OVERLAY */}
       <Flex
+        id="mobile-navigation-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        aria-hidden={!isOpen}
+        inert={!isOpen || undefined}
+        visibility={isOpen ? "visible" : "hidden"}
         display={{ base: "flex", lg: "none" }}
         position="fixed"
         inset={0}
@@ -139,13 +175,19 @@ export default function NavigationBar() {
         transform={isOpen ? "translateY(0)" : "translateY(-100%)"}
       >
         <Flex justify="flex-end" p={8}>
-          <Box as="button" onClick={toggleMenu}>
+          <Box
+            as="button"
+            type="button"
+            aria-label="Close navigation menu"
+            onClick={toggleMenu}
+          >
             <Icon
               as={IoCloseOutline}
               w={10}
               h={10}
               color="text"
               _hover={{ color: "primary" }}
+              aria-hidden="true"
             />
           </Box>
         </Flex>
@@ -165,6 +207,8 @@ export default function NavigationBar() {
             <li key={link.id}>
               <Box
                 as="button"
+                type="button"
+                aria-current={activeSection === link.id ? "location" : undefined}
                 onClick={() => handleLinkClick(link.id)}
                 _hover={{ color: "primary" }}
                 transition="colors 0.2s"
@@ -179,6 +223,7 @@ export default function NavigationBar() {
       {/* DESKTOP SIDEBAR */}
       <Flex
         as="nav"
+        aria-label="Primary navigation"
         display={{ base: "none", lg: "flex" }}
         position="fixed"
         right={0}
@@ -197,15 +242,19 @@ export default function NavigationBar() {
         <Box mt={8} mb="auto">
           <Flex
             as="button"
+            type="button"
             w="12"
             h="12"
             align="center"
             justify="center"
             onClick={toggleColorMode}
             _hover={{ opacity: 0.7 }}
-            title="Toggle Theme"
+            aria-label={themeToggleLabel}
+            aria-pressed={colorMode === "dark"}
+            title={themeToggleLabel}
           >
             <motion.span
+              aria-hidden="true"
               animate={{
                 color: colorMode === "light" ? "#000000" : "#ffffff",
                 rotate: colorMode === "light" ? 0 : 180,
@@ -225,12 +274,14 @@ export default function NavigationBar() {
               <Box
                 key={link.id}
                 position="relative"
-                role="group"
                 display="flex"
                 justifyContent="center"
               >
                 <Flex
                   as="button"
+                  type="button"
+                  aria-label={`Jump to ${link.name}`}
+                  aria-current={isActive ? "location" : undefined}
                   onClick={() => handleLinkClick(link.id)}
                   w="10"
                   h="10"
@@ -243,6 +294,7 @@ export default function NavigationBar() {
                     h="15px"
                     transform={isActive ? "scale(1.5)" : "scale(1)"}
                     color="text"
+                    aria-hidden="true"
                   />
                   {isActive && (
                     <motion.div

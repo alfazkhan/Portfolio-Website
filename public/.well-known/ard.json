@@ -1,34 +1,68 @@
 {
-  "ManifestVersion": "1.0",
-  "Name": "Alfaz Khan Portfolio",
-  "Description": "Professional portfolio website showcasing Alfaz Khan's skills, projects, and experiences in frontend engineering, React, TypeScript, and data science.",
-  "Author": {
-    "Name": "Alfaz Khan",
-    "Email": "khanalfaaz14@gmail.com"
-  },
-  "PrimaryURL": "https://theonlyalfaz.com",
   "entries": [
     {
-      "identifier": "portfolio-homepage",
-      "displayName": "Alfaz Khan Portfolio Homepage",
-      "url": "https://theonlyalfaz.com/",
-      "mediaType": "text/html",
-      "description": "Main portfolio landing page, featuring professional summary, core skills, interactive 3D tech stack orbits, and works section.",
+      "identifier": "urn:air:www.theonlyalfaz.com:portfolio:agent-card",
+      "displayName": "Alfaz Khan Portfolio Agent Card",
+      "type": "application/agent-card+json",
+      "url": "https://www.theonlyalfaz.com/.well-known/agent-card.json",
+      "description": "Structured portfolio descriptor for Alfaz Khan, Frontend Engineer (React & TypeScript) based in Munich, Germany, covering skills, projects, work experience, education, CV links, and WebMCP page capabilities.",
+      "capabilities": [
+        "navigate_to_section",
+        "get_portfolio_profile",
+        "get_resume_links",
+        "copy_contact_detail"
+      ],
+      "tags": [
+        "portfolio",
+        "frontend-engineer",
+        "react",
+        "typescript",
+        "munich",
+        "resume"
+      ],
       "representativeQueries": [
-        "Alfaz Khan frontend developer",
-        "React TypeScript engineer Munich",
-        "Alfaz Khan portfolio projects"
+        "Alfaz Khan frontend engineer React TypeScript Munich",
+        "Alfaz Khan portfolio projects skills and contact",
+        "Download Alfaz Khan English or German resume CV"
       ]
     },
     {
-      "identifier": "llms-txt",
-      "displayName": "LLMs Context Document",
-      "url": "https://theonlyalfaz.com/llms.txt",
-      "mediaType": "text/plain",
-      "description": "AI-optimized markdown context and structured resource map for language models and agents.",
+      "identifier": "urn:air:www.theonlyalfaz.com:docs:llms-txt",
+      "displayName": "Alfaz Khan Portfolio llms.txt",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://www.theonlyalfaz.com/llms.txt",
+      "description": "Markdown overview and navigation index of the Alfaz Khan portfolio site, Subreddit Analyzer, 2Subs2Learn browser extension, and resume endpoints.",
+      "tags": [
+        "llms-txt",
+        "documentation",
+        "portfolio"
+      ],
       "representativeQueries": [
-        "AI profile llms.txt Alfaz Khan",
-        "Alfaz Khan developer resume context"
+        "llms.txt overview of Alfaz Khan website",
+        "AI summary of Alfaz Khan portfolio and projects",
+        "Alfaz Khan contact and resume links"
+      ]
+    },
+    {
+      "identifier": "urn:air:www.theonlyalfaz.com:product:2subs2learn",
+      "displayName": "2Subs2Learn Browser Extension Card",
+      "type": "application/agent-card+json",
+      "url": "https://www.theonlyalfaz.com/.well-known/2subs2learn-card.json",
+      "description": "Manifest V3 bilingual dual-subtitle browser extension for YouTube and ZDF Mediathek with browser-side Transformers.js and ONNX Runtime Web AI translation.",
+      "capabilities": [
+        "get_extension_details"
+      ],
+      "tags": [
+        "browser-extension",
+        "web-ai",
+        "subtitles",
+        "typescript",
+        "wxt"
+      ],
+      "representativeQueries": [
+        "2Subs2Learn dual subtitle extension Chrome Firefox",
+        "Bilingual YouTube ZDF Mediathek subtitle extension",
+        "Browser-side Transformers.js ONNX Runtime translation extension"
       ]
     }
   ]

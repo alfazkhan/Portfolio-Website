@@ -62,7 +62,7 @@ export default function SkillsSection() {
                         {item.icon && (
                           <item.icon
                             size="4rem"
-                            aria-label={item.label}
+                            aria-hidden="true"
                             color={item.color}
                           />
                         )}
@@ -116,7 +116,7 @@ export default function SkillsSection() {
                       {item.icon && (
                         <item.icon
                           size="4rem"
-                          aria-label={item.label}
+                          aria-hidden="true"
                           color={item.color}
                         />
                       )}
