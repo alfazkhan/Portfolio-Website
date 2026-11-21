@@ -23,7 +23,7 @@ afterEach(() => cleanup());
 
 describe('/2subs2learn route', () => {
   it('exports subdomain-specific SEO and OpenGraph metadata from layout', () => {
-    expect(metadata.title.absolute).toBe('2Subs2Learn | Bilingual Subtitle Browser Extension');
+    expect(metadata.title.absolute).toBe('2Subs2Learn: Dual Subtitles for YouTube & ZDF Mediathek');
     expect(metadata.alternates.canonical).toBe('https://2subs2learn.theonlyalfaz.com');
     expect(metadata.openGraph.url).toBe('https://2subs2learn.theonlyalfaz.com');
     expect(metadata.openGraph.siteName).toBe('2Subs2Learn');

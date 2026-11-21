@@ -11,7 +11,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { motion } from "motion/react";
+import { Reveal, SectionHeading, cardHoverProps } from "./shared";
 import subs2learnData from "./data-2s2l";
 
 export default function Subs2LearnFeatures() {
@@ -21,46 +21,56 @@ export default function Subs2LearnFeatures() {
     <Box
       as="section"
       id="features"
-      py={{ base: 14, md: 20 }}
+      py={{ base: 14, md: 24 }}
       borderBottomWidth="1px"
       borderColor="border"
     >
       <Container maxW="6xl" px={{ base: 4, md: 8 }}>
-        <Stack gap={{ base: 10, md: 14 }} align="center">
-          <Stack gap={2} align="center" style={{ textAlign: "center" }} maxW="2xl">
-            <Heading
-              as="h2"
-              fontSize={{ base: "2xl", md: "4xl" }}
-              fontWeight="extrabold"
-              letterSpacing="tight"
-              color="text"
-            >
-              {featuresData.title}
-            </Heading>
-            <Text color="textMuted" fontSize="sm">
-              {featuresData.subtitle}
-            </Text>
-          </Stack>
+        <Stack gap={{ base: 10, md: 14 }}>
+          <SectionHeading
+            eyebrow={featuresData.eyebrow}
+            title={featuresData.title}
+            subtitle={featuresData.subtitle}
+          />
 
-          <SimpleGrid columns={{ base: 1, md: 3 }} gap={8} w="full">
+          <SimpleGrid columns={{ base: 1, md: 3 }} gap={6} w="full">
             {featuresData.items.map((feature, idx) => (
-              <motion.div
-                key={feature.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: idx * 0.1 }}
-              >
-                <Stack gap={4} align="center" style={{ textAlign: "center" }} p={4}>
-                  {/* Main orange background with white icon */}
+              <Reveal key={feature.id} delay={idx * 0.1}>
+                <Stack
+                  gap={4}
+                  p={{ base: 6, md: 7 }}
+                  position="relative"
+                  overflow="hidden"
+                  className="group"
+                  {...cardHoverProps}
+                >
+                  {/* Large faded index number */}
+                  <Text
+                    as="span"
+                    position="absolute"
+                    top={3}
+                    right={5}
+                    fontSize="5xl"
+                    fontWeight="black"
+                    lineHeight="1"
+                    color="border"
+                    aria-hidden="true"
+                    userSelect="none"
+                  >
+                    {String(idx + 1).padStart(2, "0")}
+                  </Text>
+
                   <Flex
-                    w={13}
-                    h={13}
+                    w={12}
+                    h={12}
                     align="center"
                     justify="center"
-                    borderRadius="full"
+                    borderRadius="xl"
                     bg="primary"
                     color="white"
                     boxShadow="md"
+                    transition="transform 0.25s ease"
+                    _groupHover={{ transform: "rotate(-6deg) scale(1.06)" }}
                   >
                     <Icon as={feature.icon} boxSize={6} aria-hidden="true" />
                   </Flex>
@@ -69,16 +79,11 @@ export default function Subs2LearnFeatures() {
                     {feature.title}
                   </Heading>
 
-                  <Text
-                    fontSize="xs"
-                    color="textMuted"
-                    lineHeight="relaxed"
-                    maxW="sm"
-                  >
+                  <Text fontSize="sm" color="textMuted" lineHeight="relaxed">
                     {feature.description}
                   </Text>
                 </Stack>
-              </motion.div>
+              </Reveal>
             ))}
           </SimpleGrid>
         </Stack>

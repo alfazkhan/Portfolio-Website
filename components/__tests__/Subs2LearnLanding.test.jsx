@@ -105,6 +105,7 @@ vi.mock('react-icons/fa6', () => ({
 
 vi.mock('react-icons/fi', () => ({
   FiArrowUpRight: () => <span data-icon="arrow" />,
+  FiCheck: () => <span data-icon="check-mark" />,
   FiCheckCircle: () => <span data-icon="check" />,
   FiCpu: () => <span data-icon="cpu" />,
   FiGlobe: () => <span data-icon="globe" />,
@@ -143,7 +144,7 @@ describe('Subs2LearnLanding', () => {
       /Learn languages faster with dual subtitles/i,
     );
     expect(
-      screen.getByRole('img', { name: /2Subs2Learn dual-subtitle overlay preview on YouTube/i }),
+      screen.getByRole('img', { name: /2Subs2Learn showing dual subtitles over a YouTube video/i }),
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Toggle color mode' })).toBeInTheDocument();
 
@@ -162,7 +163,13 @@ describe('Subs2LearnLanding', () => {
 
     expect(screen.getByRole('heading', { name: 'YouTube' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'ZDF Mediathek' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Browser-Side AI Translation' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'On-Device Machine Translation' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Watch, read, understand' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: /German subtitle line shown with its English translation/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('Guten Abend und willkommen zu den Nachrichten.')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Make your next video a lesson' })).toBeInTheDocument();
     expect(screen.getByText('WXT (Manifest V3)')).toBeInTheDocument();
     expect(
       screen.getByText('Multi-platform subtitle synchronization (YouTube, ZDF Mediathek)'),

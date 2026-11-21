@@ -34,7 +34,7 @@ export default function Subs2LearnFooter({ project = {} }) {
           gap={4}
         >
           <HStack gap={2} wrap="wrap">
-            <BrandName fontSize="md" color="text" />
+            <BrandName fontSize="md" />
             <Text fontSize="xs" color="textMuted">
               {footerData.creatorPrefix}
               <Link

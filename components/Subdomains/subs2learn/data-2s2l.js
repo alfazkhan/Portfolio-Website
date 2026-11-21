@@ -6,7 +6,6 @@ import {
   FiLayers,
   FiSliders,
 } from "react-icons/fi";
-import { FaChrome, FaFirefox, FaGithub } from "react-icons/fa6";
 import {
   SiTypescript,
   SiReact,
@@ -16,6 +15,9 @@ import {
   SiHuggingface,
   SiFirefoxbrowser,
   SiChromewebstore,
+  SiWxt,
+  SiOnnx,
+  SiWebgpu,
 } from "react-icons/si";
 
 export const subs2learnData = {
@@ -36,6 +38,7 @@ export const subs2learnData = {
   header: {
     navItems: [
       { label: "Overview", id: "about" },
+      { label: "How It Works", id: "how-it-works" },
       { label: "Features", id: "features" },
       { label: "Platforms", id: "platforms" },
       { label: "Highlights", id: "highlights" },
@@ -44,6 +47,7 @@ export const subs2learnData = {
     ctaButton: {
       label: "Alfaz Khan",
       url: "https://www.theonlyalfaz.com",
+      ariaLabel: "Portfolio by Alfaz Khan",
     },
     githubAriaLabel: "GitHub Repo",
     githubLabel: "GitHub Repository",
@@ -52,12 +56,18 @@ export const subs2learnData = {
   },
 
   hero: {
+    eyebrow: "Free and Open source",
     headlinePrefix: "Learn languages faster with ",
     headlineHighlight: "dual subtitles",
     summary:
       "A browser extension that shows original and translated subtitles together on YouTube and ZDF Mediathek. Translation runs locally in your browser.",
     laptopImage: LaptopImg,
     laptopAlt: "2Subs2Learn showing dual subtitles over a YouTube video",
+    trustPoints: ["Runs on your device", "No account needed", "Open source"],
+    floatingBadges: {
+      languages: "German ⇄ English",
+      runtime: "WebGPU + WebAssembly",
+    },
     actions: {
       githubLabel: "GitHub Repo",
       chromeLabel: "Chrome Store",
@@ -68,7 +78,54 @@ export const subs2learnData = {
     },
   },
 
+  demo: {
+    eyebrow: "How it works",
+    title: "Watch, read, understand",
+    subtitle:
+      "The original line sits on top, the translation underneath, both timed to the video.",
+    nowPlayingLabel: "Now playing · ZDF Mediathek",
+    playerAriaLabel:
+      "Example of a German subtitle line shown with its English translation underneath",
+    intervalMs: 3200,
+    pairs: [
+      {
+        original: "Guten Abend und willkommen zu den Nachrichten.",
+        translation: "Good evening and welcome to the news.",
+      },
+      {
+        original: "Heute sprechen wir über das Wetter in Berlin.",
+        translation: "Today we're talking about the weather in Berlin.",
+      },
+      {
+        original: "Morgen wird es sonnig und warm.",
+        translation: "Tomorrow will be sunny and warm.",
+      },
+      {
+        original: "Vielen Dank fürs Zuschauen!",
+        translation: "Thanks for watching!",
+      },
+    ],
+    steps: [
+      {
+        title: "Install the extension",
+        description:
+          "Add it to Chrome or Firefox in one click. No account or sign-up.",
+      },
+      {
+        title: "Open a video",
+        description:
+          "Play anything with subtitles on YouTube or ZDF Mediathek.",
+      },
+      {
+        title: "Pick your languages",
+        description:
+          "Choose the original and the translation. Both lines appear, timed to the video.",
+      },
+    ],
+  },
+
   features: {
+    eyebrow: "Why 2Subs2Learn",
     title: "Features",
     subtitle: "Watch in your target language and check the meaning at a glance.",
     items: [
@@ -97,6 +154,7 @@ export const subs2learnData = {
   },
 
   platforms: {
+    eyebrow: "Where it works",
     title: "Supported Platforms",
     subtitle:
       "Each site delivers captions differently, so each gets its own extraction logic.",
@@ -131,6 +189,7 @@ export const subs2learnData = {
   },
 
   engineering: {
+    eyebrow: "Under the hood",
     title: "Engineering Highlights",
     subtitle:
       "How the extension translates subtitles on-device without slowing the page.",
@@ -184,25 +243,202 @@ export const subs2learnData = {
         ],
       },
     ],
+    atAGlance: {
+      featuresTitle: "Key Features",
+      challengesTitle: "Challenges Solved",
+    },
   },
 
   techStack: {
-    title: "Software & Technologies",
+    eyebrow: "Built with",
+    title: "Tech Stack",
     subtitle: "What 2Subs2Learn is built with.",
     speed: 60,
     height: 110,
     items: [
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
       { name: "React", icon: SiReact, color: "#61DAFB" },
-      { name: "WXT (Manifest V3)", icon: FaChrome, color: "#F58B51" },
+      { name: "WXT (Manifest V3)", icon: SiWxt, color: "#67D55E" },
       { name: "Transformers.js", icon: SiHuggingface, color: "#FFD21E" },
+      { name: "ONNX Runtime", icon: SiOnnx, color: "#005CED" },
+      { name: "WebGPU", icon: SiWebgpu, color: "#005A9C" },
       { name: "WebAssembly", icon: SiWebassembly, color: "#654FF0" },
       { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
-      { name: "Vitest", icon: SiVitest, color: "#FCC72B" },
+      { name: "Vitest", icon: SiVitest, color: "#6E9F18" },
       { name: "Playwright", icon: PlaywrightIcon, color: "#2EAD33" },
       { name: "Firefox Engine", icon: SiFirefoxbrowser, color: "#FF7139" },
       { name: "Chrome Web Store", icon: SiChromewebstore, color: "#4285F4" },
     ],
+  },
+
+  cta: {
+    title: "Make your next video a lesson",
+    subtitle: "Free, private and open source. Installs in seconds.",
+  },
+
+  welcome: {
+    path: "/welcome",
+    metaTitle: "Welcome to 2Subs2Learn: Get Started in a Minute",
+    metaDescription:
+      "Thanks for installing 2Subs2Learn. Pin the extension, open a video on YouTube or ZDF Mediathek, and start learning with dual subtitles.",
+    navItems: [
+      { label: "Welcome", id: "welcome" },
+      { label: "Pin It", id: "pin" },
+      { label: "How to Use", id: "how-to-use" },
+      { label: "Settings", id: "settings" },
+      { label: "Help", id: "help" },
+    ],
+    overviewLabel: "Product page",
+
+    hero: {
+      eyebrow: "Installed successfully",
+      title: "Welcome to 2Subs2Learn",
+      subtitle:
+        "You're ready to learn with dual subtitles. Here's how to get started in under a minute.",
+      primaryAction: { label: "Open YouTube", url: "https://www.youtube.com" },
+      secondaryAction: { label: "Open ZDF Mediathek", url: "https://www.zdf.de" },
+    },
+
+    pin: {
+      eyebrow: "Step 1",
+      title: "Pin it to your toolbar",
+      subtitle: "Keep the settings one click away while you watch.",
+      browserLabels: { chrome: "Chrome", firefox: "Firefox" },
+      browserSwitchLabel: "Show instructions for",
+      steps: {
+        chrome: [
+          "Click the puzzle-piece Extensions icon at the top right of Chrome.",
+          "Find 2Subs2Learn in the list.",
+          "Click the pin icon next to it.",
+        ],
+        firefox: [
+          "Click the puzzle-piece Extensions button in the toolbar.",
+          "Find 2Subs2Learn in the list.",
+          "Click the gear icon next to it and choose “Pin to Toolbar”.",
+        ],
+      },
+      mockMenuTitle: "Extensions",
+      mockOtherExtensions: ["Password Manager", "Ad Blocker"],
+    },
+
+    howToUse: {
+      eyebrow: "Step 2",
+      title: "Open a video",
+      subtitle: "2Subs2Learn starts working as soon as subtitles are available.",
+      platforms: [
+        {
+          id: "youtube",
+          logoType: "youtube",
+          title: "YouTube",
+          steps: [
+            "Open any video that has captions.",
+            "A “Select Subtitle Tracks” window appears on the video.",
+            "Choose the language to translate from and the language to translate to.",
+            "Both subtitle lines appear, timed to the video.",
+          ],
+          tip: "No captions in your language? Auto-generated captions are used instead.",
+          action: { label: "Open YouTube", url: "https://www.youtube.com" },
+        },
+        {
+          id: "zdf",
+          logoType: "zdf",
+          title: "ZDF Mediathek",
+          steps: [
+            "Open any video with subtitles.",
+            "The German subtitles are picked up automatically.",
+            "They're translated into English on your device as you watch.",
+          ],
+          tip: "Jump around freely. The part you skip to is translated first.",
+          action: { label: "Open ZDF Mediathek", url: "https://www.zdf.de" },
+        },
+      ],
+      download: {
+        title: "A one-time download",
+        description:
+          "The first time it translates on your device, 2Subs2Learn downloads a translation model of about 120 MB. This only happens once. After that, translation starts right away and works offline.",
+        mockTitle: "Downloading AI Model for Translation",
+        mockNote:
+          "This is a one-time setup for offline neural model size(~120MB) for in-browser translation",
+      },
+    },
+
+    settings: {
+      eyebrow: "Step 3",
+      title: "Make the subtitles yours",
+      subtitle:
+        "Click the 2Subs2Learn icon in your toolbar to open the settings. Try them here first.",
+      popup: {
+        enabledLabel: "Enabled",
+        pausedLabel: "Paused",
+        heading: "Settings",
+        translateFromLabel: "Translate From",
+        translateToLabel: "Translate To",
+        translateFromValue: "German",
+        translateToValue: "English",
+        toggleAriaLabel: "Turn 2Subs2Learn on or off",
+        decreaseLabel: "Decrease",
+        increaseLabel: "Increase",
+      },
+      controls: [
+        { key: "sourceFontSize", label: "Target language size", unit: "px", min: 8, max: 48, initial: 22 },
+        { key: "targetFontSize", label: "My language size", unit: "px", min: 8, max: 48, initial: 16 },
+        { key: "windowWidth", label: "Translation window size", unit: "%", min: 20, max: 100, initial: 80 },
+        { key: "verticalPosition", label: "Subs vertical position", unit: "%", min: 0, max: 90, initial: 8 },
+      ],
+      previewLabel: "Live preview",
+      pausedPreviewText: "Subtitles are paused",
+      previewPair: {
+        original: "Ich lerne jeden Tag ein bisschen Deutsch.",
+        translation: "I learn a little German every day.",
+      },
+      tips: [
+        {
+          title: "Pause anytime",
+          description: "Flip the switch to hide the subtitles without uninstalling anything.",
+        },
+        {
+          title: "Size each line separately",
+          description: "Make the language you're learning bigger and your own language smaller, or the other way round.",
+        },
+        {
+          title: "Move it out of the way",
+          description: "Change the width and height so the subtitles never cover what matters.",
+        },
+      ],
+    },
+
+    help: {
+      eyebrow: "Need anything?",
+      title: "Help make it better",
+      subtitle: "2Subs2Learn is a free, open-source side project. Feedback goes a long way.",
+      cards: [
+        {
+          id: "rate",
+          title: "Leave a review",
+          description: "A quick rating helps other learners find it.",
+          actionLabel: "Rate it",
+        },
+        {
+          id: "issue",
+          title: "Report a problem",
+          description: "Something not working on a video? Open an issue on GitHub.",
+          actionLabel: "Open an issue",
+          url: "https://github.com/alfazkhan/2Subs2Learn/issues",
+        },
+        {
+          id: "star",
+          title: "Star the repo",
+          description: "Follow along and see what's coming next.",
+          actionLabel: "Star on GitHub",
+          url: "https://github.com/alfazkhan/2Subs2Learn",
+        },
+      ],
+      reviewLinks: {
+        chrome:
+          "https://chromewebstore.google.com/detail/egkapkomakndamdhmlgknamdhmfnmkbf/reviews",
+        firefox: "https://addons.mozilla.org/en-US/firefox/addon/2subs2learn/reviews/",
+      },
+    },
   },
 
   footer: {
@@ -284,6 +520,25 @@ export function getSubs2LearnMetadata() {
             ],
           }
         : {}),
+    },
+  };
+}
+
+export function getSubs2LearnWelcomeMetadata() {
+  const { general, welcome } = subs2learnData;
+  const url = `${general.subdomainUrl}${welcome.path}`;
+  return {
+    title: { absolute: welcome.metaTitle },
+    description: welcome.metaDescription,
+    // Post-install onboarding page: useful for users, not for search results.
+    robots: { index: false, follow: true },
+    alternates: { canonical: url },
+    openGraph: {
+      title: welcome.metaTitle,
+      description: welcome.metaDescription,
+      url,
+      siteName: general.brandName,
+      type: "website",
     },
   };
 }

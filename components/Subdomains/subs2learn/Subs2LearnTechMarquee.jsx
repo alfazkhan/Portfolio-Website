@@ -2,9 +2,10 @@
 
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
+import { SectionHeading } from "./shared";
 import subs2learnData from "./data-2s2l";
 
-const { Box, Container, Heading, Text } = Chakra;
+const { Box, Container, Text } = Chakra;
 
 let Marquee;
 try {
@@ -30,25 +31,18 @@ export default function Subs2LearnTechMarquee() {
     <Box
       as="section"
       id="tech-stack"
-      py={{ base: 14, md: 20 }}
+      py={{ base: 14, md: 24 }}
       borderBottomWidth="1px"
       borderColor="border"
-      bg="bg"
+      bg="bgAlt"
     >
       <Container maxW="6xl" px={{ base: 4, md: 8 }}>
-        <Box mb={8} style={{ textAlign: "center" }}>
-          <Heading
-            as="h2"
-            fontSize={{ base: "2xl", md: "3xl" }}
-            fontWeight="extrabold"
-            color="text"
-            mb={2}
-          >
-            {techData.title}
-          </Heading>
-          <Text color="textMuted" fontSize="sm">
-            {techData.subtitle}
-          </Text>
+        <Box mb={{ base: 8, md: 10 }}>
+          <SectionHeading
+            eyebrow={techData.eyebrow}
+            title={techData.title}
+            subtitle={techData.subtitle}
+          />
         </Box>
 
         <Box py={4}>
@@ -71,11 +65,20 @@ export default function Subs2LearnTechMarquee() {
                     justifyContent="flex-end"
                   >
                     {item.icon && (
-                      <item.icon
-                        size="3.5rem"
-                        aria-hidden="true"
-                        color={item.color}
-                      />
+                      <Box
+                        as="span"
+                        display="inline-flex"
+                        transition="transform 0.25s ease"
+                        _hover={{ transform: "translateY(-4px) scale(1.08)" }}
+                      >
+                        <item.icon
+                          size="3.5rem"
+                          width="3.5rem"
+                          height="3.5rem"
+                          aria-hidden="true"
+                          color={item.color}
+                        />
+                      </Box>
                     )}
                     <Text
                       fontVariant="all-small-caps"

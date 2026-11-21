@@ -31,6 +31,16 @@ const nextConfig = {
             ],
             destination: "/2subs2learn",
           },
+          {
+            source: "/welcome",
+            has: [
+              {
+                type: "host",
+                value: "2subs2learn\\.localhost",
+              },
+            ],
+            destination: "/2subs2learn/welcome",
+          },
         ],
       };
     },

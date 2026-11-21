@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -33,10 +33,54 @@ function handleScrollTo(e, id) {
   }
 }
 
-export default function Subs2LearnHeader({ repoLink }) {
+/** Tracks which section is currently in the middle of the viewport. */
+function useActiveSection(ids) {
+  const [activeId, setActiveId] = useState(ids[0]);
+  const key = ids.join("|");
+
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof IntersectionObserver === "undefined") {
+      return undefined;
+    }
+    const sections = key
+      .split("|")
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [key]);
+
+  return activeId;
+}
+
+function useScrolled(threshold = 8) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const onScroll = () => setScrolled(window.scrollY > threshold);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [threshold]);
+  return scrolled;
+}
+
+export default function Subs2LearnHeader({ repoLink, navItems: navItemsProp }) {
   const [isOpen, setIsOpen] = useState(false);
   const headerData = subs2learnData.header;
+  const navItems = navItemsProp || headerData.navItems;
+  const homeId = navItems[0]?.id || "top";
   const activeRepoLink = repoLink || subs2learnData.general.repoUrl;
+  const activeId = useActiveSection(navItems.map((item) => item.id));
+  const scrolled = useScrolled();
 
   return (
     <Box
@@ -44,43 +88,53 @@ export default function Subs2LearnHeader({ repoLink }) {
       position="sticky"
       top={0}
       zIndex={50}
-      bg="bg"
+      bg="bg/80"
       borderBottomWidth="1px"
       borderColor="border"
-      style={{ backdropFilter: "blur(12px)" }}
+      boxShadow={scrolled ? "sm" : "none"}
+      transition="box-shadow 0.2s ease"
+      style={{ backdropFilter: "saturate(180%) blur(12px)", WebkitBackdropFilter: "saturate(180%) blur(12px)" }}
     >
       <Container maxW="6xl" py={3.5} px={{ base: 4, md: 8 }}>
         <Flex align="center" justify="space-between" gap={4}>
           {/* Logo with official Tropika font and NO orange dot */}
           <Link
-            href="#about"
-            onClick={(e) => handleScrollTo(e, "about")}
+            href={`#${homeId}`}
+            onClick={(e) => handleScrollTo(e, homeId)}
             _hover={{ textDecoration: "none" }}
           >
-            <BrandName fontSize="2xl" color="text" />
+            <BrandName fontSize="2xl" />
           </Link>
 
           {/* Section scroll navigation */}
           <HStack
             as="nav"
-            gap={6}
-            display={{ base: "none", md: "flex" }}
+            gap={1}
+            display={{ base: "none", lg: "flex" }}
             align="center"
           >
-            {headerData.navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => handleScrollTo(e, item.id)}
-                fontSize="sm"
-                fontWeight="medium"
-                color="textMuted"
-                _hover={{ color: "primary", textDecoration: "none" }}
-                transition="color 0.2s"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeId === item.id;
+              return (
+                <Link
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleScrollTo(e, item.id)}
+                  aria-current={isActive ? "location" : undefined}
+                  fontSize="sm"
+                  fontWeight={isActive ? "semibold" : "medium"}
+                  color={isActive ? "primary" : "textMuted"}
+                  bg={isActive ? "primary/10" : "transparent"}
+                  px={3}
+                  py={1.5}
+                  borderRadius="full"
+                  _hover={{ color: "primary", textDecoration: "none" }}
+                  transition="color 0.2s, background-color 0.2s"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </HStack>
 
           {/* Right actions: GitHub, ColorMode, and the main orange button "Alfaz Khan" */}
@@ -125,6 +179,7 @@ export default function Subs2LearnHeader({ repoLink }) {
                 href={headerData.ctaButton.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={headerData.ctaButton.ariaLabel}
               >
                 {headerData.ctaButton.label}
               </a>
@@ -135,8 +190,9 @@ export default function Subs2LearnHeader({ repoLink }) {
               type="button"
               variant="ghost"
               size="sm"
-              display={{ base: "inline-flex", md: "none" }}
+              display={{ base: "inline-flex", lg: "none" }}
               aria-label={isOpen ? headerData.menuCloseLabel : headerData.menuOpenLabel}
+              aria-expanded={isOpen}
               onClick={() => setIsOpen((prev) => !prev)}
               p={1.5}
             >
@@ -148,7 +204,7 @@ export default function Subs2LearnHeader({ repoLink }) {
         {/* Mobile dropdown menu */}
         {isOpen && (
           <Box
-            display={{ base: "block", md: "none" }}
+            display={{ base: "block", lg: "none" }}
             pt={4}
             pb={3}
             borderTopWidth="1px"
@@ -156,7 +212,7 @@ export default function Subs2LearnHeader({ repoLink }) {
             mt={3}
           >
             <Stack gap={3}>
-              {headerData.navItems.map((item) => (
+              {navItems.map((item) => (
                 <Link
                   key={item.id}
                   href={`#${item.id}`}
@@ -166,7 +222,7 @@ export default function Subs2LearnHeader({ repoLink }) {
                   }}
                   fontSize="sm"
                   fontWeight="medium"
-                  color="text"
+                  color={activeId === item.id ? "primary" : "text"}
                   py={1}
                   _hover={{ color: "primary" }}
                 >

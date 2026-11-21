@@ -4,7 +4,7 @@ import React from "react";
 import { Text } from "@chakra-ui/react";
 import subs2learnData from "./data-2s2l";
 
-export default function BrandName({ fontSize = "xl", color = "text", ...props }) {
+export default function BrandName({ fontSize = "xl", color = "primary", ...props }) {
   return (
     <Text
       as="span"

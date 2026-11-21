@@ -2,13 +2,16 @@
 
 import React from "react";
 import { Box } from "@chakra-ui/react";
+import { MotionConfig } from "motion/react";
 import { useWebMCPTools } from "@/components/WebMCPTools";
 import Subs2LearnHeader from "./subs2learn/Subs2LearnHeader";
 import Subs2LearnHero from "./subs2learn/Subs2LearnHero";
+import Subs2LearnDemo from "./subs2learn/Subs2LearnDemo";
 import Subs2LearnFeatures from "./subs2learn/Subs2LearnFeatures";
 import Subs2LearnPlatforms from "./subs2learn/Subs2LearnPlatforms";
 import Subs2LearnEngineering from "./subs2learn/Subs2LearnEngineering";
 import Subs2LearnTechMarquee from "./subs2learn/Subs2LearnTechMarquee";
+import Subs2LearnCTA from "./subs2learn/Subs2LearnCTA";
 import Subs2LearnFooter from "./subs2learn/Subs2LearnFooter";
 import subs2learnData from "./subs2learn/data-2s2l";
 
@@ -93,19 +96,23 @@ export default function Subs2LearnLanding({ project }) {
   );
 
   return (
-    <Box minH="100vh" display="flex" flexDirection="column">
-      <Subs2LearnHeader repoLink={repoLink} />
-      <Box as="main" id="main-content" flex={1}>
-        <Subs2LearnHero project={currentProject} />
-        <Subs2LearnFeatures />
-        <Subs2LearnPlatforms />
-        <Subs2LearnEngineering
-          features={currentProject.features}
-          challengesSolved={currentProject.challengesSolved}
-        />
-        <Subs2LearnTechMarquee />
+    <MotionConfig reducedMotion="user">
+      <Box minH="100vh" display="flex" flexDirection="column">
+        <Subs2LearnHeader repoLink={repoLink} />
+        <Box as="main" id="main-content" flex={1}>
+          <Subs2LearnHero project={currentProject} />
+          <Subs2LearnDemo />
+          <Subs2LearnFeatures />
+          <Subs2LearnPlatforms />
+          <Subs2LearnEngineering
+            features={currentProject.features}
+            challengesSolved={currentProject.challengesSolved}
+          />
+          <Subs2LearnTechMarquee />
+          <Subs2LearnCTA project={currentProject} />
+        </Box>
+        <Subs2LearnFooter project={currentProject} />
       </Box>
-      <Subs2LearnFooter project={currentProject} />
-    </Box>
+    </MotionConfig>
   );
 }

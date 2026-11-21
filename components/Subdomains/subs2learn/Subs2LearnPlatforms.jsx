@@ -13,8 +13,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { motion } from "motion/react";
 import { FiCheckCircle } from "react-icons/fi";
+import { Reveal, SectionHeading, cardHoverProps } from "./shared";
 import subs2learnData from "./data-2s2l";
 
 function YouTubeLogo() {
@@ -83,7 +83,7 @@ function ZDFLogo() {
   );
 }
 
-const LOGO_COMPONENTS = {
+export const LOGO_COMPONENTS = {
   youtube: YouTubeLogo,
   zdf: ZDFLogo,
 };
@@ -95,52 +95,25 @@ export default function Subs2LearnPlatforms() {
     <Box
       as="section"
       id="platforms"
-      py={{ base: 14, md: 20 }}
+      py={{ base: 14, md: 24 }}
       borderBottomWidth="1px"
       borderColor="border"
       bg="bgAlt"
     >
       <Container maxW="6xl" px={{ base: 4, md: 8 }}>
-        <Stack gap={{ base: 10, md: 12 }}>
-          <Stack
-            gap={2}
-            align={{ base: "flex-start", md: "center" }}
-            style={{ textAlign: "center" }}
-            maxW="2xl"
-            mx={{ md: "auto" }}
-          >
-            <Heading
-              as="h2"
-              fontSize={{ base: "2xl", md: "3xl" }}
-              fontWeight="extrabold"
-              color="text"
-            >
-              {platformsData.title}
-            </Heading>
-            <Text color="textMuted" fontSize="sm">
-              {platformsData.subtitle}
-            </Text>
-          </Stack>
+        <Stack gap={{ base: 10, md: 14 }}>
+          <SectionHeading
+            eyebrow={platformsData.eyebrow}
+            title={platformsData.title}
+            subtitle={platformsData.subtitle}
+          />
 
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={6}>
-            {platformsData.items.map((platform) => {
+            {platformsData.items.map((platform, idx) => {
               const LogoComponent = LOGO_COMPONENTS[platform.logoType] || YouTubeLogo;
               return (
-                <motion.div
-                  key={platform.id}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Stack
-                    gap={4}
-                    p={{ base: 6, md: 8 }}
-                    borderWidth="1px"
-                    borderColor="border"
-                    borderRadius="2xl"
-                    bg="bg"
-                    boxShadow="sm"
-                    h="full"
-                  >
+                <Reveal key={platform.id} delay={idx * 0.12}>
+                  <Stack gap={4} p={{ base: 6, md: 8 }} {...cardHoverProps}>
                     <Flex align="center" justify="space-between" gap={3}>
                       <HStack gap={3}>
                         <LogoComponent />
@@ -159,11 +132,19 @@ export default function Subs2LearnPlatforms() {
                       </Badge>
                     </Flex>
 
-                    <Text fontSize="xs" color="textMuted" lineHeight="relaxed">
+                    <Text fontSize="sm" color="textMuted" lineHeight="relaxed">
                       {platform.summary}
                     </Text>
 
-                    <Stack as="ul" gap={2} listStyleType="none" mt={2}>
+                    <Stack
+                      as="ul"
+                      gap={2.5}
+                      listStyleType="none"
+                      mt={2}
+                      pt={4}
+                      borderTopWidth="1px"
+                      borderColor="border"
+                    >
                       {platform.details.map((detail) => (
                         <Flex as="li" key={detail} gap={2.5} align="flex-start">
                           <Icon
@@ -173,14 +154,14 @@ export default function Subs2LearnPlatforms() {
                             flexShrink={0}
                             aria-hidden="true"
                           />
-                          <Text fontSize="xs" color="text">
+                          <Text fontSize="sm" color="text">
                             {detail}
                           </Text>
                         </Flex>
                       ))}
                     </Stack>
                   </Stack>
-                </motion.div>
+                </Reveal>
               );
             })}
           </SimpleGrid>

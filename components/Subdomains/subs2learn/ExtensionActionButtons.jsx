@@ -5,50 +5,42 @@ import { Button, Flex } from "@chakra-ui/react";
 import { FaChrome, FaFirefox, FaGithub } from "react-icons/fa6";
 import subs2learnData from "./data-2s2l";
 
+const liftOnHover = {
+  _hover: { transform: "translateY(-2px)", boxShadow: "lg" },
+  transition: "all 0.2s ease",
+};
+
 export default function ExtensionActionButtons({
   downloadLinks,
   repoLink,
   projectTitle = subs2learnData.general.brandName,
+  centered = false,
 }) {
   const actions = subs2learnData.hero.actions;
   const labelSuffix = projectTitle ? ` — ${projectTitle}` : "";
+  const hasStoreLinks = downloadLinks?.chrome || downloadLinks?.firefox;
 
   return (
-    <Flex direction="column" gap={2.5} w="full" maxW="440px">
-      {repoLink && (
-        <Button
-          asChild
-          type="button"
-          size="md"
-          bg={{ base: "black", _dark: "white" }}
-          color={{ base: "gray.100", _dark: "gray.900" }}
-          width="full"
-          _hover={{ opacity: 0.9, transform: "translateY(-1px)" }}
-          transition="all 0.2s"
-        >
-          <a
-            href={repoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${actions.githubAriaLabel}${labelSuffix}`}
-          >
-            <FaGithub aria-hidden="true" />
-            {actions.githubLabel}
-          </a>
-        </Button>
-      )}
-
-      {(downloadLinks?.chrome || downloadLinks?.firefox) && (
-        <Flex gap={2} w="full">
+    <Flex
+      direction="column"
+      gap={3}
+      w="full"
+      maxW="460px"
+      mx={centered ? "auto" : undefined}
+    >
+      {hasStoreLinks && (
+        <Flex gap={3} w="full" direction={{ base: "column", sm: "row" }}>
           {downloadLinks?.chrome && (
             <Button
               asChild
               type="button"
-              size="sm"
+              size="lg"
               colorPalette="blue"
+              borderRadius="xl"
+              fontWeight="bold"
               flex={1}
-              _hover={{ opacity: 0.9, transform: "translateY(-1px)" }}
-              transition="all 0.2s"
+              boxShadow="md"
+              {...liftOnHover}
             >
               <a
                 href={downloadLinks.chrome}
@@ -66,11 +58,13 @@ export default function ExtensionActionButtons({
             <Button
               asChild
               type="button"
-              size="sm"
+              size="lg"
               colorPalette="orange"
+              borderRadius="xl"
+              fontWeight="bold"
               flex={1}
-              _hover={{ opacity: 0.9, transform: "translateY(-1px)" }}
-              transition="all 0.2s"
+              boxShadow="md"
+              {...liftOnHover}
             >
               <a
                 href={downloadLinks.firefox}
@@ -84,6 +78,31 @@ export default function ExtensionActionButtons({
             </Button>
           )}
         </Flex>
+      )}
+
+      {repoLink && (
+        <Button
+          asChild
+          type="button"
+          size="md"
+          variant="outline"
+          borderRadius="xl"
+          borderColor="border"
+          bg={{ base: "black", _dark: "white" }}
+          color={{ base: "gray.100", _dark: "gray.900" }}
+          width="full"
+          {...liftOnHover}
+        >
+          <a
+            href={repoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${actions.githubAriaLabel}${labelSuffix}`}
+          >
+            <FaGithub aria-hidden="true" />
+            {actions.githubLabel}
+          </a>
+        </Button>
       )}
     </Flex>
   );
